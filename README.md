@@ -1,4 +1,10 @@
 # Projeto: Jogo RPG
+## Instruções para compilação do projeto
+Para executar o projeto, crie uma pasta de nome bin na raiz do projeto e execute o seguinte comando:
+```
+g++ --std=c++17 -Wall -Iinclude program/main.cpp src/character.cpp src/game.cpp -o bin/game.exe
+```
+
 ## Definição do Projeto
 Jogo RPG com batalhas em turnos inspirado em D&D onde o jogador escolhe seu grupo de heróis e parte em aventuras, vencendo diferentes inimigos, evoluindo os personagens e colecionando recompensas.
 

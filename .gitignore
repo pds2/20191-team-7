@@ -1,2 +1,6 @@
+# Ignore configuration and output folders
 .vscode/
 bin/
+
+# Ignore binary files
+*.exe

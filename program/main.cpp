@@ -13,9 +13,17 @@ int main(void) {
     while(game.runGame()) {
         // Toss the coin to see who starts.
         srand(time(0));
+        // Generate random number between 1 and 2
         int r = (rand() % 2) + 1;
 
-        game.gameBattle(warrior.BaseAtk(1), archer.BaseDef(1));
+        // Player 1 attacks
+        if (r == 1) {
+            game.gameBattle(&warrior, &archer);
+        }
+        // Player 2 attacks
+        else {
+            game.gameBattle(&archer, &warrior);
+        }
     }
 
     return 0;

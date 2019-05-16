@@ -24,3 +24,15 @@ int Character::BaseAtk(int atkType){
 int Character::BaseDef(int atkType){
     return _DEF;
 }
+
+std::string Character::GetName() {
+    return _Name;
+}
+
+int Character::GetHP() {
+    return _HP;
+}
+
+void Character::SetHP(int HP) {
+    _HP = HP;
+}

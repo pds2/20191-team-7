@@ -17,6 +17,9 @@ class Character {
         bool CharacterAlive();
         int BaseAtk(int atkType);
         int BaseDef(int atkType);
+        std::string GetName();
+        int GetHP();
+        void SetHP(int HP);
 };
 
 #endif

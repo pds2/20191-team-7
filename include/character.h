@@ -4,22 +4,22 @@
 #define PDS2_CHARACTER_H
 
 class Character {
-    private:
+    protected:
         int _HP;
         int _MP;
-        int _XP;
         int _ATK;
         int _DEF;
         std::string _Name;
 
     public:
-        Character(int HP, int MP, int XP, int ATK, int DEF, std::string Name);
+        Character(int HP, int MP, int ATK, int DEF, std::string Name);
         bool CharacterAlive();
-        int BaseAtk(int atkType);
-        int BaseDef(int atkType);
-        std::string GetName();
         int GetHP();
         void SetHP(int HP);
+        std::string GetName();
+        virtual int BaseAtk(int atkType);
+        virtual int BaseDef(int atkType);
+        
 };
 
 #endif

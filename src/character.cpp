@@ -1,9 +1,8 @@
 #include "character.h"
 
-Character::Character(int HP, int MP, int XP, int ATK, int DEF, std::string Name) {
+Character::Character(int HP, int MP, int ATK, int DEF, std::string Name) {
     _HP = HP;
     _MP = MP;
-    _XP = XP;
     _ATK = ATK;
     _DEF = DEF;
     _Name = Name;

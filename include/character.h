@@ -17,8 +17,8 @@ class Character {
         int GetHP();
         void SetHP(int HP);
         std::string GetName();
-        virtual int BaseAtk(int atkType);
-        virtual int BaseDef(int atkType);
+        int BaseAtk(int atkType);
+        int BaseDef(int atkType);
         
 };
 

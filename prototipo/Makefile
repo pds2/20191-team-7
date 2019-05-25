@@ -6,7 +6,7 @@ SRC		:= src
 INCLUDE	:= include
 LIB		:= lib
 
-LIBRARIES	:= -lncurses
+LIBRARIES	:=
 EXECUTABLE	:= main
 
 

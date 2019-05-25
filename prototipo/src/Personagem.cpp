@@ -14,6 +14,9 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _defesa = 2 * forca;
     _mp = 10 * inteligencia;
     _hp = 30 * forca;
+
+    //estado do personagem
+    _vivo = true;
 }
 
 std::string Personagem::get_nome(){
@@ -30,4 +33,33 @@ void Personagem::imprime(){
     std::cout << " agilidade:" << _agilidade;
     std::cout << " inteligencia:" << _inteligencia;
     std::cout << std::endl;
+    std::cout << " ataque:" << _ataque;
+    std::cout << " defesa:" << _defesa;
+    std::cout << " mp:" << _mp;
+    std::cout << " hp:" << _hp;
+    std::cout << std::endl;
+}
+
+int Personagem::ataque_basico(Personagem* alvo){
+    return alvo->recebe_ataque_fisico(_ataque);
+}
+
+int Personagem::recebe_ataque_fisico(int ataque){
+    if ((ataque - _defesa) > 0){
+        _hp -= (ataque - _defesa);
+        if (_hp < 0){
+            _vivo = false;
+        }    
+        return ataque - _defesa;
+    }
+    else return 0; 
+}
+
+std::string Personagem::morreu(){
+    if(_vivo){
+        return " hp= " + std::to_string(_hp);
+    }
+    else {
+        return " morreu";
+    }
 }

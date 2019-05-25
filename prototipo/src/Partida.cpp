@@ -59,13 +59,13 @@ void Partida::escolhe_acao(Personagem p, char grupo_do_personagem){
 
 void Partida::refresh_tela(){
     system("clear");
-    std::cout << _Grupo_a[0].get_nome() << " hp=" << _Grupo_a[0].get_hp() << std::endl;
-    std::cout << _Grupo_a[1].get_nome() << " hp=" << _Grupo_a[1].get_hp() << std::endl;
-    std::cout << _Grupo_a[2].get_nome() << " hp=" << _Grupo_a[2].get_hp() << std::endl;
+    std::cout << _Grupo_a[0].get_nome() << _Grupo_a[0].morreu() << std::endl;
+    std::cout << _Grupo_a[1].get_nome() << _Grupo_a[1].morreu() << std::endl;
+    std::cout << _Grupo_a[2].get_nome() << _Grupo_a[2].morreu() << std::endl;
     std::cout << std::endl << "vs" << std::endl;    
-    std::cout << _Grupo_b[0].get_nome() << " hp=" << _Grupo_b[0].get_hp() << std::endl;
-    std::cout << _Grupo_b[1].get_nome() << " hp=" << _Grupo_b[1].get_hp() << std::endl;
-    std::cout << _Grupo_b[2].get_nome() << " hp=" << _Grupo_b[2].get_hp() << std::endl;
+    std::cout << _Grupo_b[0].get_nome() << _Grupo_b[0].morreu() << std::endl;
+    std::cout << _Grupo_b[1].get_nome() << _Grupo_b[1].morreu() << std::endl;
+    std::cout << _Grupo_b[2].get_nome() << _Grupo_b[2].morreu() << std::endl;
     std::cout << std::endl << "---------------------" << std::endl;  
 }
 
@@ -75,28 +75,49 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
     std::string alvo1;
     std::string alvo2;
     
-    //o personagem pode atacar os personagens do outro grupo
+    //caso esteja atacando os personagens do segundo grupo
     if (grupo_do_personagem == 'b'){
         alvo0 = _Grupo_a[0].get_nome();
         alvo1 = _Grupo_a[1].get_nome();
         alvo2 = _Grupo_a[2].get_nome();
+
+        int escolha = submenu_partida(alvo0, alvo1, alvo2);
+        if (escolha == 1){
+            std::cout << p.get_nome() << " atacou " << alvo0;
+        }
+        if (escolha == 2){
+            std::cout << p.get_nome() << " atacou " << alvo1;
+        }
+        if (escolha == 3){
+            std::cout << p.get_nome() << " atacou " << alvo2;
+        }
+
+    //computa o ataque e imprime o resultado
+    int dano = p.ataque_basico(&_Grupo_a[escolha-1]);
+    refresh_tela();
+    std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _Grupo_a[escolha-1].get_nome() << ". ";
+    if (_Grupo_a[escolha-1].morreu() == " morreu"){
+            std::cout << _Grupo_a[escolha-1].get_nome() << " foi morto em combate.";
+        }
+        std::cout << std::endl;
     }
+
+    //caso estaja atacando o primeiro grupo
     else{
         alvo0 = _Grupo_b[0].get_nome();
         alvo1 = _Grupo_b[1].get_nome();
         alvo2 = _Grupo_b[2].get_nome();
-    }
 
+        int escolha = submenu_partida(alvo0, alvo1, alvo2);
 
-    int escolha = submenu_partida(alvo0, alvo1, alvo2);
-    if (escolha == 1){
-        std::cout << p.get_nome() << " atacou " << alvo0 << std::endl;
-    }
-    if (escolha == 2){
-        std::cout << p.get_nome() << " atacou " << alvo1 << std::endl;
-    }
-    if (escolha == 3){
-        std::cout << p.get_nome() << " atacou " << alvo2 << std::endl;
+        //computa o ataque e imprime o resultado
+        int dano = p.ataque_basico(&_Grupo_b[escolha-1]);
+        refresh_tela();
+        std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _Grupo_b[escolha-1].get_nome() << ". ";
+        if (_Grupo_b[escolha-1].morreu() == " morreu"){
+            std::cout << _Grupo_b[escolha-1].get_nome() << " foi morto em combate.";
+        }
+        std::cout << std::endl;
     }
     return;
 
@@ -137,6 +158,5 @@ int Partida::submenu_partida(std::string opcao_1, std::string opcao_2, std::stri
         std::cout << "3." << opcao_3 << std::endl;
         std::cin >> escolha;
     }
-    refresh_tela();
     return escolha;
 }

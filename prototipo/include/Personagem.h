@@ -24,6 +24,9 @@ class Personagem {
         int _hp;
         int _mp;
 
+        //estado do personagem
+        bool _vivo;
+
     public:
         Personagem();
         Personagem(std::string,int, int, int);
@@ -37,6 +40,16 @@ class Personagem {
 
         //imprime atributos do personagem
         void imprime();
+
+        //ataque basico contra outro personagem
+        int ataque_basico(Personagem*);
+
+        //recebe um ataque fisico
+        int recebe_ataque_fisico(int);
+
+        //confere se o personagem já morreu
+        std::string morreu();
+
 };
 
 #endif

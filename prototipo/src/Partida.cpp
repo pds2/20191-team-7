@@ -28,22 +28,22 @@ void Partida::turno(){
     for (unsigned int i = 0; i < _Grupo_a.size(); i++){
         std::cout << "Vez de " << _Grupo_a[i].get_nome() << ". O que fazer?" << std::endl;  
 
-        escolhe_acao(_Grupo_a[i]);
+        escolhe_acao(_Grupo_a[i], 'a');
     }
         for (unsigned int i = 0; i < _Grupo_b.size(); i++){
         std::cout << "Vez de " << _Grupo_b[i].get_nome() << ". O que fazer?" << std::endl;  
 
-        escolhe_acao(_Grupo_b[i]);
+        escolhe_acao(_Grupo_b[i], 'b');
     }
     return;
 }
 
-void Partida::escolhe_acao(Personagem p){
+void Partida::escolhe_acao(Personagem p, char grupo_do_personagem){
     //apresenta escolhas pro jogador
     int escolha = submenu_partida("Atacar", "Usar habilidade", "Passar vez");
     if (escolha == 1){
-        std::cout << p.get_nome() << " vai atacar. Como atacar?" << std::endl;
-        atacando(p);
+        std::cout << p.get_nome() << " vai atacar. Quem atacar?" << std::endl;
+        atacando(p, grupo_do_personagem);
 
     }
     if (escolha == 2){
@@ -69,17 +69,34 @@ void Partida::refresh_tela(){
     std::cout << std::endl << "---------------------" << std::endl;  
 }
 
-void Partida::atacando(Personagem p){
-    int escolha = submenu_partida("Ataque basico", "Ataque especial", "Ataque de área");
+void Partida::atacando(Personagem p, char grupo_do_personagem){
+    
+    std::string alvo0;
+    std::string alvo1;
+    std::string alvo2;
+    
+    //o personagem pode atacar os personagens do outro grupo
+    if (grupo_do_personagem == 'b'){
+        alvo0 = _Grupo_a[0].get_nome();
+        alvo1 = _Grupo_a[1].get_nome();
+        alvo2 = _Grupo_a[2].get_nome();
+    }
+    else{
+        alvo0 = _Grupo_b[0].get_nome();
+        alvo1 = _Grupo_b[1].get_nome();
+        alvo2 = _Grupo_b[2].get_nome();
+    }
+
+
+    int escolha = submenu_partida(alvo0, alvo1, alvo2);
     if (escolha == 1){
-        std::cout << p.get_nome() << " tentou um Ataque basico" << std::endl;
+        std::cout << p.get_nome() << " atacou " << alvo0 << std::endl;
     }
     if (escolha == 2){
-        std::cout << p.get_nome() << " Ataque especial." << std::endl;
-
+        std::cout << p.get_nome() << " atacou " << alvo1 << std::endl;
     }
     if (escolha == 3){
-        std::cout << p.get_nome() << " Ataque de área." << std::endl;
+        std::cout << p.get_nome() << " atacou " << alvo2 << std::endl;
     }
     return;
 

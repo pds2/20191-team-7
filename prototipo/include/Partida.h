@@ -20,11 +20,10 @@ class Partida {
         void turno();
 
         //jogador decide o que vai querer fazer em seu turno
-        void escolhe_acao(Personagem);
-        
+        void escolhe_acao(Personagem, char);
 
         //jogador vai fazer um ataque
-        void atacando(Personagem);
+        void atacando(Personagem, char);
 
         //jogador vai usar habilidade
         void usando_habilidade(Personagem);

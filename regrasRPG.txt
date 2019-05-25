@@ -3,13 +3,19 @@ Atributos:
 
 Força: determina o dano do ataque básico e maximo de HP, aumenta a defesa.
 
-Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a defesa.
+Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a chance de esquiva.
 
 Inteligencia: determina o maximo de MP.
 
 
 
 
-Ataque: dano é a força multiplicando um numero e tem uma chance agilidade% de dobrar o ataque.
+Ataque: o numero do atque é a Força do personagem multiplicada por um constante. Cada ataque tem a chance de ser um dano critico (dobro do dano) baseado na agilidade.
 
-Defesa: 
+Defesa: derivada da força, reduz o poder do ataque que o personagem esta recebendo.
+
+Esquiva: derivada da agilidade.
+
+
+
+Durante um turno em uma partida todo personagem tem uma vez e a ordem é determinada pela agilidade.

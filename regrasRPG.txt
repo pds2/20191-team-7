@@ -1,0 +1,15 @@
+Atributos:
+
+
+Força: determina o dano do ataque básico e maximo de HP, aumenta a defesa.
+
+Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a defesa.
+
+Inteligencia: determina o maximo de MP.
+
+
+
+
+Ataque: dano é a força multiplicando um numero e tem uma chance agilidade% de dobrar o ataque.
+
+Defesa: 

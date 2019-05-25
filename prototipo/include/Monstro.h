@@ -4,6 +4,7 @@
 #include <string>
 #include "Personagem.h"
 
+//no momento não tem nada de diferente da classe personagem
 class Monstro : public Personagem {
     private:
     public:

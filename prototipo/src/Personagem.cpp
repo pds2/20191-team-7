@@ -1,12 +1,19 @@
 #include "Personagem.h"
 #include <string>
+#include <iostream>
 
-Personagem::Personagem(std::string nome, int hp, int max_hp, int ataque, int defesa) {
+Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligencia) {
+    //atributos principais
     _nome = nome;
-    _hp = hp;
-    _max_hp = max_hp;
-    _ataque = ataque;
-    _defesa = defesa;
+    _forca = forca;
+    _agilidade = agilidade;
+    _inteligencia = inteligencia;
+
+    //calcula os atributos secundarios a partir dos principais
+    _ataque = 10 * forca;
+    _defesa = 2 * forca;
+    _mp = 10 * inteligencia;
+    _hp = 30 * forca;
 }
 
 std::string Personagem::get_nome(){
@@ -17,14 +24,10 @@ int Personagem::get_hp(){
     return _hp;
 }
 
-int Personagem::get_max_hp(){
-    return _max_hp;
-}
-
-int Personagem::get_ataque(){
-    return _ataque;
-}
-
-int Personagem::get_defesa(){
-    return _defesa;
+void Personagem::imprime(){
+    std::cout << _nome << " >>";    
+    std::cout << " forca:" << _forca;
+    std::cout << " agilidade:" << _agilidade;
+    std::cout << " inteligencia:" << _inteligencia;
+    std::cout << std::endl;
 }

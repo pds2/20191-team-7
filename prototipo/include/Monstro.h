@@ -8,9 +8,7 @@
 class Monstro : public Personagem {
     private:
     public:
-        Monstro(std::string nome,int hp, int hp_max, int ataque, int defesa) : Personagem(nome,hp,hp_max,ataque,defesa){
-            
-        }
+        Monstro(std::string nome, int forca, int agilidade , int inteligencia) : Personagem(nome, forca, agilidade, inteligencia){}
 };
 
 #endif

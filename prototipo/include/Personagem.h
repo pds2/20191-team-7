@@ -7,30 +7,36 @@ class Personagem {
     protected:
         //nome do personagem
         std::string _nome;
-    
-        //pondos de vida do personagem
-        int _hp;
 
-        //maximo de hp que o personagem pode ter
-        int _max_hp;
+        //atributos principais: 
+        //determina dano do ataque basico e defesa
+        int _forca;
 
-        //determina a força dos ataques
+        //determina chance de ataque critico, esquiva e ordem da rodada
+        int _agilidade;
+
+        //determina quantidade de mp
+        int _inteligencia;
+
+        //atributos derivados
         int _ataque;
-
-        //pontos de defesa, reduzem o dano de ataques fisicos
         int _defesa;
+        int _hp;
+        int _mp;
 
     public:
         Personagem();
-        Personagem(std::string,int, int, int, int);
+        Personagem(std::string,int, int, int);
 
         std::string get_nome();
-        int get_hp();
-        int get_max_hp();
         int get_ataque();
         int get_defesa();
 
+        int get_hp();
         void set_hp(int);
+
+        //imprime atributos do personagem
+        void imprime();
 };
 
 #endif

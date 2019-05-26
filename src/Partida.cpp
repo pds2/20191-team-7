@@ -83,13 +83,10 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
 
         int escolha = submenu_partida(alvo0, alvo1, alvo2);
         if (escolha == 1){
-            std::cout << p.get_nome() << " atacou " << alvo0;
         }
         if (escolha == 2){
-            std::cout << p.get_nome() << " atacou " << alvo1;
         }
         if (escolha == 3){
-            std::cout << p.get_nome() << " atacou " << alvo2;
         }
 
     //computa o ataque e imprime o resultado

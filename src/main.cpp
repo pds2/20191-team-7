@@ -4,7 +4,7 @@
 #include <Partida.h>
 
 int main() {
-    /*
+    /* Esta parte de carregar do arquivo estava dando pau no linux, vou concertar
     //inicia o jogo
     Jogo jogo = Jogo();
     jogo.carrega_arquivos();

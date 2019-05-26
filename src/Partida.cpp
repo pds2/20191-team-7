@@ -1,6 +1,5 @@
 #include <Partida.h>
 
-
 Partida::Partida(Personagem a0,Personagem a1, Personagem a2, Personagem b0, Personagem b1, Personagem b2){
     _Grupo_a.push_back(a0);
     _Grupo_a.push_back(a1);

@@ -62,7 +62,7 @@ void Partida::refresh_tela(){
     std::cout << _Grupo_a[0].get_nome() << _Grupo_a[0].morreu() << std::endl;
     std::cout << _Grupo_a[1].get_nome() << _Grupo_a[1].morreu() << std::endl;
     std::cout << _Grupo_a[2].get_nome() << _Grupo_a[2].morreu() << std::endl;
-    std::cout << std::endl << "vs" << std::endl;    
+    std::cout << std::endl << "vs" << std::endl << std::endl;    
     std::cout << _Grupo_b[0].get_nome() << _Grupo_b[0].morreu() << std::endl;
     std::cout << _Grupo_b[1].get_nome() << _Grupo_b[1].morreu() << std::endl;
     std::cout << _Grupo_b[2].get_nome() << _Grupo_b[2].morreu() << std::endl;

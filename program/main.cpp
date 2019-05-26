@@ -1,33 +1,28 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <Personagem.h>
+#include <Jogo.h>
+#include <Partida.h>
 
-#include "character.h"
-#include "monster.h"
-#include "game.h"
+int main() {
+    //inicia o jogo
+    Jogo jogo = Jogo();
+    jogo.carrega_arquivos();
 
-int main(void) {
-    Game game = Game("Pantano");
-    Character warrior = Character(100, 10, 30, 20, "Hercules");
-    Monster monster = Monster(80, 30, 50, 10, "Monster", "Pantano", 1.2);
+    //imprime o conteudo que foi carregado
+    jogo.imprime_vetores();
 
-    // Toss the coin to see who starts.
-    srand(time(0));
+    //Escolhe quem vai participar da partida
+    Personagem a0 = jogo.escolhe_heroi(0);
+    Personagem a1 = jogo.escolhe_heroi(1);
+    Personagem a2 = jogo.escolhe_heroi(2);
+    Personagem b0 = jogo.escolhe_monstro(0);
+    Personagem b1 = jogo.escolhe_monstro(1);
+    Personagem b2 = jogo.escolhe_monstro(2);
+    
+    //Inicia partida com os personagens escolhidos
+    Partida partida = Partida(a0, a1, a2, b0, b1, b2);
 
-    while(game.RunGame()) {
-        // Generate random number between 1 and 2
-        int r = (rand() % 2) + 200;
-
-        // Player 1 attacks
-        if (r % 2 == 0) {
-            game.GameBattle(&warrior, &monster);
-        }
-        // Player 2 attacks
-        else {
-            game.GameBattle(&monster, &warrior);
-        }
-        std::cout << std::endl;
-    }
-
+    partida.inicia();
     return 0;
 }
+ 

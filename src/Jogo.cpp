@@ -52,14 +52,6 @@ bool Jogo::carrega_arquivos(){
         return true;
 };
 
-Personagem Jogo::escolhe_heroi(int i){
-    return _herois[i];
-}
-
-Personagem Jogo::escolhe_monstro(int i){
-    return _monstros[i];
-}
-
 void Jogo::imprime_vetores(){
 
     //Imprime conteudo do vetor herois

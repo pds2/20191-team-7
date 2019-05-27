@@ -13,8 +13,6 @@ class Jogo {
         Jogo();
         bool carrega_arquivos();
         void imprime_vetores();
-        Personagem escolhe_heroi(int);
-        Personagem escolhe_monstro(int);
 };
 
 #endif

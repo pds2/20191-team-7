@@ -1,37 +1,37 @@
-Atributos:
-
-Mudar os atributos pra forca, destreza, constituicao e inteligencia. Constitucao que mede o HP. Não a força. Não se preocupem, não é complicado. Se o HP for medido em força vai ficar muito discrepante. O mago vai ter um HP ridículo e ninguem vai querer jogar com ele. E se colocar as magias dele destruidoras demais pra compensar isso o jogo vai ficar desbalanceado, pq se ele atacar primeiro vai detonar muito dos monstros, se ele for atacado primeiro vai morrer e o resto vai passar aperto. Nào preocupem que eu faco isso tudo. vai ficar equilibrado, e não é difícil complicado. ces vão ver.
-
-
-Força: determina o dano do ataque básico e da bonus na chance de acertar no ataque corpo a corpo.
-
-Destreza (Agilidade): determina o dano de ataque a distancia e dá bonus pra acertar no ataque a distância. Determina a ordem do turno e aumenta a esquiva. (No caso esquiva vai entrar na classe de armadura, ou seja, tanto faz ter esquiva ou usar armadura a sua classe de armadura eh melhor, diminuindo a chance de ser atingido). Faco esse tb, não se preocupem.
-
-Inteligencia: determina o maximo de MP e dá bonus de dano nas magias.
-
-Constitucao. Determina o HP e dá bonus pra resistir magias que te acertam independente da sua armadura.
-
-
-
-Ataque: o numero do atque é a Força do personagem multiplicada por um constante. Cada ataque tem a chance de ser um dano critico (dobro do dano) baseado na agilidade.
-
-Defesa: (vai ser substituido pela classe de armadura) derivada da força, reduz o poder do ataque que o personagem esta recebendo.
-
-Esquiva: derivada da agilidade. Protoman: Tô pensando em colocar a defesa baseado na classe de armadura. tanto armadura quanro agilidade aumentam a defesa. Não se preocupem, eu mesmo mudo caso
-vcs achem complicado. Pq num RPG de verdade quem nao tem armadura e sempre mais facil de atingir com
-um ataque corpo a corpo. se o cara for lento entao aí que toma mesmo.
-
-Dano: O dano pode ser baseado em numeros aleatorios pra ficar mais realista, pois nem sempre o mesmo
-ataque causa o mesmo dano. Então uma espada de duas mãos pode causar 1d10, enquanto a maça do clerigo causa 1d8 e a adaga do mago causa 1d4 de dano. Tudo isso somado pelo bônus de força. (vou mudar isso depois e criar a tabela de bônus. Preocupa não que não é complicado de entender não).
-o mago causa 1d4 só com adaga pq ele é um bosta com ataque corpo a corpo, mas quando usar as magias o estrago é maior.
-
-habilidades especiais: Criar as magias de mago e as de cura do clérigo. Não mexe nisso ainda não,
-pra gente não fazer trabalho duas vezes a toa. Pq quando o jogador escolher habilidade especial,
-elas vão mudar dependendo do personagem. Então antes de criarmos a lista das habilidades de cada
-um a gente tem que criar essas habilidades. Não vai ser nada muito complicado não. Eu vou tentar criar uma pra cada em breve, se eu conseguir criar uma eu crio o resto todo, pq aí vai ser só copiar e colar.
-
-
-
-Durante um turno em uma partida todo personagem tem uma vez e a ordem é determinada pela agilidade.
-
-Criar diferentes personagens mesmo que de mesma classe. Esse aqui é só se sobrar tempo, muuuuuuito tempo! Acho que ia ser cabuloso de fazer, mas se a gente fizer professor ia babar ovo demais.
+Atributos principais:
+  ForÃ§a: determina hp, ataque basico
+  Agilidade: bonus de atque critico, esquiva e determina quem joga primeiro
+  Inteligencia: determina MP
+Atributos secundarios:
+  HP: derivada da forÃ§a (constante * ForÃ§a)
+  MP:
+  Ataque: deririvado da forÃ§a, constante * ForÃ§a
+  Defesa: derivada da forÃ§a, constante * ForÃ§a
+  Esquiva: derivada da agilidade (determina se um ataque foi critico, normal ou errou)
+  
+ Habilidade sÃ£o implementadas em cada classe, podem usar qualquer atributo para determinar como funcionam.
+-------
+Classes de HÃ©roi(para exemplificar):
+  [Feiticeiro]
+      Bonus de defesa contra ataques mÃ¡gicos.
+      
+    Habilidades:
+      Bloodmagic - ataque que rouba HP de um inimigo e acrescenta ao seu.
+      Pirotecnia - ataque em Ã¡rea que atinge todos os inimigos.
+      
+  
+  [Paladino]
+    Ganha um bonus de defesa dependente de sua inteligÃªncia.
+    Pode gastar to o sem MP para resucitar um hÃ©roi que morreu.
+    
+    Habilidades:
+      Tanque - atÃ© o fim dessa rodada e na prÃ³xima os inimigos sÃ³ podem atar ele.
+ 
+  [Soldado]
+    Primeiros Socorros: Cura parte de seu prÃ³prio HP.
+    
+    Habilidades:
+      Ataque duplo: ataca duas vezes em sequencia. 
+  
+  [Classe secreta]
+    Destravada se vocÃª chegar em uma determinada faze do jogo.

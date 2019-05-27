@@ -1,7 +1,7 @@
 #include <iostream>
-#include <Personagem.h>
-#include <Jogo.h>
-#include <Partida.h>
+#include "Personagem.h"
+#include "Jogo.h"
+#include "Partida.h"
 
 int main() {
     /* Esta parte de carregar do arquivo estava dando pau no linux, vou concertar
@@ -20,12 +20,12 @@ int main() {
     Personagem b1 = jogo.escolhe_monstro(1);
     Personagem b2 = jogo.escolhe_monstro(2);
     */
-    Personagem a0 = Personagem("Jon Snow",10,10,10);
-    Personagem a1 = Personagem("Jorah Mormont",14,8,8);
-    Personagem a2 = Personagem("Daenerys",8,8,14);
-    Personagem b0 = Personagem("Rato",2,2,2);
-    Personagem b1 = Personagem("Orc",8,8,8);
-    Personagem b2 = Personagem("Cthulhu",20,20,500);
+    Personagem a0 = Personagem("Guerreiro",1,10,10,true); //a partir de agora o construtor tera o status booleano true para inicar o personagem como vivo.
+    Personagem a1 = Personagem("Clerigo",14,8,8,true);
+    Personagem a2 = Personagem("Mago",8,8,14,true);
+    Personagem b0 = Personagem("Goblin",2,2,2,true);
+    Personagem b1 = Personagem("Orc",8,8,8,true);
+    Personagem b2 = Personagem("Troll",20,20,500,true);
 
 
     //Inicia partida com os personagens escolhidos
@@ -34,4 +34,4 @@ int main() {
     partida.inicia();
     return 0;
 }
- 
+

@@ -1,3 +1,5 @@
+/*
+
 #ifndef PDS2_MONSTER_H
 #define PDS2_MONSTER_H
 
@@ -12,3 +14,4 @@ class Monstro : public Personagem {
 };
 
 #endif
+*/

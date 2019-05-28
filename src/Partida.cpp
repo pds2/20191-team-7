@@ -11,14 +11,16 @@ bool compara_agilidade(Personagem* a, Personagem* b){
 } 
 
 Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grupo_b){
-    _Grupo_a = grupo_a;
-    _Grupo_b = grupo_b;
+    _grupo_blue = grupo_a;
+    _grupo_red = grupo_b;
     _partida_terminou = false;
 }
 
 void Partida::inicia(){
     refresh_tela();
-    std::cout << "Nova partida iniciada." << std::endl; 
+
+    std::cout << RESETCOLOR << "Nova partida iniciada." << std::endl;
+    cor_jogador_atual();
 
     //cria um vetor de apontadores na ordem certa
     std::vector <Personagem*> ordem = determina_ordem();    
@@ -34,13 +36,13 @@ void Partida::inicia(){
 
 std::vector <Personagem*> Partida::determina_ordem(){
     std::vector <Personagem*> ordem;
-    for (unsigned int i = 0; i < _Grupo_a.size(); i++){
-        _Grupo_a[i].set_grupo('a');
-        ordem.push_back(&_Grupo_a[i]);
+    for (unsigned int i = 0; i < _grupo_blue.size(); i++){
+        _grupo_blue[i].set_grupo('b');
+        ordem.push_back(&_grupo_blue[i]);
     }
-    for (unsigned int i = 0; i < _Grupo_b.size(); i++){
-        _Grupo_b[i].set_grupo('b');
-        ordem.push_back(&_Grupo_b[i]);
+    for (unsigned int i = 0; i < _grupo_red.size(); i++){
+        _grupo_red[i].set_grupo('r');
+        ordem.push_back(&_grupo_red[i]);
     }
 
     //TODO:nescessario ordenar esse vetor pela quantidade de agilidade dos Personagens para o qual ele aponta
@@ -54,13 +56,13 @@ void Partida::turno(std::vector <Personagem*> ordem){
     for (unsigned int i = 0; i < ordem.size(); i++){
 
         //imprime o texto de cada grupo com cor diferente
-        if(ordem[i]->get_grupo() == 'a'){
+        if(ordem[i]->get_grupo() == 'b'){
             std::cout << BLUE;
-            _grupo_que_estajogando = 'a';
+            _grupo_que_estajogando = 'b';
         }
         else{
             std::cout << RED;
-            _grupo_que_estajogando = 'b';      
+            _grupo_que_estajogando = 'r';      
         }
 
         //
@@ -94,6 +96,7 @@ void Partida::escolhe_acao(Personagem p, char grupo_do_personagem){
     return;
 }
 
+//TODO: esta função esta repetindo o codigo, da pra melhorar
 void Partida::atacando(Personagem p, char grupo_do_personagem){
     
     std::string alvo0;
@@ -101,19 +104,19 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
     std::string alvo2;
     
     //caso esteja atacando os personagens do segundo grupo
-    if (grupo_do_personagem == 'b'){
+    if (grupo_do_personagem == 'r'){
         std::vector <std::string> opcoes = {};
-        for (unsigned int i = 0; i < _Grupo_a.size(); i++){
-            opcoes.push_back(_Grupo_a[i].get_nome());
+        for (unsigned int i = 0; i < _grupo_blue.size(); i++){
+            opcoes.push_back(_grupo_blue[i].get_nome());
         }
         int escolha = submenu_partida(opcoes);
 
     //computa o ataque e imprime o resultado
-    int dano = p.ataque_basico(&_Grupo_a[escolha-1]);
+    int dano = p.ataque_basico(&_grupo_blue[escolha-1]);
     refresh_tela();
-    std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _Grupo_a[escolha-1].get_nome() << ". ";
-    if (_Grupo_a[escolha-1].morreu() == " morreu"){
-            std::cout << _Grupo_a[escolha-1].get_nome() << " foi morto em combate.";
+    std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _grupo_blue[escolha-1].get_nome() << ". ";
+    if (_grupo_blue[escolha-1].morreu() == " morreu"){
+            std::cout << _grupo_blue[escolha-1].get_nome() << " foi morto em combate.";
         }
         std::cout << std::endl;
     }
@@ -121,18 +124,18 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
     //caso estaja atacando o primeiro grupo
     else{
         std::vector <std::string> opcoes = {};
-        for (unsigned int i = 0; i < _Grupo_b.size(); i++){
-            opcoes.push_back(_Grupo_b[i].get_nome());
+        for (unsigned int i = 0; i < _grupo_red.size(); i++){
+            opcoes.push_back(_grupo_red[i].get_nome());
         }
 
         int escolha = submenu_partida(opcoes);
 
         //computa o ataque e imprime o resultado
-        int dano = p.ataque_basico(&_Grupo_b[escolha-1]);
+        int dano = p.ataque_basico(&_grupo_red[escolha-1]);
         refresh_tela();
-        std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _Grupo_b[escolha-1].get_nome() << ". ";
-        if (_Grupo_b[escolha-1].morreu() == " morreu"){
-            std::cout << _Grupo_b[escolha-1].get_nome() << " foi morto em combate.";
+        std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _grupo_red[escolha-1].get_nome() << ". ";
+        if (_grupo_red[escolha-1].morreu() == " morreu"){
+            std::cout << _grupo_red[escolha-1].get_nome() << " foi morto em combate.";
         }
         std::cout << std::endl;
     }
@@ -176,23 +179,27 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
         }
         std::cin >> escolha;
     }
+    refresh_tela();
     return escolha;
 }
 
 void Partida::refresh_tela(){
     system("clear");
     std::cout << RESETCOLOR;
-    for (unsigned int i = 0; i < _Grupo_a.size(); i++){
-        std::cout << _Grupo_a[i].get_nome() << _Grupo_a[i].morreu() << std::endl;
+    for (unsigned int i = 0; i < _grupo_blue.size(); i++){
+        std::cout << _grupo_blue[i].get_nome() << _grupo_blue[i].morreu() << std::endl;
     }
     std::cout << std::endl << "vs" << std::endl << std::endl;    
-     for (unsigned int i = 0; i < _Grupo_b.size(); i++){
-        std::cout << _Grupo_b[i].get_nome() << _Grupo_b[i].morreu() << std::endl;
+     for (unsigned int i = 0; i < _grupo_red.size(); i++){
+        std::cout << _grupo_red[i].get_nome() << _grupo_red[i].morreu() << std::endl;
     }
-    std::cout << std::endl << "---------------------" << std::endl;
-    if (_grupo_que_estajogando == 'a'){
+    std::cout << "-------------------" << std::endl;
+    cor_jogador_atual();
+}
+
+void Partida::cor_jogador_atual(){
+    if (_grupo_que_estajogando == 'b'){
         std::cout << BLUE;
     }
     else std::cout << RED;
 }
-

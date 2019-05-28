@@ -8,8 +8,8 @@
 
 class Partida {
     private:
-        std::vector <Personagem> _Grupo_a;
-        std::vector <Personagem> _Grupo_b;
+        std::vector <Personagem> _grupo_blue;
+        std::vector <Personagem> _grupo_red;
         bool _partida_terminou;
         char _grupo_que_estajogando;
     public:
@@ -40,6 +40,9 @@ class Partida {
         //submenu que vai ser ultilizado para receber a escolhas do jogador
         //ele recebe um vetor contendo o texto de cada opção e retorna o numero que foi escolhido.
         int submenu_partida(std::vector <std::string>);
+
+        //muda cor do texto para a cor correspondente ao grupo de quem esta jogando
+        void cor_jogador_atual();
         
 };
 

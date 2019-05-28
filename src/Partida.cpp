@@ -40,6 +40,7 @@ void Partida::inicia(){
     std::cout << "Nova partida iniciada." << std::endl;
     std::cout << "Aperte Enter para continuar." << std::endl;
     std::getchar();
+    refresh_tela();
 
     // Inicializa random seed para geração de números aleatórios
     srand (time(NULL));
@@ -156,6 +157,7 @@ void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inim
     std::cout << std::endl;
     std::cout << "Aperte Enter para continuar." << std::endl;
     std::getchar();
+    refresh_tela();
     return;
 }
 

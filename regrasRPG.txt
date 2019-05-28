@@ -11,7 +11,7 @@ Atributos secundarios:
   
  Habilidade são implementadas em cada classe, podem usar qualquer atributo para determinar como funcionam.
 -------
-Classes de Héroi(para exemplificar):
+Classes de Héroi(para exemplificar, acho que seria bom ter pelo menos umas 3):
   [Feiticeiro]
     Habilidades:
       Bloodmagic - ataque que rouba HP de um inimigo e acrescenta ao seu.

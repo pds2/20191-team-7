@@ -76,19 +76,22 @@ void Partida::turno(std::vector <Personagem*> ordem){
         //permite que esse jogador escolha suas ações no turno
         if (ordem[i]->get_vivo()){
             std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;
-            vez_do_personagem(*ordem[i], ordem[i]->get_grupo());
+            vez_do_personagem(*ordem[i]);
         }
     }
     return;
 }
 
-void Partida::vez_do_personagem(Personagem p, char grupo_do_personagem){
+void Partida::vez_do_personagem(Personagem p){
     //apresenta escolhas pro jogador usando o submenu
     std::vector <std::string> opcoes = {"Atacar", "Usar habilidade", "Passar vez"};
     int escolha = submenu_partida(opcoes);
     if (escolha == 1){
         std::cout << p.get_nome() << " vai atacar. Quem atacar?" << std::endl;
-        atacando(p, grupo_do_personagem);
+        if (p.get_grupo()=='b'){
+            atacando(p, _grupo_red);
+        }
+        else atacando(p, _grupo_blue);
 
     }
     if (escolha == 2){
@@ -102,51 +105,30 @@ void Partida::vez_do_personagem(Personagem p, char grupo_do_personagem){
     return;
 }
 
-//TODO: esta função esta repetindo o codigo, da pra melhorar
-void Partida::atacando(Personagem p, char grupo_do_personagem){
-    
-    std::string alvo0;
-    std::string alvo1;
-    std::string alvo2;
+void Partida::atacando(Personagem p, std::vector <Personagem> &grupo_inimigo){
     
     //caso esteja atacando os personagens do segundo grupo
-    if (grupo_do_personagem == 'r'){
         std::vector <std::string> opcoes = {};
-        for (unsigned int i = 0; i < _grupo_blue.size(); i++){
-            opcoes.push_back(_grupo_blue[i].get_nome());
+        for (unsigned int i = 0; i < grupo_inimigo.size(); i++){
+            opcoes.push_back(grupo_inimigo[i].get_nome());
         }
         int escolha = submenu_partida(opcoes);
 
         //computa o ataque e imprime o resultado
-        int dano = p.ataque_basico(&_grupo_blue[escolha-1]);
-        refresh_tela();
-        std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _grupo_blue[escolha-1].get_nome() << ". ";
+        if (!grupo_inimigo[escolha-1].get_vivo()){
+            std::cout << p.get_nome() << " perdeu a vez atacando um inimigo que já estava morto";
+        }
+        else{
+            int dano = p.ataque_basico(&grupo_inimigo[escolha-1]);
+            refresh_tela();
+            std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[escolha-1].get_nome() << ". ";
 
-        //informa caso o personagem tenha morrido
-        if (!(_grupo_blue[escolha-1].get_vivo())){
-                std::cout << _grupo_blue[escolha-1].get_nome() << " foi morto em combate.";
+            //informa caso o personagem tenha morrido
+            if (!(grupo_inimigo[escolha-1].get_vivo())){
+                    std::cout << grupo_inimigo[escolha-1].get_nome() << " foi morto em combate.";
+            }
         }
         std::cout << std::endl;
-    }
-
-    //caso estaja atacando o primeiro grupo
-    else{
-        std::vector <std::string> opcoes = {};
-        for (unsigned int i = 0; i < _grupo_red.size(); i++){
-            opcoes.push_back(_grupo_red[i].get_nome());
-        }
-
-        int escolha = submenu_partida(opcoes);
-
-        //computa o ataque e imprime o resultado
-        int dano = p.ataque_basico(&_grupo_red[escolha-1]);
-        refresh_tela();
-        std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << _grupo_red[escolha-1].get_nome() << ". ";
-        if (!(_grupo_red[escolha-1].get_vivo())){
-            std::cout << _grupo_red[escolha-1].get_nome() << " foi morto em combate.";
-        }
-        std::cout << std::endl;
-    }
     return;
 
 }
@@ -236,7 +218,7 @@ void Partida::refresh_tela(){
     for (unsigned int i = 0; i < _grupo_blue.size(); i++){
         std::cout << BOLDBLUE << _grupo_blue[i].get_nome() << " " << RESETCOLOR;
         if (_grupo_blue[i].get_vivo()){
-            std::cout << "hp:" << BOLDGREEN << _grupo_blue[i].get_hp();
+            std::cout << " hp:" << BOLDGREEN << _grupo_blue[i].get_hp();
             reseta_cor();
             std::cout << "  mp:" << BOLDMAGENTA << _grupo_blue[i].get_mp();
             reseta_cor();
@@ -248,7 +230,7 @@ void Partida::refresh_tela(){
      for (unsigned int i = 0; i < _grupo_red.size(); i++){
         std::cout << BOLDRED << _grupo_red[i].get_nome() << " " << RESETCOLOR;
         if (_grupo_red[i].get_vivo()){
-            std::cout << "hp:" << BOLDGREEN <<_grupo_red[i].get_hp();
+            std::cout << " hp:" << BOLDGREEN <<_grupo_red[i].get_hp();
             reseta_cor();
             std::cout << "  mp:" << BOLDMAGENTA <<_grupo_red[i].get_mp();
             reseta_cor();

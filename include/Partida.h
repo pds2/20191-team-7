@@ -12,6 +12,7 @@ class Partida {
         std::vector <Personagem> _grupo_red;
         bool _partida_terminou;
         char _grupo_que_estajogando;
+        int _modo_de_jogo; // 1 = Humano vs Humano, 2 = Humano vs CPU
     public:
         Partida(std::vector <Personagem>,std::vector <Personagem>);
         
@@ -28,10 +29,10 @@ class Partida {
         void turno(std::vector <Personagem*>);
 
         //durante a vez do personagem o jogador decide o que vai fazer
-        void vez_do_personagem(Personagem, char);
+        void vez_do_personagem(Personagem);
 
         //jogador vai fazer um ataque
-        void atacando(Personagem, char);
+        void atacando(Personagem, std::vector <Personagem> &);
 
         //jogador vai usar habilidade
         void usando_habilidade(Personagem);

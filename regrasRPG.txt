@@ -6,9 +6,9 @@ Atributos:
 
 Atributos derivados:
   Ataque: o numero do atque é a Força do personagem multiplicada por um constante.
-  Chance de critico:se um ataque for critico ele dobra o dano.
-  Defesa: derivada da força, reduz o poder do ataque que o personagem esta recebendo.
-  Esquiva: derivada da agilidade.
+  Chance de critico:se um ataque for critico ele dobra o dano, a chance de critico é derivada da agilidade.
+  Defesa: porcentagem derivada da força, reduz o poder do ataque que o personagem esta recebendo.
+  Esquiva: porcentagem derivada derivada da agilidade, pode fazer o inimigo errar um ataque.
 ---------------------------------------------------------------
 Coisas para fazer:
   Implementar sistema de esquiva e critico.

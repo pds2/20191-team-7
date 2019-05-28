@@ -27,7 +27,6 @@ class Partida {
         //controla de quem é a vez
         void turno(std::vector <Personagem*>);
 
-
         //durante a vez do personagem o jogador decide o que vai fazer
         void vez_do_personagem(Personagem, char);
 

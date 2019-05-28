@@ -25,6 +25,7 @@ void Partida::inicia(){
     //cria um vetor de apontadores para personagens e ordena o mesmo por agilidade
     std::vector <Personagem*> ordem = determina_ordem();    
 
+    //chama um novo turno até a partida terminar
     while (!_partida_terminou){
 
         //inicia um turno
@@ -39,6 +40,8 @@ void Partida::inicia(){
 }
 
 std::vector <Personagem*> Partida::determina_ordem(){
+
+    //unifica os dois grupos em um vetor de apontadores para personagens
     std::vector <Personagem*> ordem;
     for (unsigned int i = 0; i < _grupo_blue.size(); i++){
         _grupo_blue[i].set_grupo('b');
@@ -49,7 +52,7 @@ std::vector <Personagem*> Partida::determina_ordem(){
         ordem.push_back(&_grupo_red[i]);
     }
 
-    //TODO:nescessario ordenar esse vetor pela quantidade de agilidade dos Personagens para o qual ele aponta
+    //ordena esse vetor por agilidade dos personagens
     std::sort(ordem.begin(), ordem.end(), compara_agilidade);
 
     return ordem;
@@ -83,7 +86,7 @@ void Partida::turno(std::vector <Personagem*> ordem){
 }
 
 void Partida::vez_do_personagem(Personagem p, char grupo_do_personagem){
-    //apresenta escolhas pro jogador
+    //apresenta escolhas pro jogador usando o submenu
     std::vector <std::string> opcoes = {"Atacar", "Usar habilidade", "Passar vez"};
     int escolha = submenu_partida(opcoes);
     if (escolha == 1){
@@ -149,6 +152,8 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
 
 }
 
+
+//TODO: não impementada, as escolhas não fazem nada
 void Partida::usando_habilidade(Personagem p){
     std::vector <std::string> opcoes = {"Hadouken", "Primeiros socorros", "Mind Control"};
     int escolha = submenu_partida(opcoes);
@@ -167,16 +172,21 @@ void Partida::usando_habilidade(Personagem p){
 }
 
 int Partida::submenu_partida(std::vector <std::string> opcoes){
+
+    //imprime na tela as opções
     for (unsigned int i = 0; i < opcoes.size(); i++){
         std::cout << i+1 << ". " << opcoes[i] << std::endl;
     }
     unsigned int escolha = -1;
     std::cin >> escolha;
 
+    //se o jogador fez uma escolha valida retorna o resultado
     if (escolha <= opcoes.size() && escolha > 0){
         refresh_tela();
         return escolha;
     }
+
+    //em caso de escolha invalida, repete as opções até ser feita um escolha valida
     while (!(escolha <= opcoes.size() && escolha > 0)){
         refresh_tela();
         std::cout << "Opção inválida, tente novamente:" << std::endl;
@@ -193,11 +203,14 @@ bool Partida::terminou(){
     bool terminou_blue = true;
     bool terminou_red = true;
 
+    //confere se tem alguem vivo no primeiro grupo
     for (unsigned int i = 0; i < _grupo_blue.size(); i++){
         if (_grupo_blue[i].get_vivo()){
             terminou_blue = false;
         }
     }
+
+    //confere se tem alguem vivo no segundo grupo
     for (unsigned int i = 0; i < _grupo_red.size(); i++){
         if (_grupo_red[i].get_vivo()){
             terminou_red = false;
@@ -208,8 +221,11 @@ bool Partida::terminou(){
 }
 
 void Partida::refresh_tela(){
+    //limpa a tela e reseta a cor do terminal
     system("clear");
     std::cout << RESETCOLOR;
+
+    //imprime na tela os times da partida
     for (unsigned int i = 0; i < _grupo_blue.size(); i++){
         std::cout << _grupo_blue[i].get_nome() << _grupo_blue[i].morreu() << std::endl;
     }
@@ -218,6 +234,8 @@ void Partida::refresh_tela(){
         std::cout << _grupo_red[i].get_nome() << _grupo_red[i].morreu() << std::endl;
     }
     std::cout << "-------------------" << std::endl;
+
+    //volta a cor do texto para a do time de quem esta jogando
     cor_jogador_atual();
 }
 

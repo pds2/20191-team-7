@@ -1,6 +1,20 @@
+
+Atributos:
+  Força: determina o dano do ataque básico e maximo de HP, aumenta a defesa.
+  Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a chance de esquiva. 
+  Inteligencia: determina o maximo de MP.
+
+Atributos derivados:
+  Ataque: o numero do atque é a Força do personagem multiplicada por um constante.
+  Chance de critico:se um ataque for critico ele dobra o dano.
+  Defesa: derivada da força, reduz o poder do ataque que o personagem esta recebendo.
+  Esquiva: derivada da agilidade.
+---------------------------------------------------------------
 Coisas para fazer:
   Implementar sistema de esquiva e critico.
-  Testes.
+  Testes para tudo.
+  Defesa que é por porcentagem.
+  Alguma forma de gerar um número aleatório.
   AI para a CPU.
   
   

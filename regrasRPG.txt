@@ -11,6 +11,9 @@ Atributos derivados:
   Chance de critico:se um ataque for critico ele dobra o dano, a chance de critico é derivada da agilidade.
   Defesa: porcentagem derivada da força, reduz o poder do ataque que o personagem esta recebendo.
   Esquiva: porcentagem derivada derivada da agilidade, pode fazer o inimigo errar um ataque.
+  
+ Habilidades vão se exclusivas de cada classe de héroi:
+  (exemplos: cura, resucitar, ataque em área, rouba o HP do inimigo).
 ---------------------------------------------------------------
 Coisas para fazer:
   Implementar sistema de esquiva e critico.

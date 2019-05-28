@@ -36,6 +36,10 @@ int Personagem::get_hp(){
     return _hp;
 }
 
+int Personagem::get_agilidade(){
+    return _agilidade;
+}
+
 void Personagem::imprime(){
     std::cout << _nome << " >>";    
     std::cout << " forca:" << _forca;

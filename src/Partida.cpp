@@ -1,4 +1,10 @@
 #include <Partida.h>
+#include <algorithm>
+
+//funcao auxiliar  para compara agilidade entre ponteiros de personagens
+bool compara_agilidade(Personagem* a, Personagem* b){
+    return (a->get_agilidade() > b->get_agilidade());
+} 
 
 Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grupo_b){
     _Grupo_a = grupo_a;
@@ -32,6 +38,10 @@ std::vector <Personagem*> Partida::determina_ordem(){
         _Grupo_b[i].set_grupo('b');
         ordem.push_back(&_Grupo_b[i]);
     }
+
+    //TODO:nescessario ordenar esse vetor pela quantidade de agilidade dos Personagens para o qual ele aponta
+    std::sort(ordem.begin(), ordem.end(), compara_agilidade);
+
     return ordem;
 }
 
@@ -42,6 +52,8 @@ void Partida::turno(std::vector <Personagem*> ordem){
 
         escolhe_acao(*ordem[i], ordem[i]->get_grupo());
     }
+
+
     return;
 }
 
@@ -162,3 +174,4 @@ void Partida::refresh_tela(){
     }
     std::cout << std::endl << "---------------------" << std::endl;  
 }
+

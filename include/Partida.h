@@ -39,7 +39,7 @@ class Partida {
         //submenu que vai ser ultilizado para receber a escolhas do jogador
         //ele recebe um vetor contendo o texto de cada opção e retorna o numero que foi escolhido.
         int submenu_partida(std::vector <std::string>);
-
+        
 };
 
 #endif

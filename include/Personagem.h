@@ -39,6 +39,8 @@ class Personagem {
         int get_defesa();
         char get_grupo();
 
+
+        int get_agilidade();
         int get_hp();
         void set_hp(int);
         void set_grupo(char);
@@ -54,7 +56,6 @@ class Personagem {
 
         //confere se o personagem já morreu
         std::string morreu();
-
 };
 
 #endif

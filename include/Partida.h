@@ -16,9 +16,13 @@ class Partida {
         
         //inicia a partida
         void inicia();
-        
+
+        //cria um vetor de apontadores na ordem certa
+        std::vector <Personagem*> determina_ordem();
+
         //controla de quem é a vez
-        void turno();
+        void turno(std::vector <Personagem*>);
+
 
         //jogador decide o que vai querer fazer em seu turno
         void escolhe_acao(Personagem, char);
@@ -35,6 +39,7 @@ class Partida {
         //submenu que vai ser ultilizado para receber a escolhas do jogador
         //ele recebe um vetor contendo o texto de cada opção e retorna o numero que foi escolhido.
         int submenu_partida(std::vector <std::string>);
+
 };
 
 #endif

@@ -27,6 +27,9 @@ class Personagem {
         //estado do personagem
         bool _vivo;
 
+        //grupo ao qual ele pertence
+        char _grupo;
+
     public:
         Personagem();
         Personagem(std::string,int, int, int);
@@ -34,9 +37,11 @@ class Personagem {
         std::string get_nome();
         int get_ataque();
         int get_defesa();
+        char get_grupo();
 
         int get_hp();
         void set_hp(int);
+        void set_grupo(char);
 
         //imprime atributos do personagem
         void imprime();

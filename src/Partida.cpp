@@ -8,10 +8,13 @@ Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grup
 
 void Partida::inicia(){
     refresh_tela();
+    std::cout << "Nova partida iniciada." << std::endl; 
 
-    std::cout << "Nova partida iniciada." << std::endl;  
+    //cria um vetor de apontadores na ordem certa
+    std::vector <Personagem*> ordem = determina_ordem();    
+
     while (!_partida_terminou){
-        turno();
+        turno(ordem);
 
         std::cout << "Partida encerrada." << std::endl;
         _partida_terminou = true;
@@ -19,16 +22,25 @@ void Partida::inicia(){
 
 }
 
-void Partida::turno(){
+std::vector <Personagem*> Partida::determina_ordem(){
+    std::vector <Personagem*> ordem;
     for (unsigned int i = 0; i < _Grupo_a.size(); i++){
-        std::cout << "Vez de " << _Grupo_a[i].get_nome() << ". O que fazer?" << std::endl;  
-
-        escolhe_acao(_Grupo_a[i], 'a');
+        _Grupo_a[i].set_grupo('a');
+        ordem.push_back(&_Grupo_a[i]);
     }
-        for (unsigned int i = 0; i < _Grupo_b.size(); i++){
-        std::cout << "Vez de " << _Grupo_b[i].get_nome() << ". O que fazer?" << std::endl;  
+    for (unsigned int i = 0; i < _Grupo_b.size(); i++){
+        _Grupo_b[i].set_grupo('b');
+        ordem.push_back(&_Grupo_b[i]);
+    }
+    return ordem;
+}
 
-        escolhe_acao(_Grupo_b[i], 'b');
+void Partida::turno(std::vector <Personagem*> ordem){
+
+    for (unsigned int i = 0; i < ordem.size(); i++){
+        std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;  
+
+        escolhe_acao(*ordem[i], ordem[i]->get_grupo());
     }
     return;
 }

@@ -19,6 +19,15 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _vivo = true;
 }
 
+char Personagem::get_grupo(){
+    return _grupo;
+}
+
+void Personagem::set_grupo(char grupo){
+    _grupo = grupo;
+    return;
+}
+
 std::string Personagem::get_nome(){
     return _nome;
 }

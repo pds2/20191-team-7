@@ -38,6 +38,8 @@ Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grup
 void Partida::inicia(){
     refresh_tela();
     std::cout << "Nova partida iniciada." << std::endl;
+    std::cout << "Aperte Enter para continuar." << std::endl;
+    std::getchar();
 
     // Inicializa random seed para geração de números aleatórios
     srand (time(NULL));
@@ -144,8 +146,7 @@ void Partida::atacando(Personagem p, std::vector <Personagem> &grupo_inimigo) {
 void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inimigo, int inimigo_atacado) {
     int dano = atacante.ataque_basico(&grupo_inimigo[inimigo_atacado]);
     
-    refresh_tela();
-    std::cout << atacante.get_nome() << " causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[inimigo_atacado].get_nome() << ". ";
+    std::cout << atacante.get_nome() << " atacou e causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[inimigo_atacado].get_nome() << ". ";
 
     // Informa caso o personagem tenha morrido
     if (!(grupo_inimigo[inimigo_atacado].get_vivo())){
@@ -153,9 +154,8 @@ void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inim
     }
 
     std::cout << std::endl;
-    std::cout << "Digite qualquer tecla para iniciar o próximo turno." << std::endl;
+    std::cout << "Aperte Enter para continuar." << std::endl;
     std::getchar();
-
     return;
 }
 
@@ -290,14 +290,21 @@ void Partida::vez_da_cpu(Personagem p) {
     // Determina ação da CPU
     // 10% de chance de passar a vez
     if (random < 10) {
-        std::cout << "CPU passa a vez" << std::endl;
+        std::cout << "CPU controlando " << p.get_nome() << " ficou confusa e passou a vez..." << std::endl;
+        std::cout << "Aperte Enter para continuar." << std::endl;
+        std::getchar();
+        refresh_tela();
     }
     // 20% de chance de usar habilidade especial
     if (random > 80) {
-        std::cout << "CPU usa habilidade" << std::endl;
+        std::cout << "CPU controlando " << p.get_nome() << " usou habilidade." << std::endl;
+        std::cout << "Aperte Enter para continuar." << std::endl;
+        std::getchar();
+        refresh_tela();
     // 70% de chance de ataque normal
     } else {
-        std::cout << "CPU ataca" << std::endl;
+        std::cout << "CPU controlando " << p.get_nome() << " decidiu atacar." << std::endl;
+
 
         // Seleciona um inimigo vivo para atacar
         while (!inimigo_vivo) {
@@ -306,7 +313,6 @@ void Partida::vez_da_cpu(Personagem p) {
             // Determina qual inimigo atacar com chances iguais entre cada uma das opções do grupo
             inimigo_atacado = std::floor(random*_grupo_blue.size() / 100);
             inimigo_vivo = _grupo_blue[inimigo_atacado].get_vivo();
-            std::cout << "Numero random: " << inimigo_atacado << std::endl;
         }
 
         atacando(p, _grupo_blue, inimigo_atacado);

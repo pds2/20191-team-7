@@ -1,36 +1,21 @@
-Atributos principais:
-  Força: determina hp, ataque basico
-  Agilidade: bonus de ataque critico, esquiva e determina quem joga primeiro
-  Inteligencia: determina MP
-Atributos secundarios:
-  HP: derivada da força (constante * Força)
-  MP: derivada da inteligencia
-  Ataque: derivado da força, constante * Força
-  Defesa: derivada da força, constante * Força
-  Esquiva: derivada da agilidade (determina se um ataque foi critico, normal ou errou)
-  
- Habilidade são implementadas em cada classe, podem usar qualquer atributo para determinar como funcionam.
--------
-Classes de Héroi(para exemplificar, acho que seria bom ter pelo menos umas 3):
-  [Feiticeiro]
-    Habilidades:
-      Bloodmagic - ataque que rouba HP de um inimigo e acrescenta ao seu.
-      
-  
-  [Paladino]
-    Ganha um bonus de defesa dependente de sua inteligência.    
-    Habilidades:
-      Tanque - até o fim dessa rodada e na próxima os inimigos só podem atacar ele.
-      Segunda change - Pode gastar to o sem MP para resucitar um héroi que morreu.
+Atributos:
 
- 
-  [Soldado]
-    Primeiros Socorros: Cura parte de seu próprio HP.
-    
-    Habilidades:
-      Ataque duplo: ataca duas vezes em sequencia. 
-  
-  [Sacerdotisa]
-    Habilidades:
-      Cura: cura alguem do grupo
-      Cura grupo: cura todos os membros do grupo
+
+For�a: determina o dano do ataque b�sico e maximo de HP, aumenta a defesa.
+
+Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a chance de esquiva.
+
+Inteligencia: determina o maximo de MP.
+
+
+
+
+Ataque: o numero do atque � a For�a do personagem multiplicada por um constante. Cada ataque tem a chance de ser um dano critico (dobro do dano) baseado na agilidade.
+
+Defesa: derivada da for�a, reduz o poder do ataque que o personagem esta recebendo.
+
+Esquiva: derivada da agilidade.
+
+
+
+Durante um turno em uma partida todo personagem tem uma vez e a ordem � determinada pela agilidade.

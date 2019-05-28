@@ -8,7 +8,7 @@ class Personagem {
         //nome do personagem
         std::string _nome;
 
-        //atributos principais:
+        //atributos principais: 
         //determina dano do ataque basico e defesa
         int _forca;
 
@@ -30,7 +30,6 @@ class Personagem {
     public:
         Personagem();
         Personagem(std::string,int, int, int);
-        Personagem(std::string,int, int, int, bool); // esse construtor adiciona o estatus vivo em todos os personagens e monstros no comeco do combate.
 
         std::string get_nome();
         int get_ataque();
@@ -38,11 +37,9 @@ class Personagem {
 
         int get_hp();
         void set_hp(int);
-        bool get_status(); // esse metodo retorna true se o personagem ta vivo e false se ele ta morto
 
         //imprime atributos do personagem
         void imprime();
-
 
         //ataque basico contra outro personagem
         int ataque_basico(Personagem*);
@@ -51,7 +48,7 @@ class Personagem {
         int recebe_ataque_fisico(int);
 
         //confere se o personagem já morreu
-        //bool morreu(); Esse metodo nao eh mais necessario
+        std::string morreu();
 
 };
 

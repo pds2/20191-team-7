@@ -22,13 +22,15 @@ void Partida::inicia(){
     std::cout << RESETCOLOR << "Nova partida iniciada." << std::endl;
     cor_jogador_atual();
 
-    //cria um vetor de apontadores na ordem certa
+    //cria um vetor de apontadores para personagens e ordena o mesmo por agilidade
     std::vector <Personagem*> ordem = determina_ordem();    
 
     while (!_partida_terminou){
+
+        //inicia um turno
         turno(ordem);
 
-        //confere se um dos grupos morreu
+        //confere se a partida terminou
         _partida_terminou = terminou();
     }
     std::cout << RESETCOLOR;
@@ -75,12 +77,12 @@ void Partida::turno(std::vector <Personagem*> ordem){
 
         //permite que esse jogador escolha suas ações no turno
         std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;  
-        escolhe_acao(*ordem[i], ordem[i]->get_grupo());
+        vez_do_personagem(*ordem[i], ordem[i]->get_grupo());
     }
     return;
 }
 
-void Partida::escolhe_acao(Personagem p, char grupo_do_personagem){
+void Partida::vez_do_personagem(Personagem p, char grupo_do_personagem){
     //apresenta escolhas pro jogador
     std::vector <std::string> opcoes = {"Atacar", "Usar habilidade", "Passar vez"};
     int escolha = submenu_partida(opcoes);

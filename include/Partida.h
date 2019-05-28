@@ -28,8 +28,8 @@ class Partida {
         void turno(std::vector <Personagem*>);
 
 
-        //jogador decide o que vai querer fazer em seu turno
-        void escolhe_acao(Personagem, char);
+        //durante a vez do personagem o jogador decide o que vai fazer
+        void vez_do_personagem(Personagem, char);
 
         //jogador vai fazer um ataque
         void atacando(Personagem, char);

@@ -14,5 +14,5 @@ Coisas para fazer:
   Implementar sistema de esquiva e critico.
   Testes para tudo.
   Implementar defesa como uma porcentagem que é reduzida do ataque.
-  Alguma forma de gerar um número aleatório.
+  Alguma forma de gerar um número aleatório para ser usada em coisas aleatórias
   AI para a CPU.

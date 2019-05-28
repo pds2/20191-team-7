@@ -13,6 +13,6 @@ Atributos derivados:
 Coisas para fazer:
   Implementar sistema de esquiva e critico.
   Testes para tudo.
-  Defesa que é por porcentagem.
+  Implementar defesa como uma porcentagem que é reduzida do ataque.
   Alguma forma de gerar um número aleatório.
   AI para a CPU.

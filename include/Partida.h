@@ -34,6 +34,9 @@ class Partida {
         //jogador vai fazer um ataque
         void atacando(Personagem, std::vector <Personagem> &);
 
+        //CPU ataca
+        void atacando(Personagem, std::vector <Personagem> &, int inimigo_atacado);
+
         //jogador vai usar habilidade
         void usando_habilidade(Personagem);
 

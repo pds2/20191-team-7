@@ -14,7 +14,7 @@ class Partida {
         char _grupo_que_estajogando;
         int _modo_de_jogo; // 1 = Humano vs Humano, 2 = Humano vs CPU
     public:
-        Partida(std::vector <Personagem>,std::vector <Personagem>);
+        Partida(std::vector <Personagem>,std::vector <Personagem>, int);
         
         //inicia a partida
         void inicia();
@@ -49,6 +49,9 @@ class Partida {
 
         //muda cor do texto para a cor correspondente ao grupo de quem esta jogando
         void reseta_cor();
+
+        //vez da CPU
+        void vez_da_cpu(Personagem);
         
 };
 

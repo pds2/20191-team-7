@@ -18,7 +18,7 @@ int main() {
     //Inicia partida com os personagens escolhidos
     std::vector <Personagem> grupo_a = {a0, a1, a2, a3};
     std::vector <Personagem> grupo_b = {b0, b1, b2};
-    Partida partida = Partida(grupo_a, grupo_b);
+    Partida partida = Partida(grupo_a, grupo_b, 2);
 
     partida.inicia();
     return 0;

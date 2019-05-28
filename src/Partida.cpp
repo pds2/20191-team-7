@@ -1,7 +1,14 @@
 #include <Partida.h>
 #include <algorithm>
 
+//Cores usadas
 #define RESETCOLOR   "\033[0m"
+#define BOLDGREEN   "\033[1m\033[32m" 
+#define BOLDBLUE    "\033[1m\033[34m"
+#define BOLDMAGENTA "\033[1m\033[35m"
+#define BOLDRED     "\033[1m\033[31m"
+
+//cores ainda não usadas (deletar no final)
 #define BLACK   "\033[30m"
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
@@ -11,22 +18,20 @@
 #define CYAN    "\033[36m"
 #define WHITE   "\033[37m" 
 #define BOLDBLACK   "\033[1m\033[30m"
-#define BOLDRED     "\033[1m\033[31m"
-#define BOLDGREEN   "\033[1m\033[32m" 
 #define BOLDYELLOW  "\033[1m\033[33m"
-#define BOLDBLUE    "\033[1m\033[34m"
-#define BOLDMAGENTA "\033[1m\033[35m"
 #define BOLDCYAN    "\033[1m\033[36m"     
 #define BOLDWHITE   "\033[1m\033[37m"
+
 //funcao auxiliar  para compara agilidade entre ponteiros de personagens
 bool compara_agilidade(Personagem* a, Personagem* b){
     return (a->get_agilidade() > b->get_agilidade());
 } 
 
-Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grupo_b){
+Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grupo_b, int modo_de_jogo){
     _grupo_blue = grupo_a;
     _grupo_red = grupo_b;
     _partida_terminou = false;
+    _modo_de_jogo = modo_de_jogo;
 }
 
 void Partida::inicia(){
@@ -75,15 +80,19 @@ void Partida::turno(std::vector <Personagem*> ordem){
 
         //permite que esse jogador escolha suas ações no turno
         if (ordem[i]->get_vivo()){
-            std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;
-            vez_do_personagem(*ordem[i]);
+            if (_modo_de_jogo == 2 && ordem[i]->get_grupo() == 'r'){
+                vez_da_cpu(*ordem[i]);
+            }
+            else {
+                std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;
+                vez_do_personagem(*ordem[i]);
+            }
         }
     }
     return;
 }
 
-void Partida::vez_do_personagem(Personagem p){
-    //apresenta escolhas pro jogador usando o submenu
+void Partida::vez_do_personagem(Personagem p){ 
     std::vector <std::string> opcoes = {"Atacar", "Usar habilidade", "Passar vez"};
     int escolha = submenu_partida(opcoes);
     if (escolha == 1){
@@ -250,7 +259,10 @@ void Partida::cor_jogador_atual(){
     else std::cout << BOLDRED;
 }
 
-
 void Partida::reseta_cor(){
     std::cout << RESETCOLOR;
+}
+
+void Partida::vez_da_cpu(Personagem p){
+    std::cout << "CPU muito burra não conseguiu fazer nada... " << p.get_nome() << " perdeu a vez." << std::endl;
 }

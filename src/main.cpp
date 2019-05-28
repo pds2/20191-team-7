@@ -9,13 +9,16 @@ int main() {
     Personagem a0 = Personagem("Jon Snow",10,10,10);
     Personagem a1 = Personagem("Jorah Mormont",14,8,8);
     Personagem a2 = Personagem("Daenerys",8,8,14);
+    Personagem a3 = Personagem("Tyrion",10,10,20);
     Personagem b0 = Personagem("Rato",2,2,2);
     Personagem b1 = Personagem("Orc",8,8,8);
     Personagem b2 = Personagem("Cthulhu",20,20,500);
 
 
     //Inicia partida com os personagens escolhidos
-    Partida partida = Partida(a0, a1, a2, b0, b1, b2);
+    std::vector <Personagem> grupo_a = {a0, a1, a2, a3};
+    std::vector <Personagem> grupo_b = {b0, b1, b2};
+    Partida partida = Partida(grupo_a, grupo_b);
 
     partida.inicia();
     return 0;

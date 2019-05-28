@@ -12,11 +12,12 @@ class Partida {
         std::vector <Personagem> _Grupo_b;
         bool _partida_terminou;
     public:
-        Partida(Personagem,Personagem,Personagem,Personagem,Personagem,Personagem);
+        Partida(std::vector <Personagem>,std::vector <Personagem>);
         
         //inicia a partida
         void inicia();
         
+        //controla de quem é a vez
         void turno();
 
         //jogador decide o que vai querer fazer em seu turno

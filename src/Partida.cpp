@@ -1,12 +1,8 @@
 #include <Partida.h>
 
-Partida::Partida(Personagem a0,Personagem a1, Personagem a2, Personagem b0, Personagem b1, Personagem b2){
-    _Grupo_a.push_back(a0);
-    _Grupo_a.push_back(a1);
-    _Grupo_a.push_back(a2);
-    _Grupo_b.push_back(b0);
-    _Grupo_b.push_back(b1);
-    _Grupo_b.push_back(b2);
+Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grupo_b){
+    _Grupo_a = grupo_a;
+    _Grupo_b = grupo_b;
     _partida_terminou = false;
 }
 
@@ -57,18 +53,6 @@ void Partida::escolhe_acao(Personagem p, char grupo_do_personagem){
     return;
 }
 
-void Partida::refresh_tela(){
-    system("clear");
-    std::cout << _Grupo_a[0].get_nome() << _Grupo_a[0].morreu() << std::endl;
-    std::cout << _Grupo_a[1].get_nome() << _Grupo_a[1].morreu() << std::endl;
-    std::cout << _Grupo_a[2].get_nome() << _Grupo_a[2].morreu() << std::endl;
-    std::cout << std::endl << "vs" << std::endl << std::endl;    
-    std::cout << _Grupo_b[0].get_nome() << _Grupo_b[0].morreu() << std::endl;
-    std::cout << _Grupo_b[1].get_nome() << _Grupo_b[1].morreu() << std::endl;
-    std::cout << _Grupo_b[2].get_nome() << _Grupo_b[2].morreu() << std::endl;
-    std::cout << std::endl << "---------------------" << std::endl;  
-}
-
 void Partida::atacando(Personagem p, char grupo_do_personagem){
     
     std::string alvo0;
@@ -77,11 +61,10 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
     
     //caso esteja atacando os personagens do segundo grupo
     if (grupo_do_personagem == 'b'){
-        alvo0 = _Grupo_a[0].get_nome();
-        alvo1 = _Grupo_a[1].get_nome();
-        alvo2 = _Grupo_a[2].get_nome();
-
-        std::vector <std::string> opcoes = {alvo0, alvo1, alvo2};
+        std::vector <std::string> opcoes = {};
+        for (unsigned int i = 0; i < _Grupo_a.size(); i++){
+            opcoes.push_back(_Grupo_a[i].get_nome());
+        }
         int escolha = submenu_partida(opcoes);
 
     //computa o ataque e imprime o resultado
@@ -96,11 +79,11 @@ void Partida::atacando(Personagem p, char grupo_do_personagem){
 
     //caso estaja atacando o primeiro grupo
     else{
-        alvo0 = _Grupo_b[0].get_nome();
-        alvo1 = _Grupo_b[1].get_nome();
-        alvo2 = _Grupo_b[2].get_nome();
+        std::vector <std::string> opcoes = {};
+        for (unsigned int i = 0; i < _Grupo_b.size(); i++){
+            opcoes.push_back(_Grupo_b[i].get_nome());
+        }
 
-        std::vector <std::string> opcoes = {alvo0, alvo1, alvo2};
         int escolha = submenu_partida(opcoes);
 
         //computa o ataque e imprime o resultado
@@ -153,4 +136,17 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
         std::cin >> escolha;
     }
     return escolha;
+}
+
+
+void Partida::refresh_tela(){
+    system("clear");
+    for (unsigned int i = 0; i < _Grupo_a.size(); i++){
+        std::cout << _Grupo_a[i].get_nome() << _Grupo_a[i].morreu() << std::endl;
+    }
+    std::cout << std::endl << "vs" << std::endl << std::endl;    
+     for (unsigned int i = 0; i < _Grupo_b.size(); i++){
+        std::cout << _Grupo_b[i].get_nome() << _Grupo_b[i].morreu() << std::endl;
+    }
+    std::cout << std::endl << "---------------------" << std::endl;  
 }

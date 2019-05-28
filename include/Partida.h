@@ -11,6 +11,7 @@ class Partida {
         std::vector <Personagem> _Grupo_a;
         std::vector <Personagem> _Grupo_b;
         bool _partida_terminou;
+        char _grupo_que_estajogando;
     public:
         Partida(std::vector <Personagem>,std::vector <Personagem>);
         

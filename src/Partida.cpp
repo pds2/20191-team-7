@@ -1,6 +1,10 @@
 #include <Partida.h>
 #include <algorithm>
 
+#define RESETCOLOR "\033[0m"
+#define RED     "\033[31m"
+#define BLUE    "\033[34m"
+
 //funcao auxiliar  para compara agilidade entre ponteiros de personagens
 bool compara_agilidade(Personagem* a, Personagem* b){
     return (a->get_agilidade() > b->get_agilidade());
@@ -48,8 +52,21 @@ std::vector <Personagem*> Partida::determina_ordem(){
 void Partida::turno(std::vector <Personagem*> ordem){
 
     for (unsigned int i = 0; i < ordem.size(); i++){
-        std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;  
 
+        //imprime o texto de cada grupo com cor diferente
+        if(ordem[i]->get_grupo() == 'a'){
+            std::cout << BLUE;
+            _grupo_que_estajogando = 'a';
+        }
+        else{
+            std::cout << RED;
+            _grupo_que_estajogando = 'b';      
+        }
+
+        //
+
+        //permite que esse jogador escolha suas ações no turno
+        std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;  
         escolhe_acao(*ordem[i], ordem[i]->get_grupo());
     }
 
@@ -162,9 +179,9 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
     return escolha;
 }
 
-
 void Partida::refresh_tela(){
     system("clear");
+    std::cout << RESETCOLOR;
     for (unsigned int i = 0; i < _Grupo_a.size(); i++){
         std::cout << _Grupo_a[i].get_nome() << _Grupo_a[i].morreu() << std::endl;
     }
@@ -172,6 +189,10 @@ void Partida::refresh_tela(){
      for (unsigned int i = 0; i < _Grupo_b.size(); i++){
         std::cout << _Grupo_b[i].get_nome() << _Grupo_b[i].morreu() << std::endl;
     }
-    std::cout << std::endl << "---------------------" << std::endl;  
+    std::cout << std::endl << "---------------------" << std::endl;
+    if (_grupo_que_estajogando == 'a'){
+        std::cout << BLUE;
+    }
+    else std::cout << RED;
 }
 

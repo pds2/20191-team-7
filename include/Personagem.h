@@ -39,12 +39,13 @@ class Personagem {
         int get_defesa();
         char get_grupo();
         bool get_vivo();
-
-
         int get_agilidade();
         int get_hp();
+        int get_mp();
+
         void set_hp(int);
         void set_grupo(char);
+
 
         //imprime atributos do personagem
         void imprime();

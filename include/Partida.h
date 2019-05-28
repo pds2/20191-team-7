@@ -45,6 +45,9 @@ class Partida {
 
         //muda cor do texto para a cor correspondente ao grupo de quem esta jogando
         void cor_jogador_atual();
+
+        //muda cor do texto para a cor correspondente ao grupo de quem esta jogando
+        void reseta_cor();
         
 };
 

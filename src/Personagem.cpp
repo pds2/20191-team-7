@@ -36,9 +36,14 @@ int Personagem::get_hp(){
     return _hp;
 }
 
+int Personagem::get_mp(){
+    return _mp;
+}
+
 int Personagem::get_agilidade(){
     return _agilidade;
 }
+
 bool Personagem::get_vivo(){
     return _vivo;
 }

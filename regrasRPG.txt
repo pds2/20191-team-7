@@ -1,11 +1,11 @@
 Atributos principais:
   Força: determina hp, ataque basico
-  Agilidade: bonus de atque critico, esquiva e determina quem joga primeiro
+  Agilidade: bonus de ataque critico, esquiva e determina quem joga primeiro
   Inteligencia: determina MP
 Atributos secundarios:
   HP: derivada da força (constante * Força)
   MP:
-  Ataque: deririvado da força, constante * Força
+  Ataque: derivado da força, constante * Força
   Defesa: derivada da força, constante * Força
   Esquiva: derivada da agilidade (determina se um ataque foi critico, normal ou errou)
   
@@ -25,7 +25,7 @@ Classes de Héroi(para exemplificar):
     Pode gastar to o sem MP para resucitar um héroi que morreu.
     
     Habilidades:
-      Tanque - até o fim dessa rodada e na próxima os inimigos só podem atar ele.
+      Tanque - até o fim dessa rodada e na próxima os inimigos só podem atacar ele.
  
   [Soldado]
     Primeiros Socorros: Cura parte de seu próprio HP.
@@ -34,4 +34,4 @@ Classes de Héroi(para exemplificar):
       Ataque duplo: ataca duas vezes em sequencia. 
   
   [Classe secreta]
-    Destravada se você chegar em uma determinada faze do jogo.
+    Destravada se você chegar em uma determinada fase do jogo.

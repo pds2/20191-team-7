@@ -4,7 +4,7 @@ Atributos principais:
   Inteligencia: determina MP
 Atributos secundarios:
   HP: derivada da força (constante * Força)
-  MP:
+  MP: derivada da inteligencia
   Ataque: derivado da força, constante * Força
   Defesa: derivada da força, constante * Força
   Esquiva: derivada da agilidade (determina se um ataque foi critico, normal ou errou)
@@ -13,19 +13,16 @@ Atributos secundarios:
 -------
 Classes de Héroi(para exemplificar):
   [Feiticeiro]
-      Bonus de defesa contra ataques mágicos.
-      
     Habilidades:
       Bloodmagic - ataque que rouba HP de um inimigo e acrescenta ao seu.
-      Pirotecnia - ataque em área que atinge todos os inimigos.
       
   
   [Paladino]
-    Ganha um bonus de defesa dependente de sua inteligência.
-    Pode gastar to o sem MP para resucitar um héroi que morreu.
-    
+    Ganha um bonus de defesa dependente de sua inteligência.    
     Habilidades:
       Tanque - até o fim dessa rodada e na próxima os inimigos só podem atacar ele.
+      Segunda change - Pode gastar to o sem MP para resucitar um héroi que morreu.
+
  
   [Soldado]
     Primeiros Socorros: Cura parte de seu próprio HP.
@@ -33,5 +30,7 @@ Classes de Héroi(para exemplificar):
     Habilidades:
       Ataque duplo: ataca duas vezes em sequencia. 
   
-  [Classe secreta]
-    Destravada se você chegar em uma determinada fase do jogo.
+  [Sacerdotisa]
+    Habilidades:
+      Cura: cura alguem do grupo
+      Cura grupo: cura todos os membros do grupo

@@ -28,9 +28,11 @@ void Partida::inicia(){
     while (!_partida_terminou){
         turno(ordem);
 
-        std::cout << "Partida encerrada." << std::endl;
-        _partida_terminou = true;
+        //confere se um dos grupos morreu
+        _partida_terminou = terminou();
     }
+    std::cout << RESETCOLOR;
+    std::cout << "Partida encerrada." << std::endl;
 
 }
 
@@ -54,6 +56,10 @@ std::vector <Personagem*> Partida::determina_ordem(){
 void Partida::turno(std::vector <Personagem*> ordem){
 
     for (unsigned int i = 0; i < ordem.size(); i++){
+        _partida_terminou = terminou();
+        if (_partida_terminou){
+            return;
+        }
 
         //imprime o texto de cada grupo com cor diferente
         if(ordem[i]->get_grupo() == 'b'){
@@ -71,8 +77,6 @@ void Partida::turno(std::vector <Personagem*> ordem){
         std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;  
         escolhe_acao(*ordem[i], ordem[i]->get_grupo());
     }
-
-
     return;
 }
 
@@ -181,6 +185,24 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
     }
     refresh_tela();
     return escolha;
+}
+
+bool Partida::terminou(){
+    bool terminou_blue = true;
+    bool terminou_red = true;
+
+    for (unsigned int i = 0; i < _grupo_blue.size(); i++){
+        if (_grupo_blue[i].get_vivo()){
+            terminou_blue = false;
+        }
+    }
+    for (unsigned int i = 0; i < _grupo_red.size(); i++){
+        if (_grupo_red[i].get_vivo()){
+            terminou_red = false;
+        }
+    }
+    //se terminou para um dos dois grupos terminou para os dois
+    return (terminou_red || terminou_blue);
 }
 
 void Partida::refresh_tela(){

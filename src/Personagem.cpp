@@ -39,6 +39,9 @@ int Personagem::get_hp(){
 int Personagem::get_agilidade(){
     return _agilidade;
 }
+bool Personagem::get_vivo(){
+    return _vivo;
+}
 
 void Personagem::imprime(){
     std::cout << _nome << " >>";    
@@ -60,7 +63,7 @@ int Personagem::ataque_basico(Personagem* alvo){
 int Personagem::recebe_ataque_fisico(int ataque){
     if ((ataque - _defesa) > 0){
         _hp -= (ataque - _defesa);
-        if (_hp < 0){
+        if (_hp <= 0){
             _vivo = false;
         }    
         return ataque - _defesa;
@@ -73,6 +76,7 @@ std::string Personagem::morreu(){
         return " hp= " + std::to_string(_hp);
     }
     else {
+        _vivo = false;
         return " morreu";
     }
 }

@@ -38,6 +38,7 @@ class Personagem {
         int get_ataque();
         int get_defesa();
         char get_grupo();
+        bool get_vivo();
 
 
         int get_agilidade();

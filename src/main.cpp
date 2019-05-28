@@ -6,8 +6,8 @@
 int main() {
     /* Tirei a parte de carregar arquivos por enquanto, vai ter que ser refeita já que deu problema no Linux
     */
-    Personagem a0 = Personagem("Jon Snow",10,10,10);
-    Personagem a1 = Personagem("Jorah Mormont",14,8,8);
+    Personagem a0 = Personagem("Jon Snow",100,10,10);
+    Personagem a1 = Personagem("Jorah Mormont",140,8,8);
     Personagem a2 = Personagem("Daenerys",8,8,14);
     Personagem a3 = Personagem("Tyrion",10,10,20);
     Personagem b0 = Personagem("Rato",2,2,2);

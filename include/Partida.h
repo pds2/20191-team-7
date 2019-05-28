@@ -18,6 +18,9 @@ class Partida {
         //inicia a partida
         void inicia();
 
+        //confere se a partida terminou
+        bool terminou();
+
         //cria um vetor de apontadores na ordem certa
         std::vector <Personagem*> determina_ordem();
 

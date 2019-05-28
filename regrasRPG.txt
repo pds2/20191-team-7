@@ -16,5 +16,3 @@ Coisas para fazer:
   Defesa que é por porcentagem.
   Alguma forma de gerar um número aleatório.
   AI para a CPU.
-
-Durante um turno em uma partida todo personagem tem uma vez e a ordem é determinada pela agilidade.

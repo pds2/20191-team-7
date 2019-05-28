@@ -1,21 +1,17 @@
+Coisas para fazer:
+  Implementar sistema de esquiva e critico.
+  Testes.
+  AI para a CPU.
+  
+  
 Atributos:
-
-
-ForÁa: determina o dano do ataque b·sico e maximo de HP, aumenta a defesa.
-
-Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a chance de esquiva.
-
-Inteligencia: determina o maximo de MP.
-
-
-
-
-Ataque: o numero do atque È a ForÁa do personagem multiplicada por um constante. Cada ataque tem a chance de ser um dano critico (dobro do dano) baseado na agilidade.
-
-Defesa: derivada da forÁa, reduz o poder do ataque que o personagem esta recebendo.
-
+  For√ßa: determina o dano do ataque b√°sico e maximo de HP, aumenta a defesa.
+  Agilidade: determina a chance de um ataque critico e a ordem do turno, aumenta a chance de esquiva. 
+  Inteligencia: determina o maximo de MP.
+Ataque: o numero do atque √© a For√ßa do personagem multiplicada por um constante. Cada ataque tem a chance de ser um dano critico (dobro do dano) baseado na agilidade.
+Defesa: derivada da for√ßa, reduz o poder do ataque que o personagem esta recebendo.
 Esquiva: derivada da agilidade.
 
 
 
-Durante um turno em uma partida todo personagem tem uma vez e a ordem È determinada pela agilidade.
+Durante um turno em uma partida todo personagem tem uma vez e a ordem √© determinada pela agilidade.

@@ -38,7 +38,7 @@ Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grup
 void Partida::inicia(){
     refresh_tela();
     std::cout << "Nova partida iniciada." << std::endl;
-    std::cout << "Aperte Enter para continuar." << std::endl;
+    std::cout << "Aperte Enter para continuar..." << std::endl;
     std::getchar();
     refresh_tela();
 
@@ -160,7 +160,7 @@ void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inim
     }
 
     std::cout << std::endl;
-    std::cout << "Aperte Enter para continuar." << std::endl;
+    std::cout << "Aperte Enter para continuar..." << std::endl;
     std::getchar();
     refresh_tela();
     return;
@@ -186,14 +186,23 @@ void Partida::usando_habilidade(Personagem p){
 }
 
 int Partida::submenu_partida(std::vector <std::string> opcoes){
+    std::string buffer;
+    unsigned int escolha = -1;
+    char c;
+
     // Imprime na tela as opções
     for (unsigned int i = 0; i < opcoes.size(); i++) {
         std::cout << i+1 << ". " << opcoes[i] << std::endl;
     }
-    unsigned int escolha = -1;
-    std::cin >> escolha;
 
-    // Se o jogador fez uma escolha valida retorna o resultado
+    // Recebe a entrada do jogador
+    std::getline (std::cin,buffer);
+    if (!buffer.empty()){
+        c = buffer.at(0);
+        escolha = atoi(&c);
+    }
+
+     // Se o jogador fez uma escolha valida retorna o resultado
     if (escolha <= opcoes.size() && escolha > 0) {
         refresh_tela();
         return escolha;
@@ -206,7 +215,13 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
         for (unsigned int i = 0; i < opcoes.size(); i++) {
             std::cout << i+1 << ". " << opcoes[i] << std::endl;
         }
-        std::cin >> escolha;
+
+        // Recebe a entrada do jogador.
+        std::getline (std::cin,buffer);
+        if (!buffer.empty()){
+            c = buffer.at(0);
+            escolha = atoi(&c);
+        }
     }
     refresh_tela();
     return escolha;
@@ -296,14 +311,14 @@ void Partida::vez_da_cpu(Personagem p) {
     // 10% de chance de passar a vez
     if (random < 10) {
         std::cout << "CPU controlando " << p.get_nome() << " ficou confusa e passou a vez..." << std::endl;
-        std::cout << "Aperte Enter para continuar." << std::endl;
+        std::cout << "Aperte Enter para continuar..." << std::endl;
         std::getchar();
         refresh_tela();
     }
     // 20% de chance de usar habilidade especial
-    if (random > 80) {
+    else if(random > 80) {
         std::cout << "CPU controlando " << p.get_nome() << " usou habilidade." << std::endl;
-        std::cout << "Aperte Enter para continuar." << std::endl;
+        std::cout << "Aperte Enter para continuar..." << std::endl;
         std::getchar();
         refresh_tela();
     // 70% de chance de ataque normal

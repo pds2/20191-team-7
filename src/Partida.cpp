@@ -1,10 +1,11 @@
-#include <Partida.h>
+#include "Partida.h"
 #include <algorithm>
 #include <cmath>
+#include "time.h"
 
 // Cores usadas
 #define RESETCOLOR   "\033[0m"
-#define BOLDGREEN    "\033[1m\033[32m" 
+#define BOLDGREEN    "\033[1m\033[32m"
 #define BOLDBLUE     "\033[1m\033[34m"
 #define BOLDMAGENTA  "\033[1m\033[35m"
 #define BOLDRED      "\033[1m\033[31m"
@@ -15,18 +16,18 @@
 #define GREEN   "\033[32m"
 #define YELLOW  "\033[33m"
 #define BLUE    "\033[34m"
-#define MAGENTA "\033[35m" 
+#define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
-#define WHITE   "\033[37m" 
+#define WHITE   "\033[37m"
 #define BOLDBLACK   "\033[1m\033[30m"
 #define BOLDYELLOW  "\033[1m\033[33m"
-#define BOLDCYAN    "\033[1m\033[36m"     
+#define BOLDCYAN    "\033[1m\033[36m"
 #define BOLDWHITE   "\033[1m\033[37m"
 
 // Funcao auxiliar  para compara agilidade entre ponteiros de personagens
 bool compara_agilidade(Personagem* a, Personagem* b){
     return (a->get_agilidade() > b->get_agilidade());
-} 
+}
 
 Partida::Partida(std::vector <Personagem> grupo_a, std::vector <Personagem> grupo_b, int modo_de_jogo){
     _grupo_blue = grupo_a;
@@ -43,10 +44,10 @@ void Partida::inicia(){
     refresh_tela();
 
     // Cnicializa random seed para geração de números aleatórios
-    srand (time(NULL));
+    srand(time(NULL));
 
     // Cria um vetor de apontadores para personagens e ordena o mesmo por agilidade
-    std::vector <Personagem*> ordem = determina_ordem();    
+    std::vector <Personagem*> ordem = determina_ordem();
 
     // Chama um novo turno até a partida terminar
     while (!_partida_terminou){
@@ -77,7 +78,7 @@ std::vector <Personagem*> Partida::determina_ordem(){
 
 void Partida::turno(std::vector <Personagem*> ordem) {
     for (unsigned int i = 0; i < ordem.size(); i++) {
-        
+
         // Confere se a partida já terminou antes da vez do personagem
         _partida_terminou = terminou();
         if (_partida_terminou) {
@@ -100,7 +101,7 @@ void Partida::turno(std::vector <Personagem*> ordem) {
     return;
 }
 
-void Partida::vez_do_personagem(Personagem p){ 
+void Partida::vez_do_personagem(Personagem p){
     std::vector <std::string> opcoes = {"Atacar", "Usar habilidade", "Passar vez"};
     int escolha = submenu_partida(opcoes);
     if (escolha == 1){
@@ -130,10 +131,11 @@ void Partida::atacando(Personagem p, std::vector <Personagem> &grupo_inimigo) {
     int escolha = submenu_partida(opcoes);
 
     // Computa o ataque e imprime o resultado
-    if (!grupo_inimigo[escolha-1].get_vivo()){
-        std::cout << p.get_nome() << " perdeu a vez atacando um inimigo que já estava morto";
+    while(!grupo_inimigo[escolha-1].get_vivo()){
+        std::cout << p.get_nome() << "Esse inimigo ja esta morto, ataque outro!" << std::endl;
+        escolha = submenu_partida(opcoes);
     }
-    else{
+
         int dano = p.ataque_basico(&grupo_inimigo[escolha-1]);
         refresh_tela();
         std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[escolha-1].get_nome() << ". ";
@@ -142,7 +144,7 @@ void Partida::atacando(Personagem p, std::vector <Personagem> &grupo_inimigo) {
         if (!(grupo_inimigo[escolha-1].get_vivo())){
             std::cout << grupo_inimigo[escolha-1].get_nome() << " foi morto em combate.";
         }
-    }
+
 
     std::cout << std::endl;
     return;
@@ -151,7 +153,7 @@ void Partida::atacando(Personagem p, std::vector <Personagem> &grupo_inimigo) {
 // Ataque da CPU
 void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inimigo, int inimigo_atacado) {
     int dano = atacante.ataque_basico(&grupo_inimigo[inimigo_atacado]);
-    
+
     std::cout << atacante.get_nome() << " atacou e causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[inimigo_atacado].get_nome() << ". ";
 
     //informa caso o personagem tenha morrido
@@ -250,7 +252,7 @@ bool Partida::terminou() {
         std::cout << "O time azul foi derrotado!" << std::endl;
     }
     if(terminou_red) {
-        std::cout << "O time vermelho foi derrotado!" << std::endl; 
+        std::cout << "O time vermelho foi derrotado!" << std::endl;
     }
 
     // Se terminou para um dos dois grupos terminou a partida
@@ -273,7 +275,7 @@ void Partida::refresh_tela(){
         else std::cout << "morreu";
         std::cout << std::endl;
     }
-    std::cout << std::endl << "vs" << std::endl << std::endl;    
+    std::cout << std::endl << "vs" << std::endl << std::endl;
      for (unsigned int i = 0; i < _grupo_red.size(); i++) {
         std::cout << BOLDRED << _grupo_red[i].get_nome() << " " << RESETCOLOR;
         if (_grupo_red[i].get_vivo()) {

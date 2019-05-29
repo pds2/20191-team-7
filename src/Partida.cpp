@@ -2,14 +2,14 @@
 #include <algorithm>
 #include <cmath>
 
-//Cores usadas
+// Cores usadas
 #define RESETCOLOR   "\033[0m"
 #define BOLDGREEN    "\033[1m\033[32m" 
 #define BOLDBLUE     "\033[1m\033[34m"
 #define BOLDMAGENTA  "\033[1m\033[35m"
 #define BOLDRED      "\033[1m\033[31m"
 
-//cores ainda não usadas (deletar no final)
+// Cores ainda não usadas (deletar no final)
 #define BLACK   "\033[30m"
 #define RED     "\033[31m"
 #define GREEN   "\033[32m"
@@ -23,7 +23,7 @@
 #define BOLDCYAN    "\033[1m\033[36m"     
 #define BOLDWHITE   "\033[1m\033[37m"
 
-//funcao auxiliar  para compara agilidade entre ponteiros de personagens
+// Funcao auxiliar  para compara agilidade entre ponteiros de personagens
 bool compara_agilidade(Personagem* a, Personagem* b){
     return (a->get_agilidade() > b->get_agilidade());
 } 
@@ -42,13 +42,13 @@ void Partida::inicia(){
     std::getchar();
     refresh_tela();
 
-    // Inicializa random seed para geração de números aleatórios
+    // Cnicializa random seed para geração de números aleatórios
     srand (time(NULL));
 
-    //cria um vetor de apontadores para personagens e ordena o mesmo por agilidade
+    // Cria um vetor de apontadores para personagens e ordena o mesmo por agilidade
     std::vector <Personagem*> ordem = determina_ordem();    
 
-    //chama um novo turno até a partida terminar
+    // Chama um novo turno até a partida terminar
     while (!_partida_terminou){
         //inicia um turno
         turno(ordem);
@@ -57,7 +57,7 @@ void Partida::inicia(){
 }
 
 std::vector <Personagem*> Partida::determina_ordem(){
-    // Unifica os dois grupos em um vetor de apontadores para personagens
+    // Unifica os dois grupos da partida em um vetor de apontadores para personagens
     std::vector <Personagem*> ordem;
     for (unsigned int i = 0; i < _grupo_blue.size(); i++) {
         _grupo_blue[i].set_grupo('b');
@@ -68,24 +68,29 @@ std::vector <Personagem*> Partida::determina_ordem(){
         ordem.push_back(&_grupo_red[i]);
     }
 
-    //ordena esse vetor por agilidade dos personagens
+    // Ordena esse vetor por agilidade dos personagens
     std::sort(ordem.begin(), ordem.end(), compara_agilidade);
 
+    // Retorna o vetor ordenado
     return ordem;
 }
 
 void Partida::turno(std::vector <Personagem*> ordem) {
     for (unsigned int i = 0; i < ordem.size(); i++) {
+        
+        // Confere se a partida já terminou antes da vez do personagem
         _partida_terminou = terminou();
         if (_partida_terminou) {
             return;
         }
 
-        // Permite que esse jogador escolha suas ações no turno
+        // Chama a função que permite o personagem agir no turno
         if (ordem[i]->get_vivo()) {
+            // Caso controlado pela a CPU
             if (_modo_de_jogo == 2 && ordem[i]->get_grupo() == 'r') {
                 vez_da_cpu(*ordem[i]);
             }
+            // Caso seja controlado por um jogador
             else {
                 std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;
                 vez_do_personagem(*ordem[i]);
@@ -149,7 +154,7 @@ void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inim
     
     std::cout << atacante.get_nome() << " atacou e causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[inimigo_atacado].get_nome() << ". ";
 
-    // Informa caso o personagem tenha morrido
+    //informa caso o personagem tenha morrido
     if (!(grupo_inimigo[inimigo_atacado].get_vivo())){
         std::cout << grupo_inimigo[inimigo_atacado].get_nome() << " foi morto em combate.";
     }
@@ -162,7 +167,7 @@ void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inim
 }
 
 
-//TODO: não implementada, as escolhas não fazem nada
+// TODO: não implementada, as escolhas não fazem nada
 void Partida::usando_habilidade(Personagem p){
     std::vector <std::string> opcoes = {"Hadouken", "Primeiros socorros", "Mind Control"};
     int escolha = submenu_partida(opcoes);
@@ -194,7 +199,7 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
         return escolha;
     }
 
-    // Em caso de escolha inválida, repete as opções até ser feita um escolha valida
+    // Em caso de escolha inválida, repete as opções
     while (!(escolha <= opcoes.size() && escolha > 0)) {
         refresh_tela();
         std::cout << "Opção inválida, tente novamente:" << std::endl;
@@ -225,7 +230,7 @@ bool Partida::terminou() {
         }
     }
 
-    // Informa que time perdeu
+    // Informa se um time perdeu
     if(terminou_blue) {
         std::cout << "O time azul foi derrotado!" << std::endl;
     }
@@ -233,15 +238,15 @@ bool Partida::terminou() {
         std::cout << "O time vermelho foi derrotado!" << std::endl; 
     }
 
-    // Se terminou para um dos dois grupos terminou para os dois
+    // Se terminou para um dos dois grupos terminou a partida
     return (terminou_red || terminou_blue);
 }
 
 void Partida::refresh_tela(){
-    // Limpa a tela e reseta a cor do terminal
+    // Limpa a tela
     system("clear");
 
-    // Imprime na tela os times da partida
+    // Imprime na tela os jogadores da partida dividios em dois times
     for (unsigned int i = 0; i < _grupo_blue.size(); i++) {
         std::cout << BOLDBLUE << _grupo_blue[i].get_nome() << " " << RESETCOLOR;
         if (_grupo_blue[i].get_vivo()) {
@@ -266,8 +271,6 @@ void Partida::refresh_tela(){
         std::cout << std::endl;
     }
     std::cout << "-------------------" << std::endl;
-
-    //volta a cor do texto para a do time de quem esta jogando
 }
 
 void Partida::cor_jogador_atual() {
@@ -285,7 +288,7 @@ void Partida::vez_da_cpu(Personagem p) {
     bool inimigo_vivo = false;
     int inimigo_atacado;
 
-    // Gera numero aleatório entre 1 e 100
+    //gra numero aleatório entre 1 e 100
     int random;
     random = rand() % 100 + 1;
 
@@ -319,6 +322,4 @@ void Partida::vez_da_cpu(Personagem p) {
 
         atacando(p, _grupo_blue, inimigo_atacado);
     }
-
-    // std::cout << "CPU muito burra não conseguiu fazer nada... " << p.get_nome() << " perdeu a vez." << std::endl;
 }

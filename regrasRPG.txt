@@ -24,6 +24,4 @@ Coisas para fazer:
   Um sistema de classe para os hérois que permite cada um usar um cunjunto diferente de habilidades.
   
 Bugs encontrados:
-  A quando o PC joga ele esta apgando o texto que fala o que quem jogou fez.
-  De ver em quando da o bug (terminate called after throwing an instance of 'std::logic_error')
-  Quando o jogador passa um input errado muito longo o jogo fica louco
+  De vez em quando da o bug (terminate called after throwing an instance of 'std::logic_error') quando o PC joga.

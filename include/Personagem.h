@@ -51,7 +51,7 @@ class Personagem {
         void imprime();
 
         //ataque basico contra outro personagem
-        int ataque_basico(Personagem*);
+        virtual int ataque_basico(Personagem*);
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);

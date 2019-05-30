@@ -9,13 +9,12 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _agilidade = agilidade;
     _inteligencia = inteligencia;
 
-/*
     //calcula os atributos secundarios a partir dos principais
     _ataque = 10 * forca;
     _defesa = 2 * forca;
     _mp = 10 * inteligencia;
-    _hp = 30 * forca;
-*/
+    _hp = 20 * forca;
+
     //estado do personagem
     _vivo = true;
 }
@@ -85,4 +84,8 @@ std::string Personagem::morreu(){
         _vivo = false;
         return " morreu";
     }
+}
+
+std::string Personagem::get_nome_classe(){
+    return _nome_classe;
 }

@@ -1,22 +1,24 @@
 #include <iostream>
 #include "Personagem.h"
+
 #include "Guerreiro.h"
-#include "Mago.h"
-#include "Clerigo.h"
-#include "Ladrao.h"
+#include "Feiticeiro.h"
+#include "Druida.h"
+#include "Mercenario.h"
+
 #include "Jogo.h"
 #include "Partida.h"
 
 int main() {
     /* Tirei a parte de carregar arquivos por enquanto, vai ter que ser refeita já que deu problema no Linux
     */
-    Guerreiro a0 = Guerreiro("Jon Snow",100,10,10);
-    Clerigo a1 = Clerigo("Jorah Mormont",140,8,8);
-    Mago a2 = Mago("Daenerys",8,8,14);
-    Ladrao a3 = Ladrao("Tyrion",10,10,20);
-    Monstro b0 = Monstro("Rato",2,2,2);
-    Monstro b1 = Monstro("Orc",8,8,8);
-    Monstro b2 = Monstro("Cthulhu",20,20,500);
+    Guerreiro a0 = Guerreiro("Jon Snow",10,10,10);
+    Druida a1 = Druida("Jojen",10,10,10);
+    Feiticeiro a2 = Feiticeiro("Bloodraven",10,10,10);
+    Mercenario a3 = Mercenario("Bronn",10,10,20);
+    Monstro b0 = Monstro("Ratox",2,2,2); //um inimigo fraco para morrer rápido
+    Monstro b1 = Monstro("Ramsey",10,10,10); //um inimigo igual ao hérois
+    Monstro b2 = Monstro("Cthulhu",25,25,25); // um inimigo forte
 
 
     //Inicia partida com os personagens escolhidos

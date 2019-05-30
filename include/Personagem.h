@@ -8,6 +8,9 @@ class Personagem {
         //nome do personagem
         std::string _nome;
 
+        //nome da classe do personagem
+        std::string _nome_classe;
+
         //atributos principais: 
         //determina dano do ataque basico e defesa
         int _forca;
@@ -35,6 +38,7 @@ class Personagem {
         Personagem(std::string,int, int, int);
 
         std::string get_nome();
+        virtual std::string get_nome_classe();
         int get_ataque();
         int get_defesa();
         char get_grupo();

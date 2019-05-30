@@ -132,20 +132,17 @@ void Partida::atacando(Personagem p, std::vector <Personagem> &grupo_inimigo) {
 
     // Computa o ataque e imprime o resultado
     while(!grupo_inimigo[escolha-1].get_vivo()){
-        std::cout << p.get_nome() << "Esse inimigo ja esta morto, ataque outro!" << std::endl;
+        std::cout << grupo_inimigo[escolha-1].get_nome() << " já foi morto, ataque outro!" << std::endl;
         escolha = submenu_partida(opcoes);
     }
+    int dano = p.ataque_basico(&grupo_inimigo[escolha-1]);
+    refresh_tela();
+    std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[escolha-1].get_nome() << ". ";
 
-        int dano = p.ataque_basico(&grupo_inimigo[escolha-1]);
-        refresh_tela();
-        std::cout << p.get_nome() << " causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[escolha-1].get_nome() << ". ";
-
-        // Informa caso o personagem tenha morrido
-        if (!(grupo_inimigo[escolha-1].get_vivo())){
-            std::cout << grupo_inimigo[escolha-1].get_nome() << " foi morto em combate.";
-        }
-
-
+    // Informa caso o personagem tenha morrido
+    if (!(grupo_inimigo[escolha-1].get_vivo())){
+        std::cout << grupo_inimigo[escolha-1].get_nome() << " foi morto em combate.";
+    }
     std::cout << std::endl;
     return;
 }
@@ -265,7 +262,7 @@ void Partida::refresh_tela(){
 
     // Imprime na tela os jogadores da partida dividios em dois times
     for (unsigned int i = 0; i < _grupo_blue.size(); i++) {
-        std::cout << BOLDBLUE << _grupo_blue[i].get_nome() << " " << RESETCOLOR;
+        std::cout << BOLDBLUE << _grupo_blue[i].get_nome() << ", " << _grupo_blue[i].get_nome_classe() << RESETCOLOR;
         if (_grupo_blue[i].get_vivo()) {
             std::cout << " hp:" << BOLDGREEN << _grupo_blue[i].get_hp();
             reseta_cor();

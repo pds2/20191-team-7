@@ -1,16 +1,19 @@
 #include <iostream>
-#include <Personagem.h>
+#include "Personagem.h"
 #include "Guerreiro.h"
-#include <Jogo.h>
-#include <Partida.h>
+#include "Mago.h"
+#include "Clerigo.h"
+#include "Ladrao.h"
+#include "Jogo.h"
+#include "Partida.h"
 
 int main() {
     /* Tirei a parte de carregar arquivos por enquanto, vai ter que ser refeita já que deu problema no Linux
     */
     Guerreiro a0 = Guerreiro("Jon Snow",100,10,10);
-    Personagem a1 = Personagem("Jorah Mormont",140,8,8);
-    Personagem a2 = Personagem("Daenerys",8,8,14);
-    Personagem a3 = Personagem("Tyrion",10,10,20);
+    Clerigo a1 = Clerigo("Jorah Mormont",140,8,8);
+    Mago a2 = Mago("Daenerys",8,8,14);
+    Ladrao a3 = Ladrao("Tyrion",10,10,20);
     Personagem b0 = Personagem("Rato",2,2,2);
     Personagem b1 = Personagem("Orc",8,8,8);
     Personagem b2 = Personagem("Cthulhu",20,20,500);

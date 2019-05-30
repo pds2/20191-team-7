@@ -14,8 +14,8 @@ Clerigo::Clerigo (std::string nome, int forca, int agilidade, int inteligencia):
 
 void Clerigo::modifica_atributos_secundarios () {
     _ataque = _forca * BONUS_FORCA_ATAQUE;
-    _defesa = _forca * BONUS_FORCA_DEFESA;
-    _hp = _forca * BONUS_FORCA_HP;
+    _defesa = 0 ;// teste  de dano  (_forca * BONUS_FORCA_DEFESA;)
+    _hp = 1000*_forca * BONUS_FORCA_HP;//HP para teste dano
     _mp = _inteligencia * MODIFICADOR_INT_MP;
 
 }

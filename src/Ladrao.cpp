@@ -14,8 +14,8 @@ Ladrao::Ladrao (std::string nome, int forca, int agilidade, int inteligencia):
 
 void Ladrao::modifica_atributos_secundarios(){
     _ataque = _agilidade * BONUS_ATAQUE;
-    _defesa = _forca * BONUS_DEFESA;
-    _hp = _forca * BONUS_HP;
+    _defesa = 0; //teste de dano  ( _forca * BONUS_DEFESA;)
+    _hp = 1000* _forca * BONUS_HP;
     _mp = _inteligencia * MODIFICADOR_MP;
 
 }

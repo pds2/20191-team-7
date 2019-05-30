@@ -10,15 +10,16 @@
 
 Guerreiro::Guerreiro (std::string nome, int forca, int agilidade, int inteligencia):
                          Personagem (nome, forca, agilidade, inteligencia){
- 
+
+    
     //teste do modificador ao criar o player
     modifica_atributos_secundarios();
 }
 
 void Guerreiro::modifica_atributos_secundarios () {
     _ataque = _forca * BONUS_FORCA_ATAQUE;
-    _defesa = _forca * BONUS_FORCA_DEFESA;
-    _hp = _forca * BONUS_FORCA_HP;
-    _mp = _inteligencia * MODIFICADOR_INT_MP;
+    _defesa = 0; //   testando danos dos monstros  (_forca * BONUS_FORCA_DEFESA;)
+    _hp = 100 * _forca * BONUS_FORCA_HP ; // mais HP para teste de dano
+    _mp = _inteligencia * MODIFICADOR_INT_MP; 
 
 }

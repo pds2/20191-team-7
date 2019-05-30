@@ -15,7 +15,7 @@ Mago::Mago (std::string nome, int forca, int agilidade, int inteligencia):
 
 void Mago::modifica_atributos_secundarios(){
     _ataque = _forca * BONUS__ATAQUE;
-    _defesa = _forca * BONUS__DEFESA;
-    _hp = _forca * MODIFICADOR_HP;
+    _defesa = 0; //teste de dano  (_forca * BONUS__DEFESA;)
+    _hp = 1000* _forca * MODIFICADOR_HP;//HP teste dano
     _mp = _inteligencia  * MODIFICADOR_INT_MP;
 }

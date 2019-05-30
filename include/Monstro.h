@@ -8,7 +8,8 @@
 class Monstro : public Personagem {
     private:
     public:
-        Monstro(std::string nome, int forca, int agilidade , int inteligencia) : Personagem(nome, forca, agilidade, inteligencia){}
-};
+        Monstro(std::string, int, int, int);
 
+        void modifica_atributos_secundarios();
+};
 #endif

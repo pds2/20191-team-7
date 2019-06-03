@@ -10,7 +10,8 @@ class Feiticeiro : public Personagem {
         //Construtor
         Feiticeiro (std::string, int, int, int);
 
-        void modifica_atributos_secundarios();   
+        void modifica_atributos_secundarios();  
+         
 };
 
 #endif

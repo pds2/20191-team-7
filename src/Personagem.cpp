@@ -32,6 +32,17 @@ std::string Personagem::get_nome(){
     return _nome;
 }
 
+int Personagem::get_forca(){
+    return _forca;
+}
+
+int Personagem::get_agilidade(){
+    return _agilidade;
+}
+
+int Personagem::get_inteligencia(){
+    return _inteligencia;
+}
 int Personagem::get_hp(){
     return _hp;
 }
@@ -40,8 +51,12 @@ int Personagem::get_mp(){
     return _mp;
 }
 
-int Personagem::get_agilidade(){
-    return _agilidade;
+int Personagem::get_ataque(){
+    return _ataque;
+}
+
+int Personagem::get_defesa(){
+    return _defesa;
 }
 
 bool Personagem::get_vivo(){

@@ -11,6 +11,7 @@ class Guerreiro : public Personagem {
         Guerreiro (std::string, int, int, int);
 
         void modifica_atributos_secundarios();
+        
 };
 
 #endif

@@ -39,11 +39,14 @@ class Personagem {
 
         std::string get_nome();
         virtual std::string get_nome_classe();
+
+        int get_forca();
+        int get_agilidade();
+        int get_inteligencia();
         int get_ataque();
         int get_defesa();
         char get_grupo();
         bool get_vivo();
-        int get_agilidade();
         int get_hp();
         int get_mp();
 

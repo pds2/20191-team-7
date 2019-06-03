@@ -11,6 +11,7 @@ class Druida : public Personagem{
         Druida (std::string, int, int, int);
 
         void modifica_atributos_secundarios();
+
 };
 
 #endif

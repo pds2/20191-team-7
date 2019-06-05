@@ -12,7 +12,7 @@ Atributos derivados:
   Defesa: porcentagem derivada da força, reduz o poder do ataque que o personagem esta recebendo.
   Esquiva: porcentagem derivada derivada da agilidade, pode fazer o inimigo errar um ataque.
   
- Habilidades vão se exclusivas de cada classe de héroi:
+ Habilidades vão ser exclusivas de cada classe de héroi:
   (Sugestões):
     Feiticeiro:[Drenar energia] - Rouba HP e MP de um inimigo.
                [Bola de Fogo] - Ataque em área que causa dano a todos os inimigos.

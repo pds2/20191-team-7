@@ -32,7 +32,6 @@ Coisas para fazer:
   Alguma forma de gerar um número aleatório para ser usada em coisas aleatórias
   AI para a CPU.
   Um sistema de classe para os hérois que permite cada um usar um cunjunto diferente de habilidades.
-  Classes Guerreiro, Feiticeiro e Druida.
   
 Bugs encontrados:
   De vez em quando da o bug (terminate called after throwing an instance of 'std::logic_error') quando o PC joga.

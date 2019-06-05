@@ -33,6 +33,10 @@ class Personagem {
         //grupo ao qual ele pertence
         char _grupo;
 
+        std::string _habilidade_1;
+        std::string _habilidade_2;
+        std::string _habilidade_3;
+
     public:
         Personagem();
         Personagem(std::string,int, int, int);
@@ -53,12 +57,16 @@ class Personagem {
         void set_hp(int);
         void set_grupo(char);
 
-
         //imprime atributos do personagem
         void imprime();
 
         //ataque basico contra outro personagem
         virtual int ataque_basico(Personagem*);
+
+        //recupera habilidade
+        virtual std::string get_habilidade(int index);
+        //usa habilidade
+        virtual void usa_habilidade(int index);
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);

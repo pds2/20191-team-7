@@ -168,20 +168,12 @@ void Partida::atacando(Personagem atacante, std::vector <Personagem> &grupo_inim
 
 // TODO: não implementada, as escolhas não fazem nada
 void Partida::usando_habilidade(Personagem p){
-    std::vector <std::string> opcoes = {"Hadouken", "Primeiros socorros", "Mind Control"};
+    std::vector <std::string> opcoes = {p.get_habilidade(1), p.get_habilidade(2), p.get_habilidade(3)};
     int escolha = submenu_partida(opcoes);
-    if (escolha == 1){
-        std::cout << p.get_nome() << " usou Hadouken" << std::endl;
-    }
-    if (escolha == 2){
-        std::cout << p.get_nome() << " usou Primeiros socorros." << std::endl;
 
-    }
-    if (escolha == 3){
-        std::cout << p.get_nome() << " usou Mind Control." << std::endl;
-    }
+    p.usa_habilidade(escolha);
+
     return;
-
 }
 
 int Partida::submenu_partida(std::vector <std::string> opcoes){

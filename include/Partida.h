@@ -55,7 +55,6 @@ class Partida {
 
         //vez da CPU
         void vez_da_cpu(Personagem);
-        
 };
 
 #endif

@@ -17,6 +17,11 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
 
     //estado do personagem
     _vivo = true;
+
+    //habilidades
+    _habilidade_1 = "Ataque forte";
+    _habilidade_2 = "Ataque rápido";
+    _habilidade_3 = "Ataque esperto";
 }
 
 char Personagem::get_grupo(){
@@ -78,6 +83,34 @@ void Personagem::imprime(){
 
 int Personagem::ataque_basico(Personagem* alvo){
     return alvo->recebe_ataque_fisico(_ataque);
+}
+
+std::string Personagem::get_habilidade(int index) {
+    switch (index)
+    {
+        case 1: return _habilidade_1;
+        case 2: return _habilidade_2;
+        case 3: return _habilidade_3;
+        default: return "Habilidade inválida";
+    }
+}
+
+void Personagem::usa_habilidade(int index) {
+    switch (index)
+    {
+        case 1: 
+            std::cout << "Usou _habilidade_1" << std::endl;
+            break;
+        case 2: 
+            std::cout << "Usou _habilidade_2" << std::endl;
+            break;
+        case 3: 
+            std::cout << "Usou _habilidade_3" << std::endl;
+            break;
+        default: 
+            std::cout << "Habilidade inválida" << std::endl;
+            break;
+    }
 }
 
 int Personagem::recebe_ataque_fisico(int ataque){

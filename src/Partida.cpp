@@ -279,9 +279,7 @@ void Partida::refresh_tela(){
         }
         std::cout << "   |" << std::endl;
     }
-    std::cout << "|                                                                    |" << std::endl; 
     std::cout << "|                               VS                                   |" << std::endl;
-    std::cout << "|                                                                    |" << std::endl;
 
     for (unsigned int i = 0; i < _grupo_red.size(); i++) {
         std::cout << "|   ";
@@ -297,6 +295,12 @@ void Partida::refresh_tela(){
             reseta_cor();
             std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_red[i]->get_mp();
             reseta_cor();
+        } else {
+            left = 57 - left;
+            std::cout << "morreu.";
+            for (int i = 0; i < left; i++) {
+                std::cout << " ";
+            }
         }
         std::cout << "   |" << std::endl;
     }

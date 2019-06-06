@@ -8,8 +8,9 @@ Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
     _habilidade_2 = "Forma Animal";
     _habilidade_3 = "Proteção";
 }
+Druida::~Druida(){}
 
- int Druida::ataque_basico(Personagem* alvo) {
+int Druida::ataque_basico(Personagem* alvo) {
     alvo->recebe_ataque_fisico(_ataque);
 }
 

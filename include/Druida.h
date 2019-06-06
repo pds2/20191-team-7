@@ -9,6 +9,7 @@ class Druida : public Personagem{
     public:
         //Construtor
         Druida (std::string, int, int, int);
+        ~Druida();
 
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;

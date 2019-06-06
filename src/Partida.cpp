@@ -36,6 +36,7 @@ Partida::Partida(std::vector <Personagem*> grupo_a, std::vector <Personagem*> gr
     _partida_terminou = false;
     _modo_de_jogo = modo_de_jogo;
 }
+Partida::~Partida() {};
 
 void Partida::inicia() {
     refresh_tela();

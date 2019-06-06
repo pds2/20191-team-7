@@ -9,6 +9,7 @@ class Guerreiro : public Personagem {
     public:
         //Construtor
         Guerreiro (std::string, int, int, int);
+        ~Guerreiro();
 
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;

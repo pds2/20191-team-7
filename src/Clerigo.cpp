@@ -8,6 +8,7 @@ Clerigo::Clerigo(std::string nome, int forca, int agilidade, int inteligencia):
     _habilidade_2 = "Bola de Fogo";
     _habilidade_3 = "Esfera de Proteção";
 }
+Clerigo::~Clerigo(){}
 
 int Clerigo::ataque_basico(Personagem* alvo) {
     alvo->recebe_ataque_fisico(_ataque);

@@ -8,6 +8,7 @@ Feiticeiro::Feiticeiro (std::string nome, int forca, int agilidade, int intelige
     _habilidade_2 = "Bola de Fogo";
     _habilidade_3 = "Esfera de Proteção";
 }
+Feiticeiro::~Feiticeiro(){}
 
 int Feiticeiro::ataque_basico(Personagem* alvo) {
     alvo->recebe_ataque_fisico(_ataque);

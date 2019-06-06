@@ -8,6 +8,7 @@ Mercenario::Mercenario (std::string nome, int forca, int agilidade, int intelige
     _habilidade_2 = "Execução";
     _habilidade_3 = "Fúria de Batalha";
 }
+Mercenario::~Mercenario(){}
 
 int Mercenario::ataque_basico(Personagem* alvo) {
     alvo->recebe_ataque_fisico(_ataque);

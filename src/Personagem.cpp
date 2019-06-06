@@ -23,6 +23,7 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _habilidade_2 = "Ataque rápido";
     _habilidade_3 = "Ataque esperto";
 }
+Personagem::~Personagem(){}
 
 char Personagem::get_grupo(){
     return _grupo;

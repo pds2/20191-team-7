@@ -15,6 +15,7 @@ class Partida {
         int _modo_de_jogo; // 1 = Humano vs Humano, 2 = Humano vs CPU
     public:
         Partida(std::vector <Personagem*>,std::vector <Personagem*>, int);
+        ~Partida();
         
         //inicia a partida
         void inicia();

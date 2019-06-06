@@ -9,6 +9,7 @@ class Ladrao : public Personagem {
     public:
         //Construtor
         Ladrao(std::string, int, int, int);
+        ~Ladrao();
         
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;

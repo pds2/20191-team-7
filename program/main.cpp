@@ -15,9 +15,9 @@ int main() {
     Feiticeiro a2 = Feiticeiro("Bloodraven",10,10,10);
     Guerreiro a3 = Guerreiro("Bronn",10,10,20);
     
-    Monstro b0 = Monstro("Ratox",2,2,2);        // um inimigo fraco para morrer rápido
-    Monstro b1 = Monstro("Ramsey",10,10,10);    // um inimigo igual ao hérois
-    Monstro b2 = Monstro("Cthulhu",25,25,25);   // um inimigo forte
+    Monstro b0 = Monstro("Ratox", 2, 2, 2);        // um inimigo fraco para morrer rápido
+    Monstro b1 = Monstro("Ramsey", 10, 10, 10);    // um inimigo igual ao hérois
+    Monstro b2 = Monstro("Cthulhu", 25, 25, 25);   // um inimigo forte
     
 
     //Inicia partida com os personagens escolhidos

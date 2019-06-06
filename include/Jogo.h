@@ -11,6 +11,7 @@ class Jogo {
         std::vector <Monstro> _monstros;
     public:
         Jogo();
+        ~Jogo();
         bool carrega_arquivos();
         void imprime_vetores();
 };

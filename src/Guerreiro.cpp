@@ -8,6 +8,7 @@ Guerreiro::Guerreiro (std::string nome, int forca, int agilidade, int inteligenc
     _habilidade_2 = "Execução";
     _habilidade_3 = "Fúria de Batalha";
 }
+Guerreiro::~Guerreiro(){}
 
 int Guerreiro::ataque_basico(Personagem* alvo) {
     alvo->recebe_ataque_fisico(_ataque);

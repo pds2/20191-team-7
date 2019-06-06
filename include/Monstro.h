@@ -9,6 +9,7 @@ class Monstro : public Personagem {
     private:
     public:
         Monstro(std::string, int, int, int);
+        ~Monstro();
 
         void modifica_atributos_secundarios();
 };

@@ -9,6 +9,7 @@ class Mercenario : public Personagem {
     public:
         //Construtor
         Mercenario (std::string, int, int, int);
+        ~Mercenario();
 
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;

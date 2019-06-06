@@ -5,6 +5,7 @@ Monstro::Monstro(std::string nome, int forca, int agilidade, int inteligencia):
                      
     modifica_atributos_secundarios();
 }
+Monstro::~Monstro(){}
 
 void Monstro::modifica_atributos_secundarios(){
 

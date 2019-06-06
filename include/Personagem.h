@@ -39,8 +39,8 @@ class Personagem {
         std::string _habilidade_3;
 
     public:
-        Personagem();
         Personagem(std::string,int, int, int);
+        ~Personagem();
 
         std::string get_nome();
         virtual std::string get_nome_classe();

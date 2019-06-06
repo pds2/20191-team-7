@@ -8,6 +8,7 @@ Ladrao::Ladrao(std::string nome, int forca, int agilidade, int inteligencia):
     _habilidade_2 = "Bola de Fogo";
     _habilidade_3 = "Esfera de Proteção";
 }
+Ladrao::~Ladrao(){}
 
 int Ladrao::ataque_basico(Personagem* alvo) {
     alvo->recebe_ataque_fisico(_ataque);

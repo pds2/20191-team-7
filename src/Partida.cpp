@@ -1,5 +1,6 @@
 #include "Partida.h"
 #include <algorithm>
+#include <iomanip>
 #include <cmath>
 #include "time.h"
 
@@ -252,31 +253,54 @@ void Partida::refresh_tela(){
     // Limpa a tela
     system("clear");
 
+    std::cout << "----------------------------------------------------------------------" << std::endl;
+
     // Imprime na tela os jogadores da partida dividios em dois times
     for (unsigned int i = 0; i < _grupo_blue.size(); i++) {
+        std::cout << "|   ";
         std::cout << BOLDBLUE << _grupo_blue[i]->get_nome() << ", " << _grupo_blue[i]->get_nome_classe() << RESETCOLOR;
+        int left = _grupo_blue[i]->get_nome().size() + _grupo_blue[i]->get_nome_classe().size() + 5;
         if (_grupo_blue[i]->get_vivo()) {
-            std::cout << " hp:" << BOLDGREEN << _grupo_blue[i]->get_hp();
+            left = 45 - left;
+            for (int i = 0; i < left; i++) {
+                std::cout << " ";
+            }
+            std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_blue[i]->get_hp();
             reseta_cor();
-            std::cout << "  mp:" << BOLDMAGENTA << _grupo_blue[i]->get_mp();
+            std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_blue[i]->get_mp();
             reseta_cor();
         }
-        else std::cout << "morreu";
-        std::cout << std::endl;
+        else {
+            left = 57 - left;
+            std::cout << " morreu.";
+            for (int i = 0; i < left; i++) {
+                std::cout << " ";
+            }
+        }
+        std::cout << "   |" << std::endl;
     }
-    std::cout << std::endl << "vs" << std::endl << std::endl;
-     for (unsigned int i = 0; i < _grupo_red.size(); i++) {
+    std::cout << "|                                                                    |" << std::endl; 
+    std::cout << "|                               VS                                   |" << std::endl;
+    std::cout << "|                                                                    |" << std::endl;
+
+    for (unsigned int i = 0; i < _grupo_red.size(); i++) {
+        std::cout << "|   ";
         std::cout << BOLDRED << _grupo_red[i]->get_nome() << " " << RESETCOLOR;
+        int left = _grupo_red[i]->get_nome().size() + 3;
         if (_grupo_red[i]->get_vivo()) {
-            std::cout << " hp:" << BOLDGREEN <<_grupo_red[i]->get_hp();
+            left = 44 - left;
+            for (int i = 0; i < left; i++) {
+                std::cout << " ";
+            }
+
+            std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_red[i]->get_hp();
             reseta_cor();
-            std::cout << "  mp:" << BOLDMAGENTA <<_grupo_red[i]->get_mp();
+            std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_red[i]->get_mp();
             reseta_cor();
         }
-        else std::cout << "morreu";
-        std::cout << std::endl;
+        std::cout << "   |" << std::endl;
     }
-    std::cout << "-------------------" << std::endl;
+    std::cout << "----------------------------------------------------------------------" << std::endl << std::endl;
 }
 
 void Partida::cor_jogador_atual() {

@@ -3,7 +3,8 @@
 Ladrao::Ladrao(std::string nome, int forca, int agilidade, int inteligencia):
                Personagem (nome, forca, agilidade, inteligencia){
 
-    _nome_classe = "Ladrao";_habilidade_1 = "Drenar Energia";
+    _nome_classe = "Ladrao";
+    _habilidade_1 = "Drenar Energia";
     _habilidade_2 = "Bola de Fogo";
     _habilidade_3 = "Esfera de Proteção";
 }

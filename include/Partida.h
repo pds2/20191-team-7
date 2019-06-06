@@ -8,13 +8,13 @@
 
 class Partida {
     private:
-        std::vector <Personagem> _grupo_blue;
-        std::vector <Personagem> _grupo_red;
+        std::vector <Personagem*> _grupo_blue;
+        std::vector <Personagem*> _grupo_red;
         bool _partida_terminou;
         char _grupo_que_estajogando;
         int _modo_de_jogo; // 1 = Humano vs Humano, 2 = Humano vs CPU
     public:
-        Partida(std::vector <Personagem>,std::vector <Personagem>, int);
+        Partida(std::vector <Personagem*>,std::vector <Personagem*>, int);
         
         //inicia a partida
         void inicia();
@@ -29,16 +29,16 @@ class Partida {
         void turno(std::vector <Personagem*>);
 
         //durante a vez do personagem o jogador decide o que vai fazer
-        void vez_do_personagem(Personagem);
+        void vez_do_personagem(Personagem*);
 
         //jogador vai fazer um ataque
-        void atacando(Personagem, std::vector <Personagem> &);
+        void atacando(Personagem*, std::vector <Personagem*> &);
 
         //CPU ataca
-        void atacando(Personagem, std::vector <Personagem> &, int inimigo_atacado);
+        void atacando(Personagem*, std::vector <Personagem*> &, int inimigo_atacado);
 
         //jogador vai usar habilidade
-        void usando_habilidade(Personagem);
+        void usando_habilidade(Personagem*);
 
         //limpa a tela e imprime o estado do jogo
         void refresh_tela();
@@ -54,7 +54,7 @@ class Partida {
         void reseta_cor();
 
         //vez da CPU
-        void vez_da_cpu(Personagem);
+        void vez_da_cpu(Personagem*);
 };
 
 #endif

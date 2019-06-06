@@ -85,27 +85,27 @@ int Personagem::ataque_basico(Personagem* alvo){
     return alvo->recebe_ataque_fisico(_ataque);
 }
 
-std::string Personagem::get_habilidade(int index) {
-    switch (index)
+std::string Personagem::get_habilidade(int habilidade_escolhida) {
+    switch (habilidade_escolhida)
     {
-        case 1: return _habilidade_1;
-        case 2: return _habilidade_2;
-        case 3: return _habilidade_3;
-        default: return "Habilidade inválida";
+        case 1: return _habilidade_1; break;
+        case 2: return _habilidade_2; break;
+        case 3: return _habilidade_3; break;
+        default: return "Habilidade inválida"; break;
     }
 }
 
-void Personagem::usa_habilidade(int index) {
-    switch (index)
+void Personagem::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+    switch (habilidade_escolhida)
     {
         case 1: 
-            std::cout << "Usou _habilidade_1" << std::endl;
+            std::cout << "Usou " << _habilidade_1 << std::endl;
             break;
         case 2: 
-            std::cout << "Usou _habilidade_2" << std::endl;
+            std::cout << "Usou " << _habilidade_2 << std::endl;
             break;
         case 3: 
-            std::cout << "Usou _habilidade_3" << std::endl;
+            std::cout << "Usou " << _habilidade_3 << std::endl;
             break;
         default: 
             std::cout << "Habilidade inválida" << std::endl;

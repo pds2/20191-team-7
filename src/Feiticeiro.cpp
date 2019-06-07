@@ -24,7 +24,7 @@ std::string Feiticeiro::get_habilidade(int habilidade_escolhida) {
     }
 }
 
-std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_escolha, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
     std::string msg = "";
     switch (habilidade_escolhida)
     {

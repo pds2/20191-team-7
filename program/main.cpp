@@ -13,7 +13,7 @@ int main() {
     Guerreiro a0 = Guerreiro("Jon Snow",10,10,10);
     Druida a1 = Druida("Jojen",10,10,10);
     Feiticeiro a2 = Feiticeiro("Bloodraven",10,10,10);
-    Guerreiro a3 = Guerreiro("Bronn",10,10,20);
+    Guerreiro a3 = Guerreiro("Bronn",10,10,10);
     
     Monstro b0 = Monstro("Ratox", 2, 2, 2);        // um inimigo fraco para morrer rápido
     Monstro b1 = Monstro("Ramsey", 10, 10, 10);    // um inimigo igual ao hérois

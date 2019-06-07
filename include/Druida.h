@@ -13,7 +13,7 @@ class Druida : public Personagem{
 
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;
-        std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;        
+        std::string usa_habilidade(int, int, std::vector<Personagem*>, std::vector<Personagem*>) override;        
 };
 
 #endif

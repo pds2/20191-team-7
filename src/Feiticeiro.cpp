@@ -38,7 +38,7 @@ std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_esc
             msg = this->habilidade_2(segunda_escolha, grupo_inimigo);
             break;
         case 3: 
-            msg = "Usou " + _habilidade_3;
+            msg = this->habilidade_3(grupo_aliado);
             break;
         default: 
             msg = "Habilidade inválida";
@@ -50,10 +50,10 @@ std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_esc
 
 std::string Feiticeiro::habilidade_1(std::vector<Personagem*> grupo_inimigo) {
     // Verifica se possui MP suficiente para habilidade
-    if (_mp >= CUSTO_HABILIDADE_1) {
+    if (_mp >= CUSTO_HABILIDADE_FT_1) {
         std::string msg = this->_nome + " conjurou uma bola de fogo sobre os adversários\n";
         int dano = 0;
-        _mp -= CUSTO_HABILIDADE_1;
+        _mp -= CUSTO_HABILIDADE_FT_1;
         for(Personagem* p : grupo_inimigo) {
             if (p->get_vivo()) {
                 dano = p->recebe_ataque_magia(DANO_BOLA_DE_FOGO);
@@ -70,8 +70,12 @@ std::string Feiticeiro::habilidade_1(std::vector<Personagem*> grupo_inimigo) {
 }
 
 std::string Feiticeiro::habilidade_2(int segunda_escolha, std::vector<Personagem*> grupo_inimigo) {
+    // Verifica se inimigo atacado está vivo
     if (grupo_inimigo[segunda_escolha-1]->get_vivo()) {
-        if (_mp >= CUSTO_HABILIDADE_2) {
+        // Verifica se possui MP suficiente para usar a habilidade
+        if (_mp >= CUSTO_HABILIDADE_FT_2) {
+            _mp -= CUSTO_HABILIDADE_FT_2;
+
             int hp_inimigo = grupo_inimigo[segunda_escolha-1]->get_hp();
             int mp_inimigo = grupo_inimigo[segunda_escolha-1]->get_mp();
             int hp_drena = hp_inimigo * FATOR_DRENAR;
@@ -102,4 +106,34 @@ std::string Feiticeiro::habilidade_2(int segunda_escolha, std::vector<Personagem
         return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
     } 
     return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";   
+}
+
+std::string Feiticeiro::habilidade_3(std::vector<Personagem*> grupo_aliado) {
+    // Verifica se possui MP suficiente para usar a habilidade
+    if (_mp >=CUSTO_HABILIDADE_FT_3) {
+        int aliado_hp = 0;
+        int recupera_hp = 0;
+        _mp -= CUSTO_HABILIDADE_FT_3;
+
+        std::string msg = this->_nome + " curou seus aliados!\n";
+        
+        for (Personagem* p : grupo_aliado) {
+            aliado_hp = p->get_hp();
+            recupera_hp = aliado_hp*FATOR_F_CURA;
+            
+            if (p->get_vivo()) {
+                msg += p->get_nome() + " recuperou ";
+                if ((aliado_hp + recupera_hp) > p->get_max_hp()) {
+                    p->set_hp(p->get_max_hp());
+                    msg += std::to_string(p->get_max_hp() - aliado_hp) + " de HP.\n";
+                } else {
+                    p->set_hp(aliado_hp + recupera_hp);
+                    msg += std::to_string(recupera_hp) + " de HP.\n";
+                }
+            }
+        }
+
+        return msg;
+    } 
+    return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
 }

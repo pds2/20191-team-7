@@ -2,16 +2,20 @@
 #define PDS2_GUERREIRO_H
 
 #include "Personagem.h"
+#include <iostream>
+
+#define FATOR_CURA 0.25
 
 class Guerreiro : public Personagem {
     private:
     public:
-
         //Construtor
         Guerreiro (std::string, int, int, int);
+        ~Guerreiro();
 
-        void modifica_atributos_secundarios();
-        
+        int ataque_basico(Personagem*) override;
+        std::string get_habilidade(int) override;
+        std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
 };
 
 #endif

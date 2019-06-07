@@ -8,6 +8,7 @@
 
 Jogo::Jogo(){
 }
+Jogo::~Jogo(){}
 
 bool Jogo::carrega_arquivos(){
 

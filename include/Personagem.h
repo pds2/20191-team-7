@@ -2,6 +2,7 @@
 #define PDS2_PERSONAGEM_H
 
 #include <string>
+#include <vector>
 
 class Personagem {
     protected:
@@ -26,6 +27,7 @@ class Personagem {
         int _defesa;
         int _hp;
         int _mp;
+        int _max_hp;
 
         //estado do personagem
         bool _vivo;
@@ -33,9 +35,13 @@ class Personagem {
         //grupo ao qual ele pertence
         char _grupo;
 
+        std::string _habilidade_1;
+        std::string _habilidade_2;
+        std::string _habilidade_3;
+
     public:
-        Personagem();
         Personagem(std::string,int, int, int);
+        ~Personagem();
 
         std::string get_nome();
         virtual std::string get_nome_classe();
@@ -53,12 +59,21 @@ class Personagem {
         void set_hp(int);
         void set_grupo(char);
 
+        //METODOS UTILIZADOS PARA TESTE 
+        void diminui_hp(int);
+        void set_vivo_morto(bool);
+        //FIM METODOS DE TESTE
 
         //imprime atributos do personagem
         void imprime();
 
         //ataque basico contra outro personagem
         virtual int ataque_basico(Personagem*);
+
+        // Recupera habilidade
+        virtual std::string get_habilidade(int);
+        // Usa habilidade
+        virtual std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>);
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);

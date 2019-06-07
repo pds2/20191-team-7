@@ -7,7 +7,7 @@ TEST_CASE("Testando o Construtor") {
     std::string nome = feiticeiro.get_nome();
     CHECK_EQ (nome, "Tyrell" );
     std::string nome_classe = feiticeiro.get_nome_classe();
-    CHECK_EQ (nome_classe, "feiticeiro");
+    CHECK_EQ (nome_classe, "Feiticeiro");
 
 
     //checa atributos principais forca, agilidade, inteligencia

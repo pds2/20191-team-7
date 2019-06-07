@@ -9,7 +9,10 @@ class Monstro : public Personagem {
     private:
     public:
         Monstro(std::string, int, int, int);
+        ~Monstro();
 
         void modifica_atributos_secundarios();
+        std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
+
 };
 #endif

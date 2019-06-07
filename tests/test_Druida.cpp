@@ -8,7 +8,7 @@ TEST_CASE("Testando o Construtor") {
     std::string nome = druida.get_nome();
     CHECK_EQ (nome, "Bran" );
     std::string nome_classe = druida.get_nome_classe();
-    CHECK_EQ (nome_classe, "druida");
+    CHECK_EQ (nome_classe, "Druida");
 
 
     //checa atributos principais forca, agilidade, inteligencia

@@ -56,16 +56,21 @@ std::string Guerreiro::usa_habilidade(int habilidade_escolhida, int segunda_esco
 }
 
 std::string Guerreiro::habilidade_1(){
-    int recupera_hp = _hp * FATOR_CURA;
-            if (_hp + recupera_hp > _max_hp) {
-                recupera_hp -= ((_hp + recupera_hp) - _max_hp);
+
+    //testa se tem energia suficiente usar esta habilidade
+    if (_mp >= CUSTO_HABILIDADE_1){
+            int recupera_hp = _hp * FATOR_CURA;
+            if (_hp + recupera_hp >= _max_hp){
+                recupera_hp = (_max_hp - _hp);
             }
             _hp += recupera_hp;
-    return "Usou " + _habilidade_1 + "\n" + _nome + " recuperou " + std::to_string(recupera_hp) + " de HP.";
-    
+            return _nome + " usou " + _habilidade_1 + " e conseguiu recuperar " + std::to_string(recupera_hp) + " de HP.";
+    }
+    return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
 }
 
 std::string Guerreiro::habilidade_2(int segunda_escolha, std::vector<Personagem*> grupo_inimigo){
+
     //testa se é possivel executar o inimigo
     if(grupo_inimigo[segunda_escolha-1]->get_hp() < (grupo_inimigo[segunda_escolha-1]->get_max_hp() * PONTO_DE_EXECUCAO)){
         _mp = 0;

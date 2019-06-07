@@ -25,7 +25,7 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _mp = 10 * inteligencia;
     _hp = 10 * forca + 5 * _agilidade + 5 * _inteligencia;
     _max_hp = _hp;
-    _max_hp = _mp;
+    _max_mp = _mp;
 
     //estado do personagem
     _vivo = true;

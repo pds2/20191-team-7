@@ -6,6 +6,7 @@
 
 #define FATOR_CURA 0.25
 #define PONTO_DE_EXECUCAO 0.25
+#define CUSTO_HABILIDADE_1 15
 #define CUSTO_HABILIDADE_3 15
 
 class Guerreiro : public Personagem {

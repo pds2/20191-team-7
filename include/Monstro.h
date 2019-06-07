@@ -12,5 +12,7 @@ class Monstro : public Personagem {
         ~Monstro();
 
         void modifica_atributos_secundarios();
+        void usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
+
 };
 #endif

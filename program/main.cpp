@@ -4,7 +4,7 @@
 #include "Guerreiro.h"
 #include "Feiticeiro.h"
 #include "Druida.h"
-#include "Mercenario.h"
+
 
 #include "Jogo.h"
 #include "Partida.h"

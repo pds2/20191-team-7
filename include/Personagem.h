@@ -72,7 +72,7 @@ class Personagem {
         // Recupera habilidade
         virtual std::string get_habilidade(int);
         // Usa habilidade
-        virtual void usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) = 0;
+        virtual void usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>);
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);

@@ -81,6 +81,9 @@ class Personagem {
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);
 
+        //recebe ataque de magia
+        int recebe_ataque_magia(int);
+
         //confere se o personagem já morreu
         std::string morreu();
 };

@@ -146,6 +146,14 @@ int Personagem::recebe_ataque_fisico(int ataque){
     else return 0; 
 }
 
+int Personagem::recebe_ataque_magia(int ataque){
+    _hp -= ataque;
+    if (_hp <= 0){
+        _vivo = false;
+    }
+    return ataque;
+}
+
 std::string Personagem::morreu(){
     if(_vivo){
         return " hp= " + std::to_string(_hp);

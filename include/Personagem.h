@@ -60,6 +60,7 @@ class Personagem {
         int get_max_mp();
 
         void set_hp(int);
+        void set_mp(int);
         void set_grupo(char);
 
         //METODOS UTILIZADOS PARA TESTE 
@@ -80,6 +81,9 @@ class Personagem {
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);
+
+        //recebe ataque de magia
+        int recebe_ataque_magia(int);
 
         //confere se o personagem já morreu
         std::string morreu();

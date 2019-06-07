@@ -90,6 +90,13 @@ bool Personagem::get_vivo(){
     return _vivo;
 }
 
+void Personagem::set_mp(int mp) {
+    _mp = mp;
+}
+void Personagem::set_hp(int hp) {
+    _hp = hp;
+}
+
 void Personagem::imprime(){
     std::cout << _nome << " >>";    
     std::cout << " forca:" << _forca;
@@ -144,6 +151,14 @@ int Personagem::recebe_ataque_fisico(int ataque){
         return ataque - _defesa;
     }
     else return 0; 
+}
+
+int Personagem::recebe_ataque_magia(int ataque){
+    _hp -= ataque;
+    if (_hp <= 0){
+        _vivo = false;
+    }
+    return ataque;
 }
 
 std::string Personagem::morreu(){

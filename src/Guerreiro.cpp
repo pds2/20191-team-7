@@ -56,7 +56,6 @@ std::string Guerreiro::usa_habilidade(int habilidade_escolhida, int segunda_esco
 }
 
 std::string Guerreiro::habilidade_1(){
-
     //testa se tem energia suficiente usar esta habilidade
     if (_mp >= CUSTO_HABILIDADE_1){
             int recupera_hp = _hp * FATOR_CURA;

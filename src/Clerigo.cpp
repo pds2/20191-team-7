@@ -11,7 +11,7 @@ Clerigo::Clerigo(std::string nome, int forca, int agilidade, int inteligencia):
 Clerigo::~Clerigo(){}
 
 int Clerigo::ataque_basico(Personagem* alvo) {
-    alvo->recebe_ataque_fisico(_ataque);
+    return alvo->recebe_ataque_fisico(_ataque);
 }
 
 std::string Clerigo::get_habilidade(int habilidade_escolhida) {

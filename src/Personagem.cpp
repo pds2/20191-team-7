@@ -2,6 +2,16 @@
 #include <string>
 #include <iostream>
 
+//METODOS PARA TESTES
+void Personagem::set_vivo_morto(bool status){
+    _vivo = status;
+}
+
+void Personagem::diminui_hp(int redutor){
+    _hp -= redutor;
+}
+//FIM METODOS PARA TESTES
+
 Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligencia) {
     //atributos principais
     _nome = nome;

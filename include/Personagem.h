@@ -58,6 +58,11 @@ class Personagem {
         void set_hp(int);
         void set_grupo(char);
 
+        //METODOS UTILIZADOS PARA TESTE 
+        void diminui_hp(int);
+        void set_vivo_morto(bool);
+        //FIM METODOS DE TESTE
+
         //imprime atributos do personagem
         void imprime();
 

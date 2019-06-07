@@ -7,7 +7,7 @@ TEST_CASE("Testando o Construtor") {
     std::string nome = Monstro.get_nome();
     CHECK_EQ (nome, "Clegane" );
     std::string nome_classe = Monstro.get_nome_classe();
-    CHECK_EQ (nome_classe, "mercenário");
+//    CHECK_EQ (nome_classe, "mercenário");   DECIDIR SER IRA TER CLASSE DE MONSTRO SOMENTE COMO STRING
 
 
     //checa atributos principais forca, agilidade, inteligencia

@@ -11,7 +11,7 @@ Feiticeiro::Feiticeiro (std::string nome, int forca, int agilidade, int intelige
 Feiticeiro::~Feiticeiro(){}
 
 int Feiticeiro::ataque_basico(Personagem* alvo) {
-    alvo->recebe_ataque_fisico(_ataque);
+    return alvo->recebe_ataque_fisico(_ataque);
 }
 
 std::string Feiticeiro::get_habilidade(int habilidade_escolhida) {

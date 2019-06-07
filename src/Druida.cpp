@@ -11,7 +11,7 @@ Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
 Druida::~Druida(){}
 
 int Druida::ataque_basico(Personagem* alvo) {
-    alvo->recebe_ataque_fisico(_ataque);
+    return alvo->recebe_ataque_fisico(_ataque);
 }
 
 std::string Druida::get_habilidade(int habilidade_escolhida) {

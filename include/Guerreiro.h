@@ -4,6 +4,8 @@
 #include "Personagem.h"
 #include <iostream>
 
+#define FATOR_CURA 1.25
+
 class Guerreiro : public Personagem {
     private:
     public:

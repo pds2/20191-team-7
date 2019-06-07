@@ -11,7 +11,7 @@ Guerreiro::Guerreiro (std::string nome, int forca, int agilidade, int inteligenc
 Guerreiro::~Guerreiro(){}
 
 int Guerreiro::ataque_basico(Personagem* alvo) {
-    alvo->recebe_ataque_fisico(_ataque);
+    return alvo->recebe_ataque_fisico(_ataque);
 }
 
 std::string Guerreiro::get_habilidade(int habilidade_escolhida) {
@@ -27,8 +27,9 @@ std::string Guerreiro::get_habilidade(int habilidade_escolhida) {
 void Guerreiro::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
     switch (habilidade_escolhida)
     {
-        case 1: 
-            _hp = _hp * 1.25;
+        case 1:
+            
+            _hp = _hp * FATOR_CURA;
             break;
         case 2: 
             std::cout << "Usou " << _habilidade_2 << std::endl;

@@ -24,6 +24,7 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _defesa = 2 * forca;
     _mp = 10 * inteligencia;
     _hp = 20 * forca;
+    _max_hp = _hp;
 
     //estado do personagem
     _vivo = true;
@@ -106,7 +107,7 @@ std::string Personagem::get_habilidade(int habilidade_escolhida) {
     }
 }
 
-void Personagem::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+std::string Personagem::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
     switch (habilidade_escolhida)
     {
         case 1: 

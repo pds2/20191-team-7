@@ -5,7 +5,6 @@ Experiencia::Experiencia (){
     this->_xp_total = 0;
     this->_xp_para_prox_level = XP_PROX_LEVEL;
     this->_xp_necessaria = XP_PROX_LEVEL;
-
 }
 Experiencia::~Experiencia(){}
 

@@ -24,20 +24,23 @@ std::string Druida::get_habilidade(int habilidade_escolhida) {
     }
 }
 
-void Druida::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+std::string Druida::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+    std::string msg = "";
     switch (habilidade_escolhida)
     {
         case 1: 
-            std::cout << "Usou " << _habilidade_1 << std::endl;
+            msg = "Usou " + _habilidade_1;
             break;
         case 2: 
-            std::cout << "Usou " << _habilidade_2 << std::endl;
+            msg = "Usou " + _habilidade_2;
             break;
         case 3: 
-            std::cout << "Usou " << _habilidade_3 << std::endl;
+            msg = "Usou " + _habilidade_3;
             break;
         default: 
-            std::cout << "Habilidade inválida" << std::endl;
+            msg = "Habilidade inválida";
             break;
     }
+
+    return msg;
 }   

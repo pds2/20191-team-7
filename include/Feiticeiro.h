@@ -13,7 +13,7 @@ class Feiticeiro : public Personagem {
 
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;
-        void usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
+        std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
 };
 
 #endif

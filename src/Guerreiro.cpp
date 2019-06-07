@@ -24,21 +24,32 @@ std::string Guerreiro::get_habilidade(int habilidade_escolhida) {
     }
 }
 
-void Guerreiro::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+std::string Guerreiro::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+    std::string msg = "";
     switch (habilidade_escolhida)
     {
-        case 1:
-            
-            _hp = _hp * FATOR_CURA;
+        case 1: {
+            int recupera_hp = _hp * FATOR_CURA;
+            if (_hp + recupera_hp > _max_hp) {
+                recupera_hp -= ((_hp + recupera_hp) - _max_hp);
+            }
+            _hp += recupera_hp;
+            msg = "Usou " + _habilidade_1 + "\n" + _nome + " recuperou " + std::to_string(recupera_hp) + " de HP.";
             break;
-        case 2: 
-            std::cout << "Usou " << _habilidade_2 << std::endl;
+        }
+        case 2: { 
+            msg = "Usou " + _habilidade_2;
             break;
-        case 3: 
-            std::cout << "Usou " << _habilidade_3 << std::endl;
+        }
+        case 3: {
+            msg = "Usou " + _habilidade_3;
             break;
-        default: 
-            std::cout << "Habilidade inválida" << std::endl;
+        }
+        default:  {
+            msg = "Habilidade inválida";
             break;
+        }
     }
+
+    return msg;
 }

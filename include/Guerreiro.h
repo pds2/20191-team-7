@@ -4,7 +4,7 @@
 #include "Personagem.h"
 #include <iostream>
 
-#define FATOR_CURA 1.25
+#define FATOR_CURA 0.25
 
 class Guerreiro : public Personagem {
     private:
@@ -15,7 +15,7 @@ class Guerreiro : public Personagem {
 
         int ataque_basico(Personagem*) override;
         std::string get_habilidade(int) override;
-        void usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
+        std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>) override;
 };
 
 #endif

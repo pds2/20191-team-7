@@ -167,13 +167,17 @@ void Partida::atacando(Personagem* atacante, std::vector <Personagem*> &grupo_in
     return;
 }
 
-
-// TODO: não implementada, as escolhas não fazem nada
 void Partida::usando_habilidade(Personagem* p){
     std::vector <std::string> opcoes = {p->get_habilidade(1), p->get_habilidade(2), p->get_habilidade(3)};
     int escolha = submenu_partida(opcoes);
 
-    p->usa_habilidade(escolha, _grupo_blue, _grupo_red);
+    std::string msg_habilidade = p->usa_habilidade(escolha, _grupo_blue, _grupo_red);
+
+    std::cout << msg_habilidade << std::endl;
+    std::cout << std::endl;
+    std::cout << "Aperte Enter para continuar..." << std::endl;
+    std::getchar();
+    refresh_tela();
 
     return;
 }

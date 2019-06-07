@@ -27,6 +27,7 @@ class Personagem {
         int _defesa;
         int _hp;
         int _mp;
+        int _max_hp;
 
         //estado do personagem
         bool _vivo;
@@ -72,7 +73,7 @@ class Personagem {
         // Recupera habilidade
         virtual std::string get_habilidade(int);
         // Usa habilidade
-        virtual void usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>);
+        virtual std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>);
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);

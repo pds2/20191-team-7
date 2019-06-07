@@ -60,6 +60,7 @@ class Personagem {
         int get_max_mp();
 
         void set_hp(int);
+        void set_mp(int);
         void set_grupo(char);
 
         //METODOS UTILIZADOS PARA TESTE 

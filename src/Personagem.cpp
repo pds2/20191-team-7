@@ -90,6 +90,13 @@ bool Personagem::get_vivo(){
     return _vivo;
 }
 
+void Personagem::set_mp(int mp) {
+    _mp = mp;
+}
+void Personagem::set_hp(int hp) {
+    _hp = hp;
+}
+
 void Personagem::imprime(){
     std::cout << _nome << " >>";    
     std::cout << " forca:" << _forca;

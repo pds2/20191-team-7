@@ -34,14 +34,14 @@ std::string Guerreiro::usa_habilidade(int habilidade_escolhida, int segunda_esco
         }
         case 2: { 
             if (segunda_escolha == 0){
-                return "Faltou segunda opcao";
+                return "Escolher inimigo";
             }
             msg = this->habilidade_2(segunda_escolha, grupo_inimigo);
             break;
         }
         case 3: {
             if (segunda_escolha == 0){
-                return "Faltou segunda opcao";
+                return "Escolher inimigo";
             }
             msg = this->habilidade_3(segunda_escolha, grupo_inimigo);
             break;
@@ -58,7 +58,7 @@ std::string Guerreiro::usa_habilidade(int habilidade_escolhida, int segunda_esco
 std::string Guerreiro::habilidade_1(){
     //testa se tem energia suficiente usar esta habilidade
     if (_mp >= CUSTO_HABILIDADE_1){
-            int recupera_hp = _hp * FATOR_CURA;
+            int recupera_hp = _max_hp * FATOR_CURA;
             if (_hp + recupera_hp >= _max_hp){
                 recupera_hp = (_max_hp - _hp);
             }

@@ -175,13 +175,24 @@ void Partida::usando_habilidade(Personagem* p){
     //tenta usar habilidade
     std::string msg_habilidade = p->usa_habilidade(escolha, 0, _grupo_blue, _grupo_red);
     
-    //caso a habilidade exiga uma segunda escolha oferece as opções aos jogadores
-    if (msg_habilidade.compare("Faltou segunda opcao") == 0){
+    //caso a habilidade exiga escolher inimigo
+    if (msg_habilidade.compare("Escolher inimigo") == 0){
         std::cout << "Em quem usar " <<  p->get_habilidade(escolha) << "?" << std::endl;
         
         std::vector <std::string> opcoes2 = {};
         for (unsigned int i = 0; i < _grupo_red.size(); i++){
             opcoes2.push_back(_grupo_red[i]->get_nome());
+        }
+        int escolha2 = submenu_partida(opcoes2);
+        msg_habilidade = p->usa_habilidade(escolha, escolha2, _grupo_blue, _grupo_red);
+    }
+    //caso a habilidade exiga escolha um aliado
+    else if (msg_habilidade.compare("Escolher aliado") == 0){
+        std::cout << "Em quem usar " <<  p->get_habilidade(escolha) << "?" << std::endl;
+        
+        std::vector <std::string> opcoes2 = {};
+        for (unsigned int i = 0; i < _grupo_blue.size(); i++){
+            opcoes2.push_back(_grupo_blue[i]->get_nome());
         }
         int escolha2 = submenu_partida(opcoes2);
         msg_habilidade = p->usa_habilidade(escolha, escolha2, _grupo_blue, _grupo_red);

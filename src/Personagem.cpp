@@ -32,6 +32,7 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
 
     //estado do personagem
     _vivo = true;
+    _perdeu_vez = false;
 
     //habilidades
     _habilidade_1 = "Habilidade 1";
@@ -91,6 +92,14 @@ int Personagem::get_defesa(){
 
 bool Personagem::get_vivo(){
     return _vivo;
+}
+
+bool Personagem::get_perdeu_vez(){
+    return _perdeu_vez;
+}
+
+void Personagem::set_perdeu_vez(bool status){
+    _perdeu_vez = status;
 }
 
 void Personagem::set_mp(int mp) {

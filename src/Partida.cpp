@@ -90,14 +90,25 @@ void Partida::turno(std::vector <Personagem*> ordem) {
 
         // Chama a função que permite o personagem agir no turno
         if (ordem[i]->get_vivo()) {
-            // Caso controlado pela a CPU
-            if (_modo_de_jogo == 2 && ordem[i]->get_grupo() == 'r') {
-                vez_da_cpu(ordem[i]);
+
+            //testa se esse personagem perdeu a vez
+            if (ordem[i]->get_perdeu_vez()){
+                std::cout << ordem[i]->get_nome() << " havia perdido a vez e não pode fazer nada."<< std::endl;
+                std::cout << "Aperte Enter para continuar..." << std::endl;
+                std::getchar();
+                refresh_tela();
             }
-            // Caso seja controlado por um jogador
-            else {
-                std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;
-                vez_do_personagem(ordem[i]);
+            else{
+                // Caso controlado pela a CPU
+                if (_modo_de_jogo == 2 && ordem[i]->get_grupo() == 'r') {
+                    vez_da_cpu(ordem[i]);
+                }
+                // Caso seja controlado por um jogador
+                else {
+                    std::cout << "Vez de " << ordem[i]->get_nome() << ". O que fazer?" << std::endl;
+                    vez_do_personagem(ordem[i]);
+            }
+
             }
         }
     }

@@ -12,7 +12,6 @@ class Personagem {
         //nome da classe do personagem
         std::string _nome_classe;
 
-        //atributos principais: 
         //determina dano do ataque basico e defesa
         int _forca;
 
@@ -32,6 +31,7 @@ class Personagem {
 
         //estado do personagem
         bool _vivo;
+        bool _perdeu_vez;
 
         //grupo ao qual ele pertence
         char _grupo;
@@ -54,6 +54,7 @@ class Personagem {
         int get_defesa();
         char get_grupo();
         bool get_vivo();
+        bool get_perdeu_vez();
         int get_hp();
         int get_max_hp();
         int get_mp();
@@ -62,6 +63,7 @@ class Personagem {
         void set_hp(int);
         void set_mp(int);
         void set_grupo(char);
+        void set_perdeu_vez(bool);
 
         //METODOS UTILIZADOS PARA TESTE 
         void diminui_hp(int);

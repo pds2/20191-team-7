@@ -21,7 +21,10 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
 
     //calcula os atributos secundarios a partir dos principais
     _ataque = 10 * forca;
-    _defesa = 2 * forca;
+    _defesa = 2 * forca; //maximo de 60
+    if (_defesa > 60){
+        _defesa = 60;
+    }
     _mp = 10 * inteligencia;
     _hp = 10 * forca + 5 * _agilidade + 5 * _inteligencia;
     _max_hp = _hp;
@@ -29,6 +32,7 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
 
     //estado do personagem
     _vivo = true;
+    _perdeu_vez = false;
 
     //habilidades
     _habilidade_1 = "Habilidade 1";
@@ -90,6 +94,14 @@ bool Personagem::get_vivo(){
     return _vivo;
 }
 
+bool Personagem::get_perdeu_vez(){
+    return _perdeu_vez;
+}
+
+void Personagem::set_perdeu_vez(bool status){
+    _perdeu_vez = status;
+}
+
 void Personagem::set_mp(int mp) {
     _mp = mp;
 }
@@ -140,17 +152,27 @@ std::string Personagem::usa_habilidade(int habilidade_escolhida, int segunda_esc
             std::cout << "Habilidade inválida" << std::endl;
             break;
     }
+    return "";
 }
 
 int Personagem::recebe_ataque_fisico(int ataque){
-    if ((ataque - _defesa) > 0){
-        _hp -= (ataque - _defesa);
+    //numero aleatório entre 0 e 100
+    int random;
+    random = rand() % 100 + 1;
+    //se menor que agilidade o ataque erra
+    if (random <= _agilidade){
+        std::cout << _nome + " conseguiu se esquivar. ";
+        return 0;
+    }
+    else{
+        //defesa reduz o ataque
+        int resultado = ataque * (100-_defesa)/100;
+        _hp -= resultado;
         if (_hp <= 0){
             _vivo = false;
         }    
-        return ataque - _defesa;
+        return resultado;
     }
-    else return 0; 
 }
 
 int Personagem::recebe_ataque_magia(int ataque){

@@ -6,7 +6,7 @@ Feiticeiro::Feiticeiro (std::string nome, int forca, int agilidade, int intelige
     _nome_classe = "Feiticeiro";
     _habilidade_1 = "Bola de Fogo";
     _habilidade_2 = "Drenar Energia";
-    _habilidade_3 = "Curandeiro";
+    _habilidade_3 = "Raio paralizante";
 }
 Feiticeiro::~Feiticeiro(){}
 
@@ -37,8 +37,11 @@ std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_esc
             }
             msg = this->habilidade_2(segunda_escolha, grupo_inimigo);
             break;
-        case 3: 
-            msg = this->habilidade_3(grupo_aliado);
+        case 3:
+            if (segunda_escolha == 0){
+                return "Escolher inimigo";
+            }
+            msg = this->habilidade_3(segunda_escolha,grupo_inimigo);
             break;
         default: 
             msg = "Habilidade inválida";
@@ -108,32 +111,27 @@ std::string Feiticeiro::habilidade_2(int segunda_escolha, std::vector<Personagem
     return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";   
 }
 
-std::string Feiticeiro::habilidade_3(std::vector<Personagem*> grupo_aliado) {
-    // Verifica se possui MP suficiente para usar a habilidade
-    if (_mp >=CUSTO_HABILIDADE_FT_3) {
-        int aliado_hp = 0;
-        int recupera_hp = 0;
-        _mp -= CUSTO_HABILIDADE_FT_3;
+std::string Feiticeiro::habilidade_3(int segunda_escolha, std::vector<Personagem*> grupo_inimigo) {
+    // Verifica se inimigo atacado está vivo
+    if (grupo_inimigo[segunda_escolha-1]->get_vivo()) {
+        // Verifica se possui MP suficiente para usar a habilidade
+        if (_mp >= CUSTO_HABILIDADE_FT_2) {
+            _mp -= CUSTO_HABILIDADE_FT_2;
 
-        std::string msg = this->_nome + " curou seus aliados!\n";
-        
-        for (Personagem* p : grupo_aliado) {
-            aliado_hp = p->get_hp();
-            recupera_hp = aliado_hp*FATOR_F_CURA;
-            
-            if (p->get_vivo()) {
-                msg += p->get_nome() + " recuperou ";
-                if ((aliado_hp + recupera_hp) > p->get_max_hp()) {
-                    p->set_hp(p->get_max_hp());
-                    msg += std::to_string(p->get_max_hp() - aliado_hp) + " de HP.\n";
-                } else {
-                    p->set_hp(aliado_hp + recupera_hp);
-                    msg += std::to_string(recupera_hp) + " de HP.\n";
-                }
+            int random = rand() % 100 + 1;
+            //Acertou
+            if(random <= 50){
+                grupo_inimigo[segunda_escolha-1]->recebe_ataque_magia(DANO_RAIO_PARALIZANTE);
+                grupo_inimigo[segunda_escolha-1]->set_perdeu_vez(true);
+                return "Raio acertou em cheio, causando " + std::to_string(DANO_RAIO_PARALIZANTE) + " de dano e impedindo "
+                + grupo_inimigo[segunda_escolha-1]->get_nome() + "de agir no próximo turno.";
+
+            }
+            else{
+                return "Raio foi conjurado mas não conseguiu acertar o alvo. " + _nome + " desperdiçou sua vez.";
             }
         }
-
-        return msg;
+        return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
     } 
-    return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
+    return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";   
 }

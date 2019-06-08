@@ -33,7 +33,7 @@ std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_esc
             break;
         case 2: 
             if (segunda_escolha == 0){
-                return "Faltou segunda opcao";
+                return "Escolher inimigo";
             }
             msg = this->habilidade_2(segunda_escolha, grupo_inimigo);
             break;

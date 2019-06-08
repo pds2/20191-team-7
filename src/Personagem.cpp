@@ -146,12 +146,23 @@ std::string Personagem::usa_habilidade(int habilidade_escolhida, int segunda_esc
 }
 
 int Personagem::recebe_ataque_fisico(int ataque){
-    int resultado = ataque * (100-_defesa)/100;
-    _hp -= resultado;
-    if (_hp <= 0){
-        _vivo = false;
-    }    
-    return resultado;
+    //numero aleatório entre 0 e 100
+    int random;
+    random = rand() % 100 + 1;
+    //se menor que agilidade o ataque erra
+    if (random <= _agilidade){
+        std::cout << _nome + " conseguiu se esquivar. ";
+        return 0;
+    }
+    else{
+        //defesa reduz o ataque
+        int resultado = ataque * (100-_defesa)/100;
+        _hp -= resultado;
+        if (_hp <= 0){
+            _vivo = false;
+        }    
+        return resultado;
+    }
 }
 
 int Personagem::recebe_ataque_magia(int ataque){

@@ -139,7 +139,6 @@ void Partida::atacando(Personagem* p, std::vector <Personagem*> &grupo_inimigo) 
         escolha = submenu_partida(opcoes);
     }
     int dano = p->ataque_basico(grupo_inimigo[escolha-1]);
-    refresh_tela();
     std::cout << p->get_nome() << " causou " << std::to_string(dano) << " de dano em " << grupo_inimigo[escolha-1]->get_nome() << ". ";
 
     // Informa caso o personagem tenha morrido

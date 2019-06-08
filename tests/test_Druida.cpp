@@ -25,7 +25,7 @@ TEST_CASE("Testando o Construtor") {
     int defesa = druida.get_defesa();
     CHECK_EQ (defesa, 20);
     int hp = druida.get_hp();
-    CHECK_EQ (hp, 200);
+    CHECK_EQ (hp, 275);
     int mp = druida.get_mp();
     CHECK_EQ (mp, 200); 
 }

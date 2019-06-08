@@ -24,7 +24,7 @@ TEST_CASE("Testando o Construtor") {
     int defesa = Monstro.get_defesa();
     CHECK_EQ (defesa, 20);
     int hp = Monstro.get_hp();
-    CHECK_EQ (hp, 200);
+    CHECK_EQ (hp, 275);
     int mp = Monstro.get_mp();
     CHECK_EQ (mp, 200); 
 }

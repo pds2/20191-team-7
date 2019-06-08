@@ -28,6 +28,7 @@ class Personagem {
         int _hp;
         int _mp;
         int _max_hp;
+        int _max_mp;
 
         //estado do personagem
         bool _vivo;
@@ -54,9 +55,12 @@ class Personagem {
         char get_grupo();
         bool get_vivo();
         int get_hp();
+        int get_max_hp();
         int get_mp();
+        int get_max_mp();
 
         void set_hp(int);
+        void set_mp(int);
         void set_grupo(char);
 
         //METODOS UTILIZADOS PARA TESTE 
@@ -73,10 +77,13 @@ class Personagem {
         // Recupera habilidade
         virtual std::string get_habilidade(int);
         // Usa habilidade
-        virtual std::string usa_habilidade(int, std::vector<Personagem*>, std::vector<Personagem*>);
+        virtual std::string usa_habilidade(int, int, std::vector<Personagem*>, std::vector<Personagem*>);
 
         //recebe um ataque fisico
         int recebe_ataque_fisico(int);
+
+        //recebe ataque de magia
+        int recebe_ataque_magia(int);
 
         //confere se o personagem já morreu
         std::string morreu();

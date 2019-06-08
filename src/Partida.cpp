@@ -10,6 +10,7 @@
 #define BOLDBLUE     "\033[1m\033[34m"
 #define BOLDMAGENTA  "\033[1m\033[35m"
 #define BOLDRED      "\033[1m\033[31m"
+#define BOLDYELLOW  "\033[1m\033[33m"
 
 // Cores ainda não usadas (deletar no final)
 #define BLACK   "\033[30m"
@@ -125,7 +126,7 @@ void Partida::vez_do_personagem(Personagem* p){
 }
 
 void Partida::atacando(Personagem* p, std::vector <Personagem*> &grupo_inimigo) {
-    // Caso esteja atacando os personagens do segundo grupo
+    // Mostra opções de quem atacar
     std::vector <std::string> opcoes = {};
     for (unsigned int i = 0; i < grupo_inimigo.size(); i++){
         opcoes.push_back(grupo_inimigo[i]->get_nome());
@@ -171,7 +172,31 @@ void Partida::usando_habilidade(Personagem* p){
     std::vector <std::string> opcoes = {p->get_habilidade(1), p->get_habilidade(2), p->get_habilidade(3)};
     int escolha = submenu_partida(opcoes);
 
-    std::string msg_habilidade = p->usa_habilidade(escolha, _grupo_blue, _grupo_red);
+    //tenta usar habilidade
+    std::string msg_habilidade = p->usa_habilidade(escolha, 0, _grupo_blue, _grupo_red);
+    
+    //caso a habilidade exiga escolher inimigo
+    if (msg_habilidade.compare("Escolher inimigo") == 0){
+        std::cout << "Em quem usar " <<  p->get_habilidade(escolha) << "?" << std::endl;
+        
+        std::vector <std::string> opcoes2 = {};
+        for (unsigned int i = 0; i < _grupo_red.size(); i++){
+            opcoes2.push_back(_grupo_red[i]->get_nome());
+        }
+        int escolha2 = submenu_partida(opcoes2);
+        msg_habilidade = p->usa_habilidade(escolha, escolha2, _grupo_blue, _grupo_red);
+    }
+    //caso a habilidade exiga escolha um aliado
+    else if (msg_habilidade.compare("Escolher aliado") == 0){
+        std::cout << "Em quem usar " <<  p->get_habilidade(escolha) << "?" << std::endl;
+        
+        std::vector <std::string> opcoes2 = {};
+        for (unsigned int i = 0; i < _grupo_blue.size(); i++){
+            opcoes2.push_back(_grupo_blue[i]->get_nome());
+        }
+        int escolha2 = submenu_partida(opcoes2);
+        msg_habilidade = p->usa_habilidade(escolha, escolha2, _grupo_blue, _grupo_red);
+    }
 
     std::cout << msg_habilidade << std::endl;
     std::cout << std::endl;
@@ -272,7 +297,12 @@ void Partida::refresh_tela(){
             }
             std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_blue[i]->get_hp();
             reseta_cor();
-            std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_blue[i]->get_mp();
+            if (_grupo_blue[i]->get_nome_classe() == "Guerreiro"){
+                std::cout << " - EP: " << BOLDYELLOW << std::setw(3) << _grupo_blue[i]->get_mp();
+            }
+            else{
+                std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_blue[i]->get_mp();
+            }
             reseta_cor();
         }
         else {

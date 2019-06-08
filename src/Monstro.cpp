@@ -11,7 +11,7 @@ void Monstro::modifica_atributos_secundarios(){
 
 }
 
-std::string Monstro::usa_habilidade(int habilidade_escolhida, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
+std::string Monstro::usa_habilidade(int habilidade_escolhida, int segunda_escolha, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
     std::string msg = "";
     switch (habilidade_escolhida)
     {

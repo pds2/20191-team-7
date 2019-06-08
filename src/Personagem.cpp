@@ -21,7 +21,10 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
 
     //calcula os atributos secundarios a partir dos principais
     _ataque = 10 * forca;
-    _defesa = 2 * forca;
+    _defesa = 2 * forca; //maximo de 60
+    if (_defesa > 60){
+        _defesa = 60;
+    }
     _mp = 10 * inteligencia;
     _hp = 10 * forca + 5 * _agilidade + 5 * _inteligencia;
     _max_hp = _hp;
@@ -143,14 +146,12 @@ std::string Personagem::usa_habilidade(int habilidade_escolhida, int segunda_esc
 }
 
 int Personagem::recebe_ataque_fisico(int ataque){
-    if ((ataque - _defesa) > 0){
-        _hp -= (ataque - _defesa);
-        if (_hp <= 0){
-            _vivo = false;
-        }    
-        return ataque - _defesa;
-    }
-    else return 0; 
+    int resultado = ataque * (100-_defesa)/100;
+    _hp -= resultado;
+    if (_hp <= 0){
+        _vivo = false;
+    }    
+    return resultado;
 }
 
 int Personagem::recebe_ataque_magia(int ataque){

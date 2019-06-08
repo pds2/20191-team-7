@@ -152,6 +152,7 @@ std::string Personagem::usa_habilidade(int habilidade_escolhida, int segunda_esc
             std::cout << "Habilidade inválida" << std::endl;
             break;
     }
+    return "";
 }
 
 int Personagem::recebe_ataque_fisico(int ataque){

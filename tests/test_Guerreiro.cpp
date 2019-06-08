@@ -78,6 +78,10 @@ TEST_CASE ("Teste: habilidade 'Execução'"){
     CHECK (retorno == "Dark foi executado. Jon gastou toda sua energia ao fazer isso.");
     vivo = doMal.get_vivo();
     CHECK(vivo == false);
+
+    //TESTA SE EXECUTA HABILIDADE COM HP == 0 (INIMIGO MORTO)
+    retorno = paladino.usa_habilidade(2, 1, herois, vilao);
+    CHECK (retorno == "Habilidade só pode ser usada em um inimigo que ainda esta vivo. Jon não conseguiu fazer nada.");
 }   
 
 TEST_CASE ("Teste: habilidade 'Fúria de Batalha'"){

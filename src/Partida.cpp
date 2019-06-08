@@ -234,6 +234,7 @@ int Partida::submenu_partida(std::vector <std::string> opcoes){
     while (!(escolha <= opcoes.size() && escolha > 0)) {
         refresh_tela();
         std::cout << "Opção inválida, tente novamente:" << std::endl;
+        std::cin.clear();
         for (unsigned int i = 0; i < opcoes.size(); i++) {
             std::cout << i+1 << ". " << opcoes[i] << std::endl;
         }
@@ -287,7 +288,7 @@ void Partida::refresh_tela(){
 
     // Imprime na tela os jogadores da partida dividios em dois times
     for (unsigned int i = 0; i < _grupo_blue.size(); i++) {
-        std::cout << "|   ";
+        //std::cout << "|   ";
         std::cout << BOLDBLUE << _grupo_blue[i]->get_nome() << ", " << _grupo_blue[i]->get_nome_classe() << RESETCOLOR;
         int left = _grupo_blue[i]->get_nome().size() + _grupo_blue[i]->get_nome_classe().size() + 5;
         if (_grupo_blue[i]->get_vivo()) {
@@ -295,13 +296,13 @@ void Partida::refresh_tela(){
             for (int i = 0; i < left; i++) {
                 std::cout << " ";
             }
-            std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_blue[i]->get_hp();
+            std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_blue[i]->get_hp() << "/" << std::setw(3) << _grupo_blue[i]->get_max_hp();
             reseta_cor();
             if (_grupo_blue[i]->get_nome_classe() == "Guerreiro"){
-                std::cout << " - EP: " << BOLDYELLOW << std::setw(3) << _grupo_blue[i]->get_mp();
+                std::cout << " - EP: " << BOLDYELLOW << std::setw(3) << _grupo_blue[i]->get_mp() << "/" << std::setw(3) << _grupo_blue[i]->get_max_mp();
             }
             else{
-                std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_blue[i]->get_mp();
+                std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_blue[i]->get_mp() << "/" << std::setw(3) << _grupo_blue[i]->get_max_mp();;
             }
             reseta_cor();
         }
@@ -312,12 +313,12 @@ void Partida::refresh_tela(){
                 std::cout << " ";
             }
         }
-        std::cout << "   |" << std::endl;
+        std::cout << std::endl;
     }
-    std::cout << "|                               VS                                   |" << std::endl;
+    std::cout << "                               VS                                           " << std::endl;
 
     for (unsigned int i = 0; i < _grupo_red.size(); i++) {
-        std::cout << "|   ";
+       // std::cout << "|   ";
         std::cout << BOLDRED << _grupo_red[i]->get_nome() << " " << RESETCOLOR;
         int left = _grupo_red[i]->get_nome().size() + 3;
         if (_grupo_red[i]->get_vivo()) {
@@ -326,9 +327,9 @@ void Partida::refresh_tela(){
                 std::cout << " ";
             }
 
-            std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_red[i]->get_hp();
+            std::cout << "   HP: " << BOLDGREEN << std::setw(3) << _grupo_red[i]->get_hp()<< "/" << std::setw(3) << _grupo_red[i]->get_max_hp();
             reseta_cor();
-            std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_red[i]->get_mp();
+            std::cout << " - MP: " << BOLDMAGENTA << std::setw(3) << _grupo_red[i]->get_mp() << "/" << std::setw(3) << _grupo_red[i]->get_max_mp();
             reseta_cor();
         } else {
             left = 57 - left;
@@ -337,7 +338,7 @@ void Partida::refresh_tela(){
                 std::cout << " ";
             }
         }
-        std::cout << "   |" << std::endl;
+        std::cout <<std::endl;
     }
     std::cout << "----------------------------------------------------------------------" << std::endl << std::endl;
 }

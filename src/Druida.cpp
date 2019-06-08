@@ -6,7 +6,7 @@ Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
     _nome_classe = "Druida";
     _habilidade_1 = "Cura - permite curar um aliado";
     _habilidade_2 = "Forma Animal - ataca um inimigo em forma de urso";
-    _habilidade_3 = "Revitaliza - permite reviltalizar EP/MP de um aliado ";
+    _habilidade_3 = "Revitaliza - permite revitalizar EP/MP de um aliado ";
 }
 Druida::~Druida(){}
 
@@ -56,15 +56,21 @@ std::string Druida::usa_habilidade(int habilidade_escolhida, int segunda_escolha
 
 std::string Druida::habilidade_1(int segunda_escolha, std::vector<Personagem*> grupo_aliado){
     --segunda_escolha;
-    //testa de possui MP suficiente para usar esta
+    // Testa se possui MP suficiente para usar habilidade
     if (_mp >= CUSTO_HABILIDADE_1_DRUIDA){
+        // Verifica se personagem está vivo
+        if (grupo_aliado[segunda_escolha]->get_vivo()) {
             int recupera_hp = grupo_aliado[segunda_escolha]->get_max_hp() * FATOR_CURA_DRUIDA;
+            
             if (grupo_aliado[segunda_escolha]->get_hp() + recupera_hp >= grupo_aliado[segunda_escolha]->get_max_hp()){
                 recupera_hp = (grupo_aliado[segunda_escolha]->get_max_hp() - grupo_aliado[segunda_escolha]->get_hp());
             }
             grupo_aliado[segunda_escolha]->set_hp(recupera_hp + grupo_aliado[segunda_escolha]->get_hp());
+            
             return _nome + " usou " + _habilidade_1 + " e conseguiu aumentar em "
-            + std::to_string(recupera_hp) + " o HP de " + grupo_aliado[segunda_escolha]->get_nome();
+                + std::to_string(recupera_hp) + " o HP de " + grupo_aliado[segunda_escolha]->get_nome();
+        }
+        return grupo_aliado[segunda_escolha]->get_nome() + " está morto e não pode ser curado";
     }
     return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
 }
@@ -86,7 +92,7 @@ std::string Druida::habilidade_2(int segunda_escolha, std::vector<Personagem*> g
                 grupo_inimigo[segunda_escolha]->set_vivo_morto(false);
                 menssagem = grupo_inimigo[segunda_escolha]->get_nome() + " foi morto.";
             }
-            return _nome + " se transformou em um usro e atacou " + grupo_inimigo[segunda_escolha]->get_nome()
+            return _nome + " se transformou em um urso e atacou " + grupo_inimigo[segunda_escolha]->get_nome()
             + " causando " + std::to_string(INCREMENTO_ATAQUE_DRUIDA + _ataque) + " de dano. " + menssagem;
             
         }
@@ -99,13 +105,19 @@ std::string Druida::habilidade_3(int segunda_escolha, std::vector<Personagem*> g
     --segunda_escolha;
     //testa de possui MP suficiente para usar esta
     if (_mp >= CUSTO_HABILIDADE_3_DRUIDA){
+        if (grupo_aliado[segunda_escolha]->get_vivo()) {
             int recupera_mp = grupo_aliado[segunda_escolha]->get_max_mp() * FATOR_REVITALIZACAO_DRUIDA;
+            
             if (grupo_aliado[segunda_escolha]->get_mp() + recupera_mp >= grupo_aliado[segunda_escolha]->get_max_mp()){
                 recupera_mp = (grupo_aliado[segunda_escolha]->get_max_mp() - grupo_aliado[segunda_escolha]->get_mp());
             }
+            
             grupo_aliado[segunda_escolha]->set_mp(recupera_mp + grupo_aliado[segunda_escolha]->get_mp());
+            
             return _nome + " usou " + _habilidade_1 + " e conseguiu regenerar "
-            + std::to_string(recupera_mp) + " do MP/EP de " + grupo_aliado[segunda_escolha]->get_nome();
+                + std::to_string(recupera_mp) + " do MP/EP de " + grupo_aliado[segunda_escolha]->get_nome();
+        }
+        return grupo_aliado[segunda_escolha]->get_nome() + " está morto e não pode ser revitalizado";
     }
     return "MP insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
 

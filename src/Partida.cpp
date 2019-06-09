@@ -94,6 +94,7 @@ void Partida::turno(std::vector <Personagem*> ordem) {
             //testa se esse personagem perdeu a vez
             if (ordem[i]->get_perdeu_vez()){
                 std::cout << ordem[i]->get_nome() << " havia perdido a vez e não pode fazer nada."<< std::endl;
+                ordem[i]->set_perdeu_vez(false);
                 std::cout << "Aperte Enter para continuar..." << std::endl;
                 std::getchar();
                 refresh_tela();

@@ -68,6 +68,7 @@ class Personagem {
         //METODOS UTILIZADOS PARA TESTE 
         void diminui_hp(int);
         void set_vivo_morto(bool);
+        void set_agilidade(int);
         //FIM METODOS DE TESTE
 
         //imprime atributos do personagem

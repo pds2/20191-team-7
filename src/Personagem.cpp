@@ -10,6 +10,10 @@ void Personagem::set_vivo_morto(bool status){
 void Personagem::diminui_hp(int redutor){
     _hp -= redutor;
 }
+
+void Personagem::set_agilidade(int agilidade){
+    _agilidade = agilidade;
+}
 //FIM METODOS PARA TESTES
 
 Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligencia) {

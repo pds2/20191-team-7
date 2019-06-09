@@ -4,7 +4,7 @@ Guerreiro::Guerreiro (std::string nome, int forca, int agilidade, int inteligenc
                          Personagem (nome, forca, agilidade, inteligencia){
     _max_mp = 100;
     _nome_classe = "Guerreiro";
-    _habilidade_1 = "Primeiros Socorros";
+    _habilidade_1 = "Primeiros Socorros - recupera 25% do HP";
     _habilidade_2 = "Execução"; 
     _habilidade_3 = "Fúria de Batalha";
 }
@@ -69,14 +69,18 @@ std::string Guerreiro::habilidade_1(){
 }
 
 std::string Guerreiro::habilidade_2(int segunda_escolha, std::vector<Personagem*> grupo_inimigo){
-
-    //testa se é possivel executar o inimigo
-    if(grupo_inimigo[segunda_escolha-1]->get_hp() < (grupo_inimigo[segunda_escolha-1]->get_max_hp() * PONTO_DE_EXECUCAO)){
-        _mp = 0;
-        grupo_inimigo[segunda_escolha-1]->set_vivo_morto(false);
-        return  grupo_inimigo[segunda_escolha-1]->get_nome() + " foi executado. " + _nome + " gastou toda sua energia ao fazer isso.";
-    } 
+    //testa se inimigo esta vivo
+    if(grupo_inimigo[segunda_escolha-1]->get_vivo() == true){
+        //testa se é possivel executar o inimigo
+        if(grupo_inimigo[segunda_escolha-1]->get_hp() < (grupo_inimigo[segunda_escolha-1]->get_max_hp() * PONTO_DE_EXECUCAO)){
+            _mp = 0;
+            grupo_inimigo[segunda_escolha-1]->set_vivo_morto(false);
+            return  grupo_inimigo[segunda_escolha-1]->get_nome() + " foi executado. " + _nome + " gastou toda sua energia ao fazer isso.";
+        } 
     return "Ainda não é possivel executar este inimgo.";
+    }    
+    else return "Habilidade só pode ser usada em um inimigo que ainda esta vivo. " + _nome + " não conseguiu fazer nada.";
+
 }
 
 std::string Guerreiro::habilidade_3(int segunda_escolha, std::vector<Personagem*> grupo_inimigo){

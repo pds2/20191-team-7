@@ -85,5 +85,38 @@ TEST_CASE ("Teste: habilidade 'Execução'"){
 }   
 
 TEST_CASE ("Teste: habilidade 'Fúria de Batalha'"){
+    std::vector<Personagem*> herois;
+    Guerreiro paladino ("Jon", 10, 10, 10);//Dano == 100, HP == 150
+    herois = {&paladino};
+
+    std::vector<Personagem*> vilao;
+    Guerreiro doMal ("Dark", 10, 0, 30);//HP == 250
+    vilao = {&doMal};
+    int hp_vilao;
+
+    //TESTA SE HABILIDADE DOBRA O DANO
+    paladino.usa_habilidade(3, 1, herois, vilao);//hp do paladino passa a ser 50
+    hp_vilao = doMal.get_hp();
+    CHECK (hp_vilao == 50);
+
+    //TESTA SE EXECUTA HABILIDADE COM MENOS HP QUE O NECESSARIO (HP>dano);
+    //HP MENOR QUE DANO
+    std::string hp_insuficiente = paladino.usa_habilidade(3, 1, herois, vilao);
+    CHECK ( hp_insuficiente == "HP insuficiente para realizar este ataque. Jon não conseguiu fazer nada.");
+    //HP IGUAL AO DANO
+    paladino.set_hp(100); 
+    hp_insuficiente = paladino.usa_habilidade(3, 1, herois, vilao);
+    CHECK ( hp_insuficiente == "HP insuficiente para realizar este ataque. Jon não conseguiu fazer nada.");
     
+
+    //TESTA SE HABILIDADE MATA INIMIGO
+    paladino.set_hp(150);
+    paladino.usa_habilidade(3, 1, herois, vilao);
+    bool vivo = doMal.get_vivo();
+    CHECK (vivo == false);
+
+    //TESTA SE HABILIDADE EH ATIVADA CONTRA INIMIGO MORTO
+    paladino.set_hp(150);
+    std::string inimigo_morto = paladino.usa_habilidade(3, 1, herois, vilao);
+    CHECK (inimigo_morto == "Habilidade só pode ser usada em um inimigo que ainda esta vivo. Jon não conseguiu fazer nada.");
 }

@@ -33,6 +33,8 @@ TEST_CASE ("Teste: habilidade 'Bola de Fogo'  (ataque em area)"){
     Feiticeiro feiticeiro("Tyrell", 10, 15, 20);
     std::vector<Personagem*> heroi;
     heroi.push_back(&feiticeiro);
+
+    //DANO EM AREA
     //Inimigos HP = 200
     Feiticeiro inimigo1 ("Artur", 10, 10, 10);
     Feiticeiro inimigo2 ("Breno", 10, 10, 10);
@@ -49,6 +51,62 @@ TEST_CASE ("Teste: habilidade 'Bola de Fogo'  (ataque em area)"){
     CHECK (hp2 == 160);
     CHECK (hp3 == 160);
 
+    //EXECUTA MAGIA COM MP == 25 (custo da habilidade)
+    feiticeiro.set_mp(25);
+    feiticeiro.usa_habilidade(1, 1, heroi, viloes);
+    hp1 = inimigo1.get_hp();
+    hp2 = inimigo2.get_hp();
+    hp3 = inimigo3.get_hp();
+    CHECK (hp1 == 120);
+    CHECK (hp2 == 120);
+    CHECK (hp3 == 120);
+
+    //NAO EXECUTA MAGIA COM MP < 25
+    feiticeiro.set_mp(24);
+    std::string sem_mp = feiticeiro.usa_habilidade(1, 1, heroi, viloes);
+    CHECK (sem_mp == "Energia insuficiente para usar esta habilidade. Tyrell desperdiçou sua vez.");
+    
+    //DANO EM AREA APENAS NOS INIMIGOS VIVOS
+    feiticeiro.set_mp(100);
+    inimigo1.set_vivo_morto(false);//inimigo1 _vivo == false, _hp == 120;
+    feiticeiro.usa_habilidade(1, 1, heroi, viloes);
+    hp1 = inimigo1.get_hp();
+    hp2 = inimigo2.get_hp();
+    hp3 = inimigo3.get_hp();
+    CHECK (hp1 == 120);
+    CHECK (hp2 == 80);
+    CHECK (hp3 == 80);
+
     
 }
 
+TEST_CASE ("Teste: habilidade 'Drenar Energia"){
+    // fator drena 20% do HP e MP inimigo, custo da habilidade = 30 MP
+    Feiticeiro feiticeiro("Tyrell", 10, 10, 10);// HP == 200, MP == 100 
+    std::vector<Personagem*> heroi;
+    heroi.push_back(&feiticeiro);
+    feiticeiro.set_hp(100);
+    feiticeiro.set_mp(50);
+
+    Feiticeiro inimigo ("Artur", 10, 10, 10); // HP == 200, MP == 100
+    std::vector<Personagem*>vilao;
+    vilao.push_back(&inimigo);
+
+    //TESTA SE RECUPERA HP E MP DO HEROI E INFLIGE DANO AO INIMIGO
+    feiticeiro.usa_habilidade(2, 1, heroi, vilao);//suga 40 de HP e 20 de MP
+    int hp_feiticeiro, mp_feiticeiro, hp_inimigo, mp_inimigo;
+    hp_feiticeiro = feiticeiro.get_hp();
+    CHECK(hp_feiticeiro == 140);
+    mp_feiticeiro = feiticeiro.get_mp();
+    CHECK(mp_feiticeiro == 50);
+    hp_inimigo = inimigo.get_hp();
+    CHECK(hp_inimigo == 160);
+    mp_inimigo = inimigo.get_mp();
+    CHECK(mp_inimigo == 80); 
+
+ 
+
+
+
+
+}

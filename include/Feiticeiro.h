@@ -27,6 +27,7 @@ class Feiticeiro : public Personagem {
         std::string habilidade_1(std::vector<Personagem*>);
         std::string habilidade_2(int, std::vector<Personagem*>);
         std::string habilidade_3(int, std::vector<Personagem*>);
+        std::string invoca_raio_paralisante(Personagem*);
 };
 
 #endif

@@ -14,6 +14,13 @@ int Feiticeiro::ataque_basico(Personagem* alvo) {
     return alvo->recebe_ataque_fisico(_ataque);
 }
 
+std::string Feiticeiro::invoca_raio_paralisante(Personagem* alvo){
+    alvo->recebe_ataque_magia(DANO_RAIO_PARALIZANTE);
+    alvo->set_perdeu_vez(true);
+    return "Raio acertou em cheio, causando " + std::to_string(DANO_RAIO_PARALIZANTE) + " de dano e impedindo "
+    + alvo->get_nome() + " de agir no próximo turno.";
+}
+
 std::string Feiticeiro::get_habilidade(int habilidade_escolhida) {
     switch (habilidade_escolhida)
     {
@@ -121,11 +128,13 @@ std::string Feiticeiro::habilidade_3(int segunda_escolha, std::vector<Personagem
             int random = rand() % 100 + 1;
             //Acertou
             if(random <= 50){
-                grupo_inimigo[segunda_escolha-1]->recebe_ataque_magia(DANO_RAIO_PARALIZANTE);
+                
+                return invoca_raio_paralisante(grupo_inimigo[segunda_escolha-1]);
+                /*grupo_inimigo[segunda_escolha-1]->recebe_ataque_magia(DANO_RAIO_PARALIZANTE);
                 grupo_inimigo[segunda_escolha-1]->set_perdeu_vez(true);
                 return "Raio acertou em cheio, causando " + std::to_string(DANO_RAIO_PARALIZANTE) + " de dano e impedindo "
                 + grupo_inimigo[segunda_escolha-1]->get_nome() + "de agir no próximo turno.";
-
+                */
             }
             else{
                 return "Raio foi conjurado mas não conseguiu acertar o alvo. " + _nome + " desperdiçou sua vez.";

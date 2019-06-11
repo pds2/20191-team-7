@@ -99,7 +99,7 @@ TEST_CASE ("Teste: habilidade 'Fúria de Batalha'"){
     hp_vilao = doMal.get_hp();
     CHECK (hp_vilao == 50);
 
-    //TESTA SE EXECUTA HABILIDADE COM MENOS HP QUE O NECESSARIO (HP>dano);
+    //TESTA SE EXECUTA HABILIDADE COM MENOS HP QUE O NECESSARIO
     //HP MENOR QUE DANO
     std::string hp_insuficiente = paladino.usa_habilidade(3, 1, herois, vilao);
     CHECK ( hp_insuficiente == "HP insuficiente para realizar este ataque. Jon não conseguiu fazer nada.");

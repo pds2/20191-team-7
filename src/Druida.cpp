@@ -2,7 +2,7 @@
 
 Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
                   Personagem (nome, forca, agilidade, inteligencia){
-    
+
     _nome_classe = "Druida";
     _habilidade_1 = "Cura - permite curar um aliado";
     _habilidade_2 = "Forma Animal - ataca um inimigo em forma de urso";
@@ -11,7 +11,12 @@ Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
 Druida::~Druida(){}
 
 int Druida::ataque_basico(Personagem* alvo) {
-    return alvo->recebe_ataque_fisico(_ataque);
+
+    // O ataque_total eh 1d20 + a forca
+    int ataque_total;
+    ataque_total = _ataque + (rand() % 20 + 1);
+    std::cout << "O ataque foi de: " << ataque_total << " " << std::endl;
+    return alvo->recebe_ataque_fisico(ataque_total);
 }
 
 std::string Druida::get_habilidade(int habilidade_escolhida) {
@@ -46,13 +51,13 @@ std::string Druida::usa_habilidade(int habilidade_escolhida, int segunda_escolha
             }
             msg = this->habilidade_3(segunda_escolha, grupo_aliado);
             break;
-        default: 
+        default:
             msg = "Habilidade inválida";
             break;
     }
 
     return msg;
-}   
+}
 
 std::string Druida::habilidade_1(int segunda_escolha, std::vector<Personagem*> grupo_aliado){
     --segunda_escolha;
@@ -61,12 +66,12 @@ std::string Druida::habilidade_1(int segunda_escolha, std::vector<Personagem*> g
         // Verifica se personagem está vivo
         if (grupo_aliado[segunda_escolha]->get_vivo()) {
             int recupera_hp = grupo_aliado[segunda_escolha]->get_max_hp() * FATOR_CURA_DRUIDA;
-            
+
             if (grupo_aliado[segunda_escolha]->get_hp() + recupera_hp >= grupo_aliado[segunda_escolha]->get_max_hp()){
                 recupera_hp = (grupo_aliado[segunda_escolha]->get_max_hp() - grupo_aliado[segunda_escolha]->get_hp());
             }
             grupo_aliado[segunda_escolha]->set_hp(recupera_hp + grupo_aliado[segunda_escolha]->get_hp());
-            
+
             return _nome + " usou " + _habilidade_1 + " e conseguiu aumentar em "
                 + std::to_string(recupera_hp) + " o HP de " + grupo_aliado[segunda_escolha]->get_nome();
         }
@@ -79,7 +84,7 @@ std::string Druida::habilidade_2(int segunda_escolha, std::vector<Personagem*> g
     --segunda_escolha;
     //testa se inimigo esta vivo
     if(grupo_inimigo[segunda_escolha]->get_vivo() == true){
-        
+
         //testa so o personagem tem mp suficientes
         if(_mp >= (CUSTO_HABILIDADE_2_DRUIDA)){
 
@@ -94,7 +99,7 @@ std::string Druida::habilidade_2(int segunda_escolha, std::vector<Personagem*> g
             }
             return _nome + " se transformou em um urso e atacou " + grupo_inimigo[segunda_escolha]->get_nome()
             + " causando " + std::to_string(INCREMENTO_ATAQUE_DRUIDA + _ataque) + " de dano. " + menssagem;
-            
+
         }
         else return "MP insuficiente para realizar este ataque. " + _nome + " não conseguiu fazer nada.";
     }
@@ -107,13 +112,13 @@ std::string Druida::habilidade_3(int segunda_escolha, std::vector<Personagem*> g
     if (_mp >= CUSTO_HABILIDADE_3_DRUIDA){
         if (grupo_aliado[segunda_escolha]->get_vivo()) {
             int recupera_mp = grupo_aliado[segunda_escolha]->get_max_mp() * FATOR_REVITALIZACAO_DRUIDA;
-            
+
             if (grupo_aliado[segunda_escolha]->get_mp() + recupera_mp >= grupo_aliado[segunda_escolha]->get_max_mp()){
                 recupera_mp = (grupo_aliado[segunda_escolha]->get_max_mp() - grupo_aliado[segunda_escolha]->get_mp());
             }
-            
+
             grupo_aliado[segunda_escolha]->set_mp(recupera_mp + grupo_aliado[segunda_escolha]->get_mp());
-            
+
             return _nome + " usou " + _habilidade_1 + " e conseguiu regenerar "
                 + std::to_string(recupera_mp) + " do MP/EP de " + grupo_aliado[segunda_escolha]->get_nome();
         }

@@ -24,13 +24,13 @@ Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligen
     _inteligencia = inteligencia;
 
     //calcula os atributos secundarios a partir dos principais
-    _ataque = 10 * forca;
-    _defesa = 2 * forca; //maximo de 60
+    _ataque = forca;
+    _defesa = forca; //maximo de 60
     if (_defesa > 60){
         _defesa = 60;
     }
-    _mp = 10 * inteligencia;
-    _hp = 10 * forca + 5 * _agilidade + 5 * _inteligencia;
+    _mp = 2 * inteligencia;
+    _hp = 2 * forca + 1 * _agilidade + 1 * _inteligencia;
     _max_hp = _hp;
     _max_mp = _mp;
 
@@ -114,7 +114,7 @@ void Personagem::set_hp(int hp) {
 }
 
 void Personagem::imprime(){
-    std::cout << _nome << " >>";    
+    std::cout << _nome << " >>";
     std::cout << " forca:" << _forca;
     std::cout << " agilidade:" << _agilidade;
     std::cout << " inteligencia:" << _inteligencia;
@@ -127,7 +127,12 @@ void Personagem::imprime(){
 }
 
 int Personagem::ataque_basico(Personagem* alvo){
-    return alvo->recebe_ataque_fisico(_ataque);
+
+    // O ataque_total eh 1d20 + a forca
+    int ataque_total;
+    ataque_total = _ataque + (rand() % 20 + 1);
+    std::cout << "O ataque foi de: " << ataque_total << " " << std::endl;
+    return alvo->recebe_ataque_fisico(ataque_total);
 }
 
 std::string Personagem::get_habilidade(int habilidade_escolhida) {
@@ -143,38 +148,38 @@ std::string Personagem::get_habilidade(int habilidade_escolhida) {
 std::string Personagem::usa_habilidade(int habilidade_escolhida, int segunda_escolha, std::vector<Personagem*> grupo_aliado, std::vector<Personagem*> grupo_inimigo) {
     switch (habilidade_escolhida)
     {
-        case 1: 
+        case 1:
             std::cout << "Usou " << _habilidade_1 << std::endl;
             break;
-        case 2: 
+        case 2:
             std::cout << "Usou " << _habilidade_2 << std::endl;
             break;
-        case 3: 
+        case 3:
             std::cout << "Usou " << _habilidade_3 << std::endl;
             break;
-        default: 
+        default:
             std::cout << "Habilidade inválida" << std::endl;
             break;
     }
     return "";
 }
 
-int Personagem::recebe_ataque_fisico(int ataque){
+int Personagem::recebe_ataque_fisico(int ataque_total){
     //numero aleatório entre 0 e 100
-    int random;
-    random = rand() % 100 + 1;
-    //se menor que agilidade o ataque erra
-    if (random <= _agilidade){
+
+    if (ataque_total < _agilidade + 10){
+
+    //se o auaque for menor que agilidade o ataque erra
         std::cout << _nome + " conseguiu se esquivar. ";
         return 0;
     }
     else{
         //defesa reduz o ataque
-        int resultado = ataque * (100-_defesa)/100;
+        int resultado = ataque_total - _defesa;
         _hp -= resultado;
         if (_hp <= 0){
             _vivo = false;
-        }    
+        }
         return resultado;
     }
 }

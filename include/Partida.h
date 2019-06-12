@@ -1,7 +1,7 @@
 #ifndef PDS2_PARTIDA_H
 #define PDS2_PARTIDA_H
 
-#include <Personagem.h>
+#include "Personagem.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -16,7 +16,7 @@ class Partida {
     public:
         Partida(std::vector <Personagem*>,std::vector <Personagem*>, int);
         ~Partida();
-        
+
         //inicia a partida
         void inicia();
 

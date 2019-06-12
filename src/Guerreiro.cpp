@@ -2,16 +2,21 @@
 
 Guerreiro::Guerreiro (std::string nome, int forca, int agilidade, int inteligencia):
                          Personagem (nome, forca, agilidade, inteligencia){
-    _max_mp = 100;
+
     _nome_classe = "Guerreiro";
     _habilidade_1 = "Primeiros Socorros - recupera 25% do HP";
-    _habilidade_2 = "Execução"; 
+    _habilidade_2 = "Execução";
     _habilidade_3 = "Fúria de Batalha";
 }
 Guerreiro::~Guerreiro(){}
 
 int Guerreiro::ataque_basico(Personagem* alvo) {
-    return alvo->recebe_ataque_fisico(_ataque);
+
+    // O ataque total eh 1d20 + a forca
+    int ataque_total;
+    ataque_total = _ataque + (rand() % 20 + 1);
+    std::cout << "O ataque foi de: " << ataque_total << " " << std::endl;
+    return alvo->recebe_ataque_fisico(ataque_total);
 }
 
 std::string Guerreiro::get_habilidade(int habilidade_escolhida) {
@@ -32,7 +37,7 @@ std::string Guerreiro::usa_habilidade(int habilidade_escolhida, int segunda_esco
             msg = this->habilidade_1();
             break;
         }
-        case 2: { 
+        case 2: {
             if (segunda_escolha == 0){
                 return "Escolher inimigo";
             }
@@ -76,9 +81,9 @@ std::string Guerreiro::habilidade_2(int segunda_escolha, std::vector<Personagem*
             _mp = 0;
             grupo_inimigo[segunda_escolha-1]->set_vivo_morto(false);
             return  grupo_inimigo[segunda_escolha-1]->get_nome() + " foi executado. " + _nome + " gastou toda sua energia ao fazer isso.";
-        } 
+        }
     return "Ainda não é possivel executar este inimgo.";
-    }    
+    }
     else return "Habilidade só pode ser usada em um inimigo que ainda esta vivo. " + _nome + " não conseguiu fazer nada.";
 
 }
@@ -88,7 +93,7 @@ std::string Guerreiro::habilidade_3(int segunda_escolha, std::vector<Personagem*
 
     //testa se inimigo esta vivo
     if(grupo_inimigo[segunda_escolha-1]->get_vivo() == true){
-        
+
         //testa so o personagem tem energia e HP suficientes
         if(_hp > _ataque && _mp >= (CUSTO_HABILIDADE_3)){
 
@@ -103,7 +108,7 @@ std::string Guerreiro::habilidade_3(int segunda_escolha, std::vector<Personagem*
                 menssagem = grupo_inimigo[segunda_escolha-1]->get_nome() + " foi morto.";
             }
             return grupo_inimigo[segunda_escolha-1]->get_nome() + " sofreu " + std::to_string(2 * _ataque) + " de dano. " + menssagem;
-            
+
         }
         else return "HP insuficiente para realizar este ataque. " + _nome + " não conseguiu fazer nada.";
     }

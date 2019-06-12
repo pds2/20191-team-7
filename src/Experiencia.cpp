@@ -37,8 +37,8 @@ void Experiencia::adiciona_xp(int xp){
         //this->_xp_para_prox_level = (this->_xp_para_prox_level) + (this->_xp_para_prox_level)*(XP_MULTIPLICADOR);//atualiza xp necessaria para proximo level
         }
         this->_xp_necessaria -= xp_aux;
- 
- 
+
+
  /*   if(this->_xp_total + xp >= XP_PROX_LEVEL){
         sobe_de_level();
         this->_xp_para_prox_level = (this->_xp_para_prox_level) + (this->_xp_para_prox_level)*(XP_MULTIPLICADOR);//atualiza xp necessaria para proximo level
@@ -50,3 +50,4 @@ int Experiencia::calcula_xp_monstro(Monstro monstro){
     int xp_monstro = (monstro.get_forca() + monstro.get_inteligencia() + monstro.get_agilidade());
     return xp_monstro;
 }
+

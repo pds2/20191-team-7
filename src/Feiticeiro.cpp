@@ -11,7 +11,12 @@ Feiticeiro::Feiticeiro (std::string nome, int forca, int agilidade, int intelige
 Feiticeiro::~Feiticeiro(){}
 
 int Feiticeiro::ataque_basico(Personagem* alvo) {
-    return alvo->recebe_ataque_fisico(_ataque);
+
+    // O ataque total eh 1d20 + a forca
+    int ataque_total;
+    ataque_total = _ataque + (rand() % 20 + 1);
+    std::cout << "O ataque foi de: " << ataque_total << " " << std::endl;
+    return alvo->recebe_ataque_fisico(ataque_total);
 }
 
 std::string Feiticeiro::get_habilidade(int habilidade_escolhida) {
@@ -28,10 +33,10 @@ std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_esc
     std::string msg = "";
     switch (habilidade_escolhida)
     {
-        case 1: 
+        case 1:
             msg = this->habilidade_1(grupo_inimigo);
             break;
-        case 2: 
+        case 2:
             if (segunda_escolha == 0){
                 return "Escolher inimigo";
             }
@@ -43,7 +48,7 @@ std::string Feiticeiro::usa_habilidade(int habilidade_escolhida, int segunda_esc
             }
             msg = this->habilidade_3(segunda_escolha,grupo_inimigo);
             break;
-        default: 
+        default:
             msg = "Habilidade inválida";
             break;
     }
@@ -86,7 +91,7 @@ std::string Feiticeiro::habilidade_2(int segunda_escolha, std::vector<Personagem
 
             std::string msg = this->_nome + " usou drenar energia em " + grupo_inimigo[segunda_escolha-1]->get_nome() + ".\n";
             msg += "Foi absorvido " + std::to_string(hp_drena) + " de HP e " + std::to_string(mp_drena) + " de MP\n";
-            
+
             // Adiciona valores ao feiticeiro
             if (_hp + hp_drena < _max_hp) {
                 _hp += hp_drena;
@@ -107,8 +112,8 @@ std::string Feiticeiro::habilidade_2(int segunda_escolha, std::vector<Personagem
             return msg;
         }
         return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
-    } 
-    return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";   
+    }
+    return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";
 }
 
 std::string Feiticeiro::habilidade_3(int segunda_escolha, std::vector<Personagem*> grupo_inimigo) {
@@ -132,6 +137,6 @@ std::string Feiticeiro::habilidade_3(int segunda_escolha, std::vector<Personagem
             }
         }
         return "Energia insuficiente para usar esta habilidade. " + _nome + " desperdiçou sua vez.";
-    } 
-    return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";   
+    }
+    return grupo_inimigo[segunda_escolha-1]->get_nome() + " já está morto! " + _nome + " desperdiçou sua vez.";
 }

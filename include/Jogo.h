@@ -2,8 +2,8 @@
 #define PDS2_JOGO_H
 
 #include <vector>
-#include <Personagem.h>
-#include <Monstro.h>
+#include "Personagem.h"
+#include "Monstro.h"
 
 class Jogo {
     private:

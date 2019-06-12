@@ -4,14 +4,14 @@
 #include "Personagem.h"
 #include <iostream>
 
-#define CUSTO_HABILIDADE_FT_1 25
-#define CUSTO_HABILIDADE_FT_2 20
-#define CUSTO_HABILIDADE_FT_3 30
+#define CUSTO_HABILIDADE_FT_1 5
+#define CUSTO_HABILIDADE_FT_2 4
+#define CUSTO_HABILIDADE_FT_3 6
 
-#define DANO_BOLA_DE_FOGO 40
+#define DANO_BOLA_DE_FOGO 20
 #define FATOR_DRENAR 0.20
 #define FATOR_F_CURA 0.30
-#define DANO_RAIO_PARALIZANTE 20
+#define DANO_RAIO_PARALIZANTE 30
 
 
 class Feiticeiro : public Personagem {

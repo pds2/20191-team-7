@@ -14,7 +14,7 @@ bool Jogo::carrega_arquivos(){
 
     //carrega o arquivo contendo os herois
     std::ifstream arquivo("herois.csv");
-    
+
     if(!arquivo.is_open()) std::cout << "Erro: falha no carregamento de arquivo";
     while(arquivo.good()){
         std::string nome,forca,agilidade,inteligencia;
@@ -32,7 +32,7 @@ bool Jogo::carrega_arquivos(){
 
     //carrega o arquivo contendo os monstros
     arquivo.open("monstros.csv");
-    
+
     if(!arquivo.is_open()) std::cout << "Erro: falha no carregamento de arquivo";
 
     while(arquivo.good()){
@@ -60,11 +60,12 @@ void Jogo::imprime_vetores(){
     for (unsigned int i = 0; i < _herois.size(); i++){
         _herois[i].imprime();
     }
-    
+
     //Imprime conteudo do vetor de monstros
     std::cout << std::endl << "MONSTROS:" << std::endl;
     for (unsigned int i = 0; i < _monstros.size(); i++){
-        _monstros[i].imprime();	    
+        _monstros[i].imprime();
     }
 }
+
 

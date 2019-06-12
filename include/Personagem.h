@@ -1,3 +1,4 @@
+
 #ifndef PDS2_PERSONAGEM_H
 #define PDS2_PERSONAGEM_H
 
@@ -65,7 +66,7 @@ class Personagem {
         void set_grupo(char);
         void set_perdeu_vez(bool);
 
-        //METODOS UTILIZADOS PARA TESTE 
+        //METODOS UTILIZADOS PARA TESTE
         void diminui_hp(int);
         void set_vivo_morto(bool);
         void set_agilidade(int);

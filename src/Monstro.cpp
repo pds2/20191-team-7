@@ -1,8 +1,8 @@
-#include <Monstro.h>
+#include "Monstro.h"
 
 Monstro::Monstro(std::string nome, int forca, int agilidade, int inteligencia):
                  Personagem (nome, forca, agilidade, inteligencia) {
-                     
+
     modifica_atributos_secundarios();
 }
 Monstro::~Monstro(){}
@@ -15,16 +15,16 @@ std::string Monstro::usa_habilidade(int habilidade_escolhida, int segunda_escolh
     std::string msg = "";
     switch (habilidade_escolhida)
     {
-        case 1: 
+        case 1:
             msg = "Usou " + _habilidade_1;
             break;
-        case 2: 
+        case 2:
             msg = "Usou " + _habilidade_2;
             break;
-        case 3: 
+        case 3:
             msg = "Usou " + _habilidade_3;
             break;
-        default: 
+        default:
             msg = "Habilidade inválida";
             break;
     }

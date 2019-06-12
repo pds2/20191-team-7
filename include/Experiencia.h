@@ -6,28 +6,28 @@
 #include "Monstro.h"
 
 #define XP_MULTIPLICADOR 1.25
-#define XP_PROX_LEVEL 100 //valor da xp necessaria pro level 1 ir para level 2 
+#define XP_PROX_LEVEL 100 //valor da xp necessaria pro level 1 ir para level 2
                           //valor apenas ilustrativo, a ser decidido.
 
 /* na classe experiencia precisamos controlar
-nivel do personagem 
+nivel do personagem
 xp atual
 xp que falta pra subir de nivel
 */
 class Experiencia {
     private:
-        
+
         int _xp_total;
 
         int _level; //nivel atual do personagem
         int _xp_para_prox_level;//xp  necessaria para subir de level
         int _xp_necessaria;
-                
 
-        
-    
-    public: 
-        
+
+
+
+    public:
+
         Experiencia();
         ~Experiencia();
         int get_xp();
@@ -43,7 +43,7 @@ class Experiencia {
 
         //adiciona xp, se subir de level, chama sobe_level e atualiza _xp_para_prox_level
         void adiciona_xp(int xp);
-        
+
         void sobe_de_level();
 
 

@@ -6,7 +6,7 @@ Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
     _nome_classe = "Druida";
     _habilidade_1 = "Cura - permite curar um aliado";
     _habilidade_2 = "Forma Animal - ataca um inimigo em forma de urso";
-    _habilidade_3 = "Revitaliza - permite revitalizar EP/MP de um aliado ";
+    _habilidade_3 = "Revitaliza - permite revitalizar EP/MP de um aliado";
 }
 Druida::~Druida(){}
 
@@ -114,7 +114,7 @@ std::string Druida::habilidade_3(int segunda_escolha, std::vector<Personagem*> g
             
             grupo_aliado[segunda_escolha]->set_mp(recupera_mp + grupo_aliado[segunda_escolha]->get_mp());
             
-            return _nome + " usou " + _habilidade_1 + " e conseguiu regenerar "
+            return _nome + " usou " + _habilidade_3 + " e conseguiu regenerar "
                 + std::to_string(recupera_mp) + " do MP/EP de " + grupo_aliado[segunda_escolha]->get_nome();
         }
         return grupo_aliado[segunda_escolha]->get_nome() + " está morto e não pode ser revitalizado";

@@ -40,7 +40,7 @@ TEST_CASE ("Teste: habilidade 'Cura'"){ //habilidade recupera 70% do maximo
     //TESTA SE NAO RECUPERA VIDA COM HP == 100% E TEXTO CORRETO
     int hp_atual = tester.get_hp();
     std::string nao_cura = tester.habilidade_1(1, heroi);
-    CHECK (nao_cura == "Bran usou Cura - permite curar um aliado e conseguiu aumentar em 0 o HP de Bran");
+    CHECK (nao_cura == "Bran usou Cura - e conseguiu aumentar em 0 o HP de Bran");
     CHECK (hp_atual == 200);
 
     //TESTA SE RECUPERA HP ATE O HP MAXIMO E TEXTO CORRETO
@@ -48,7 +48,7 @@ TEST_CASE ("Teste: habilidade 'Cura'"){ //habilidade recupera 70% do maximo
     nao_cura = tester.habilidade_1(1, heroi);
     hp_atual = tester.get_hp();
     CHECK(hp_atual == 200);
-    CHECK(nao_cura == "Bran usou Cura - permite curar um aliado e conseguiu aumentar em 1 o HP de Bran");
+    CHECK(nao_cura == "Bran usou Cura e conseguiu aumentar em 1 o HP de Bran");
 
     //TESTA SE EXECUTA HABILIDADE EM PERSONAGEM MORTO
     druid.set_vivo_morto(false);
@@ -104,7 +104,7 @@ TEST_CASE("Teste: habilidade 'Revitaliza' "){
     std::string recupera_mp = tester.habilidade_3(2,herois);
     int mp_aliado = amigo.get_mp();
     CHECK (mp_aliado == 50);
-    CHECK (recupera_mp == "Bran usou Revitaliza - permite revitalizar EP/MP de um aliado e conseguiu regenerar 50 do MP/EP de Dark");
+    CHECK (recupera_mp == "Bran usou Revitaliza e conseguiu regenerar 50 do MP/EP de Dark");
 
     //TESTA SE UTILIZA EM SI MESMO
     tester.set_mp(100);

@@ -4,9 +4,9 @@ Druida::Druida (std::string nome, int forca, int agilidade, int inteligencia):
                   Personagem (nome, forca, agilidade, inteligencia){
     
     _nome_classe = "Druida";
-    _habilidade_1 = "Cura - permite curar um aliado";
-    _habilidade_2 = "Forma Animal - ataca um inimigo em forma de urso";
-    _habilidade_3 = "Revitaliza - permite revitalizar EP/MP de um aliado";
+    _habilidade_1 = "Cura";
+    _habilidade_2 = "Forma Animal";
+    _habilidade_3 = "Revitaliza";
 }
 Druida::~Druida(){}
 

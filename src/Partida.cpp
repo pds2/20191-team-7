@@ -293,7 +293,9 @@ bool Partida::terminou() {
 
 void Partida::refresh_tela(){
     // Limpa a tela
-    system("clear");
+    if (system("clear")!=0){
+        std::cout << "Comando para limpar a tela não funcionou!";
+    }
 
     std::cout << "----------------------------------------------------------------------" << std::endl;
 

@@ -1,8 +1,8 @@
 # Projeto: Jogo RPG
 ## Instruções para compilação do projeto
-Para executar o projeto, crie uma pasta de nome bin na raiz do projeto e execute o seguinte comando:
+Para executar o projeto basta usar o makefile que já esta incluso.
 ```
-g++ --std=c++17 -Wall -Iinclude program/main.cpp src/character.cpp src/game.cpp -o bin/game.exe
+make run
 ```
 
 ## Definição do Projeto

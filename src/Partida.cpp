@@ -36,6 +36,7 @@ Partida::Partida(std::vector <Personagem*> grupo_a, std::vector <Personagem*> gr
     _grupo_red = grupo_b;
     _partida_terminou = false;
     _modo_de_jogo = modo_de_jogo;
+    int _experiencia_monstros;
 }
 Partida::~Partida() {};
 
@@ -61,21 +62,30 @@ void Partida::inicia() {
 }
 
 std::vector <Personagem*> Partida::determina_ordem(){
+    _experiencia_monstros = 0;
     // Unifica os dois grupos da partida em um vetor de apontadores para personagens
     std::vector <Personagem*> ordem;
     for (unsigned int i = 0; i < _grupo_blue.size(); i++) {
         _grupo_blue[i]->set_grupo('b');
         ordem.push_back(_grupo_blue[i]);
+        
     }
     for (unsigned int i = 0; i < _grupo_red.size(); i++) {
         _grupo_red[i]->set_grupo('r');
         ordem.push_back(_grupo_red[i]);
+    }
+    // Calcula a experiência a ser gerada pelos monstros na batalha
+    for (unsigned int i = 0; i< ordem.size(); i++){
+        int xp = ordem[i]->calcula_xp_monstro(ordem[i]);
+        _experiencia_monstros += xp;
+        std::cout <<" EXP ATUAL " << _experiencia_monstros << std::endl;
     }
 
     // Ordena esse vetor por agilidade dos personagens
     std::sort(ordem.begin(), ordem.end(), compara_agilidade);
 
     // Retorna o vetor ordenado
+    std::cout << "EXPERIENCIA DOS MONSTROS = " << _experiencia_monstros << std::endl;
     return ordem;
 }
 
@@ -156,6 +166,7 @@ void Partida::atacando(Personagem* p, std::vector <Personagem*> &grupo_inimigo) 
     // Informa caso o personagem tenha morrido
     if (!(grupo_inimigo[escolha-1]->get_vivo())){
         std::cout << grupo_inimigo[escolha-1]->get_nome() << " foi morto em combate.";
+
     }
     std::cout << std::endl;
     return;
@@ -285,6 +296,14 @@ bool Partida::terminou() {
     }
     if(terminou_red) {
         std::cout << "O time vermelho foi derrotado!" << std::endl;
+        for(unsigned int i = 0; i < _grupo_blue.size(); i++){
+            if(_grupo_blue[i]->get_vivo()){
+            _grupo_blue[i]->set_experiencia_adquirida(_experiencia_monstros);
+
+            std::cout << _grupo_blue[i]->get_nome() << " recebeu " << _experiencia_monstros << " de XP "
+                        << " e esta no level " << _grupo_blue[i]->get_level() << " Forca: "<< _grupo_blue[i]->get_forca() << " Agilidade: " << _grupo_blue[i]->get_agilidade() << " Inteligência: "<< _grupo_blue[i]->get_inteligencia()<< std::endl;
+            }
+        }
     }
 
     // Se terminou para um dos dois grupos terminou a partida

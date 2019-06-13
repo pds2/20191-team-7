@@ -2,12 +2,13 @@
 
 Monstro::Monstro(std::string nome, int forca, int agilidade, int inteligencia):
                  Personagem (nome, forca, agilidade, inteligencia) {
-                     
+    _nome_classe = "Monstro";
    // modifica_atributos_secundarios();
 }
 Monstro::~Monstro(){}
 
 //void Monstro::modifica_atributos_secundarios(){
+
 
 
 

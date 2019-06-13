@@ -13,6 +13,7 @@ class Partida {
         bool _partida_terminou;
         char _grupo_que_estajogando;
         int _modo_de_jogo; // 1 = Humano vs Humano, 2 = Humano vs CPU
+        int _experiencia_monstros;
     public:
         Partida(std::vector <Personagem*>,std::vector <Personagem*>, int);
         ~Partida();
@@ -22,7 +23,7 @@ class Partida {
 
         //confere se a partida terminou
         bool terminou();
-
+        
         //cria um vetor de apontadores na ordem certa
         std::vector <Personagem*> determina_ordem();
 

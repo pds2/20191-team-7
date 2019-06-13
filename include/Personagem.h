@@ -50,6 +50,7 @@ class Personagem {
         std::string get_nome();
         virtual std::string get_nome_classe();
 
+        int calcula_xp_monstro(Personagem*);
         int get_forca();
         int get_agilidade();
         int get_inteligencia();
@@ -72,7 +73,8 @@ class Personagem {
         void diminui_hp(int);
         void set_vivo_morto(bool);
         void set_agilidade(int);
-
+        
+        void set_experiencia_adquirida(int);
         void set_atributos_lvl_up();
         void set_atributos_secundarios_lvl_up(int, int, int);
 

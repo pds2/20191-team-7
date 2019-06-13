@@ -7,7 +7,7 @@
 //no momento não tem nada de diferente da classe personagem
 class Monstro : public Personagem {
     private:
-        int _exp_do_monstro;
+        
     public:
         Monstro(std::string, int, int, int);
         ~Monstro();

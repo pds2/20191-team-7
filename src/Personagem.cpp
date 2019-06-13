@@ -60,9 +60,11 @@ void Personagem::set_grupo(char grupo){
 int Personagem::get_level(){
     return _xp.get_level_atual();
 }
+
 std::string Personagem::get_nome(){
     return _nome;
 }
+
 
 int Personagem::get_forca(){
     return _forca;
@@ -119,7 +121,7 @@ void Personagem::set_hp(int hp) {
     _hp = hp;
 }
 void Personagem::set_atributos_lvl_up(){
-    _xp.sobe_de_level();
+    //_xp.sobe_de_level();
     _forca = round(_forca * MULTIP_LEVEL_UP);
     _agilidade =round (_agilidade * MULTIP_LEVEL_UP);
     _inteligencia = round (_inteligencia * MULTIP_LEVEL_UP);
@@ -137,6 +139,23 @@ void Personagem::set_atributos_secundarios_lvl_up(int forca, int agilidade, int 
     _max_hp = _hp;
     _max_mp = _mp;
 
+}
+
+void Personagem::set_experiencia_adquirida(int exp){
+    int level = _xp.get_level_atual();
+    _xp.adiciona_xp(exp);
+    while (level < _xp.get_level_atual()){
+        set_atributos_lvl_up();
+        level++;
+    }
+}
+
+int Personagem::calcula_xp_monstro(Personagem* monstro){
+    if (monstro->get_nome_classe() == "Monstro"){
+        int experiencia = monstro->get_agilidade() + monstro->get_forca() + monstro->get_inteligencia();
+        return experiencia;
+    }
+    return 0;
 }
 void Personagem::imprime(){
     std::cout << _nome << " >>";    

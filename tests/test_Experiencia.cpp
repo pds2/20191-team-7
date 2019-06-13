@@ -50,8 +50,10 @@ TEST_CASE("Teste: subir varios levels de uma vez"){
     exp.adiciona_xp(xp_ganha);
     int level = exp.get_level_atual();
     CHECK (level == 7);
-}   
+}
 
+
+/*
 TEST_CASE ("Teste: calculo de xp gerado por monstros diferentes"){
     Experiencia experiencia;
     Monstro b1 = Monstro("Ramsey",10,10,10); //um inimigo igual ao hérois
@@ -63,3 +65,4 @@ TEST_CASE ("Teste: calculo de xp gerado por monstros diferentes"){
     CHECK (xp_do_monstro == 60); //xp = 20+20+20
 
 }
+*/

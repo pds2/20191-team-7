@@ -1,6 +1,8 @@
 #ifndef PDS2_PERSONAGEM_H
 #define PDS2_PERSONAGEM_H
 
+#include "Experiencia.h"
+
 #include <string>
 #include <vector>
 
@@ -12,6 +14,7 @@ class Personagem {
         //nome da classe do personagem
         std::string _nome_classe;
 
+        Experiencia _xp;    
         //determina dano do ataque basico e defesa
         int _forca;
 
@@ -59,7 +62,7 @@ class Personagem {
         int get_max_hp();
         int get_mp();
         int get_max_mp();
-
+        int get_level();
         void set_hp(int);
         void set_mp(int);
         void set_grupo(char);
@@ -69,6 +72,19 @@ class Personagem {
         void diminui_hp(int);
         void set_vivo_morto(bool);
         void set_agilidade(int);
+
+        void set_atributos_lvl_up();
+        void set_atributos_secundarios_lvl_up(int, int, int);
+
+/*
+        void set_forca_upgrade();
+        void set_inteligencia_upgrade();
+        void set_agilidade_upgrade(int);
+        void set_ataque_upgrade(int);
+        void set_defesa_upgrade(int);
+        void set_maxhp_upgrade(int);
+        void set_maxmp_upgrade(int);
+*/
         //FIM METODOS DE TESTE
 
         //imprime atributos do personagem

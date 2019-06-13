@@ -24,3 +24,31 @@ TEST_CASE ("Teste: recebe ataque magico (ignora defesa)"){
     int hp = p.get_hp();
     CHECK (hp == 250);
 }
+
+TEST_CASE ("Teste: subir de level e atualizacao de atributos"){
+    Personagem p("Zezinho", 10, 10, 10); // maxHP=200; maxMP = 100; ataque = 100; defesa = 20; 
+    p.set_atributos_lvl_up();
+    int level_personagem = p.get_level();;
+    CHECK (level_personagem == 2);
+    int agilidade, forca, inteligencia, ataque, defesa, maxhp, maxmp;
+
+    agilidade = p.get_agilidade();
+    CHECK(agilidade == 13);
+
+    forca  = p.get_forca();
+    CHECK(forca == 13);
+    inteligencia = p.get_inteligencia();
+    CHECK(inteligencia == 13);
+    ataque = p.get_ataque();
+    CHECK(ataque == 130);
+    defesa = p.get_defesa();
+    CHECK(defesa == 26);
+    maxmp = p.get_max_mp();
+    CHECK(maxmp == 130);
+    maxhp = p.get_max_hp();
+    CHECK(maxhp == 260);
+
+
+    
+    
+}

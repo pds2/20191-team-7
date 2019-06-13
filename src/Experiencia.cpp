@@ -46,7 +46,22 @@ void Experiencia::adiciona_xp(int xp){
     this->_xp_total += xp;
 }
 //xp gerada pelo monstro = forca + inteligencia + agilidade
+
+//A FAZER --- CALCULAR XP DO MONSTRO
+/*
 int Experiencia::calcula_xp_monstro(Monstro monstro){
     int xp_monstro = (monstro.get_forca() + monstro.get_inteligencia() + monstro.get_agilidade());
     return xp_monstro;
 }
+*/
+
+//CALCULAR ATRIBUTOS EH RESPONSABILIDADE DE QUEM?
+/*
+void Experiencia::modifica_atributos_por_level(Personagem* heroi, int level){
+    for (int i = 0; i < level; i++){
+        heroi->set_atributos_lvl_up();
+    }
+    
+*/  
+
+

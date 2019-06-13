@@ -2,9 +2,9 @@
 #define PSS2_EXPERIENCIA_H
 
 #include <math.h>
-#include "Personagem.h"
-#include "Monstro.h"
 
+
+#define MULTIP_LEVEL_UP 1.30
 #define XP_MULTIPLICADOR 1.25
 #define XP_PROX_LEVEL 100 //valor da xp necessaria pro level 1 ir para level 2 
                           //valor apenas ilustrativo, a ser decidido.
@@ -22,7 +22,7 @@ class Experiencia {
         int _level; //nivel atual do personagem
         int _xp_para_prox_level;//xp  necessaria para subir de level
         int _xp_necessaria;
-                
+
 
         
     
@@ -39,12 +39,14 @@ class Experiencia {
         int get_xp_necessaria();
 
         //calcula xp com base nos stats do monstro derrotado
-        int calcula_xp_monstro(Monstro);
+        int calcula_xp_monstro();
 
         //adiciona xp, se subir de level, chama sobe_level e atualiza _xp_para_prox_level
         void adiciona_xp(int xp);
         
+    
         void sobe_de_level();
+
 
 
 

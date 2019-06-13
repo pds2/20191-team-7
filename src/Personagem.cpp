@@ -1,4 +1,5 @@
 #include "Personagem.h"
+
 #include <string>
 #include <iostream>
 
@@ -17,12 +18,13 @@ void Personagem::set_agilidade(int agilidade){
 //FIM METODOS PARA TESTES
 
 Personagem::Personagem(std::string nome, int forca, int agilidade, int inteligencia) {
-    //atributos principais
+     //atributos principais
     _nome = nome;
     _forca = forca;
     _agilidade = agilidade;
     _inteligencia = inteligencia;
-
+    Experiencia _xp;
+    
     //calcula os atributos secundarios a partir dos principais
     _ataque = 10 * forca;
     _defesa = 2 * forca; //maximo de 60
@@ -49,11 +51,15 @@ char Personagem::get_grupo(){
     return _grupo;
 }
 
+
 void Personagem::set_grupo(char grupo){
     _grupo = grupo;
     return;
 }
 
+int Personagem::get_level(){
+    return _xp.get_level_atual();
+}
 std::string Personagem::get_nome(){
     return _nome;
 }
@@ -112,7 +118,26 @@ void Personagem::set_mp(int mp) {
 void Personagem::set_hp(int hp) {
     _hp = hp;
 }
+void Personagem::set_atributos_lvl_up(){
+    _xp.sobe_de_level();
+    _forca = round(_forca * MULTIP_LEVEL_UP);
+    _agilidade =round (_agilidade * MULTIP_LEVEL_UP);
+    _inteligencia = round (_inteligencia * MULTIP_LEVEL_UP);
+    set_atributos_secundarios_lvl_up(_forca, _agilidade, _inteligencia);
+}
 
+void Personagem::set_atributos_secundarios_lvl_up(int forca, int agilidade, int inteligencia){
+    _ataque = 10 * forca;
+    _defesa = 2 * forca; //maximo de 60
+    if (_defesa > 60){
+        _defesa = 60;
+    }
+    _mp = 10 * inteligencia;
+    _hp = 10 * forca + 5 * _agilidade + 5 * _inteligencia;
+    _max_hp = _hp;
+    _max_mp = _mp;
+
+}
 void Personagem::imprime(){
     std::cout << _nome << " >>";    
     std::cout << " forca:" << _forca;
